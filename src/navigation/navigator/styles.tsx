@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
+import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper';
 import { isTablet } from 'react-native-device-info';
 
 export const styles = StyleSheet.create({
@@ -8,22 +8,21 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 60 + (isIphoneX() || isTablet() ? 20 : 0),
     alignItems: 'center',
+    backgroundColor: 'green',
+    paddingBottom: 15 + getBottomSpace(),
   },
   contentContainer: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 10,
     flexDirection: 'row',
     alignItems: 'center',
     width: isTablet() ? 500 : 'auto',
   },
   bottomBarIcon: {
-    height: '100%',
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'transparent',
-    paddingTop: 10,
   },
   indicator: {
     width: 15,
@@ -95,7 +94,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ico: {
-    width: '24@ms',
-    height: '24@ms',
+    width: 24,
+    height: 24,
   },
 });

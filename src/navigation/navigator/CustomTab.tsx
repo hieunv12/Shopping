@@ -14,65 +14,62 @@ export const CustomTabBar = memo(function CustomTabBar({
   navigation,
 }: BottomTabBarProps) {
   return (
-    <View>
-      <View style={styles.containerAbsolute}>
-        <View style={styles.contentContainer} pointerEvents="box-none">
-          {state.routes.map((route, index) => {
-            const { options } = descriptors[route.key];
-            const label =
-              options.tabBarLabel !== undefined
-                ? options.tabBarLabel
-                : options.title !== undefined
-                ? options.title
-                : route.name;
+    <View style={styles.containerAbsolute}>
+      <View style={styles.contentContainer} pointerEvents="box-none">
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+              ? options.title
+              : route.name;
 
-            const isFocused = state.index === index;
+          const isFocused = state.index === index;
 
-            const onPress = useCallback(() => {
-              InteractionManager.runAfterInteractions(() => {
-                const event = navigation.emit({
-                  type: 'tabPress',
-                  target: route.key,
-                  canPreventDefault: true,
-                });
-
-                if (!isFocused && !event.defaultPrevented) {
-                  navigation.navigate(route.name);
-                }
+          const onPress = () => {
+            InteractionManager.runAfterInteractions(() => {
+              const event = navigation.emit({
+                type: 'tabPress',
+                target: route.key,
+                canPreventDefault: true,
               });
-            }, [route, isFocused, index]);
 
-            return (
-              <TouchableWithoutFeedback
-                key={'tab-' + index.toString()}
-                accessibilityRole="button"
-                accessibilityLabel={options.tabBarAccessibilityLabel}
-                testID={options.tabBarTestID}
-                onPress={onPress}
-              >
-                <View style={styles.bottomBarIcon}>
-                  {options &&
-                    options.tabBarIcon &&
-                    options.tabBarIcon({
-                      focused: isFocused,
-                      color: '',
-                      size: 0,
-                    })}
-                  <Text
-                    numberOfLines={1}
-                    style={[
-                      styles.txtTabName,
-                      { color: isFocused ? '#8BC724' : '#8C8C8C' },
-                    ]}
-                  >
-                    {label}
-                  </Text>
-                  {isFocused && <View style={styles.indicator} />}
-                </View>
-              </TouchableWithoutFeedback>
-            );
-          })}
-        </View>
+              if (!isFocused && !event.defaultPrevented) {
+                navigation.navigate(route.name);
+              }
+            });
+          };
+
+          return (
+            <TouchableWithoutFeedback
+              key={'tab-' + index.toString()}
+              accessibilityRole="button"
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+            >
+              <View style={styles.bottomBarIcon}>
+                {options &&
+                  options.tabBarIcon &&
+                  options.tabBarIcon({
+                    focused: isFocused,
+                    color: '',
+                    size: 0,
+                  })}
+                <Text
+                  numberOfLines={1}
+                  style={[
+                    styles.txtTabName,
+                    { color: isFocused ? '#8BC724' : '#8C8C8C' },
+                  ]}
+                >
+                  {label}
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
+          );
+        })}
       </View>
     </View>
   );

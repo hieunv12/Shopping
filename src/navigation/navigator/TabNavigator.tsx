@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CustomTabBar } from './CustomTab';
 
 import { styles } from './styles';
-import { UserIcon } from '@assets';
+import { MarketIcon, TradeIcon, UserIcon } from '@assets';
 import { Home } from '@screens';
 export { SCREEN_ROUTE } from '../route';
 
@@ -12,17 +12,22 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = memo(function () {
   return (
-    <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
+    <Tab.Navigator
+      tabBar={props => <CustomTabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen
         name="HomePage"
         component={Home}
         options={{
-          title: 'Home',
+          title: 'Market',
           tabBarIcon: ({ focused }) => (
-            <UserIcon
+            <MarketIcon
               style={[
                 styles.ico,
-                { tintColor: focused ? '#8BC724' : '#8C8C8C' },
+                // { tintColor: focused ? '#8BC724' : '#8C8C8C' },
               ]}
             />
           ),
@@ -32,9 +37,9 @@ const TabNavigator = memo(function () {
         name="Handbook"
         component={Home}
         options={{
-          title: 'ÔPT',
+          title: 'Trade',
           tabBarIcon: ({ focused }) => (
-            <UserIcon
+            <TradeIcon
               style={[
                 styles.ico,
                 { tintColor: focused ? '#8BC724' : '#8C8C8C' },

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { MainStackComponent } from "../stack/MainStack";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { MainStackComponent } from '../stack/MainStack';
 
 //main stack app
 const NavigationApp = React.forwardRef((props: any, ref: any) => {
