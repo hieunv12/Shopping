@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { useTranslation } from 'react-i18next';
 import { CustomTabBar } from './CustomTab';
 
 import { styles } from './styles';
@@ -12,15 +11,13 @@ export { SCREEN_ROUTE } from '../route';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = memo(function () {
-  const { t } = useTranslation();
-
   return (
     <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
       <Tab.Screen
         name="HomePage"
         component={Home}
         options={{
-          title: t('tabbar.home'),
+          title: 'Home',
           tabBarIcon: ({ focused }) => (
             <UserIcon
               style={[
@@ -35,7 +32,7 @@ const TabNavigator = memo(function () {
         name="Handbook"
         component={Home}
         options={{
-          title: t('tabbar.booking'),
+          title: 'ÔPT',
           tabBarIcon: ({ focused }) => (
             <UserIcon
               style={[
@@ -51,7 +48,7 @@ const TabNavigator = memo(function () {
         name="Vaccine"
         component={Home}
         options={{
-          title: t('tabbar.vaccine'),
+          title: 'Profile',
           tabBarIcon: ({ focused }) => (
             <UserIcon
               style={[
@@ -66,7 +63,7 @@ const TabNavigator = memo(function () {
         name="Account"
         component={Home}
         options={{
-          title: t('tabbar.account'),
+          title: 'Account',
           tabBarIcon: ({ focused }) => (
             <UserIcon
               style={[

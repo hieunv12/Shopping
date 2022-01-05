@@ -31,8 +31,8 @@ const initI18n = () => {
   i18next
     .use(languageDetector)
     .use(initReactI18next)
-    .use(Backend)
     .init({
+      compatibilityJSON: 'v3',
       fallbackLng: 'en',
       debug: true,
       resources: {
