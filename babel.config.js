@@ -8,9 +8,9 @@ module.exports = {
         alias: {
           '@screens': './src/screens',
           '@redux': './src/redux',
-          '@component': './src/component',
+          '@components': './src/components',
           '@assets': './src/assets',
-          '@util': './src/util',
+          '@utils': './src/utils',
           '@services': './src/services',
           '@navigation': './src/navigation',
           '@types': './src/types',

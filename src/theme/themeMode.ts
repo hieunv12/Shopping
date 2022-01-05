@@ -3,6 +3,7 @@ export const darkTheme = {
   dark: true,
   colors: {
     background: '#111214',
+    icon: '#FFF',
   },
 };
 
