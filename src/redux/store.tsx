@@ -1,18 +1,21 @@
-import { RootState } from "./rootReducer";
-import { Store } from "@reduxjs/toolkit";
+import rootReducer from "./rootReducer";
+import { persistStore, persistReducer } from "redux-persist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { configureStore } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
 
-let _store: Store;
-
-export const getStore = (): Store<RootState> => {
-  if (!_store) {
-    throw new Error("Please implement setStore before using this function");
-  }
-
-  return _store;
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage,
 };
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const setStore = (store: Store) => {
-  _store = store;
-};
+const store = configureStore({
+  reducer: persistedReducer,
+  devTools: __DEV__,
+  middleware: [thunk],
+});
 
-export default getStore;
+export { store };
+
+export const persistor = persistStore(store);

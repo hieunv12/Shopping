@@ -1,20 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { accountInterface } from "../types";
+import { createSlice } from '@reduxjs/toolkit';
+import { APP_SLICE } from '@types';
+import { accountInterface } from '../types';
 
 const initialState = {
-  token: "",
+  token: '',
   userProfile: {},
 } as accountInterface;
 
 const accountSlice = createSlice({
-  name: "access_token",
+  name: APP_SLICE.ACCOUNT_SLICE,
   initialState,
   reducers: {
-    setToken(state, action) {
+    setAccountToken(state, action) {
       state.token = action.payload;
+    },
+    setUserProfile(state, action) {
+      state.userProfile = action.payload;
     },
   },
 });
 
-export const { setToken } = accountSlice.actions;
+export const { setAccountToken, setUserProfile } = accountSlice.actions;
 export default accountSlice.reducer;
