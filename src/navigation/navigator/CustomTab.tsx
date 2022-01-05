@@ -16,21 +16,65 @@ import {
   UserIcon,
 } from '@assets';
 import { SCREEN_ROUTE } from '@navigation';
+import { useTheme } from '@theme';
 
-let renderSourceImage = (label: string) => {
+let SourceImage = (props: { label?: string; isFocused: boolean }) => {
+  const { label, isFocused } = props;
+  const { themeColor } = useTheme();
+
   switch (label) {
     case SCREEN_ROUTE.HOME_PAGE:
-      return <MarketIcon />;
+      return (
+        <MarketIcon
+          iconFillColor={
+            isFocused
+              ? themeColor.color_Icon_Selected
+              : themeColor.color_Tab_Unselected
+          }
+        />
+      );
     case SCREEN_ROUTE.TRADE_PAGE:
-      return <TradeIcon />;
+      return (
+        <TradeIcon
+          iconFillColor={
+            isFocused
+              ? themeColor.color_Icon_Selected
+              : themeColor.color_Tab_Unselected
+          }
+        />
+      );
     case SCREEN_ROUTE.MAIN_PAGE:
-      return <MainIcon />;
+      return (
+        <MainIcon
+          iconFillColor={
+            isFocused
+              ? themeColor.color_Icon_Selected
+              : themeColor.color_Tab_Unselected
+          }
+        />
+      );
     case SCREEN_ROUTE.DISCOVER_PAGE:
-      return <DiscoverIcon />;
+      return (
+        <DiscoverIcon
+          iconFillColor={
+            isFocused
+              ? themeColor.color_Icon_Selected
+              : themeColor.color_Tab_Unselected
+          }
+        />
+      );
     case SCREEN_ROUTE.ACCOUNT_PAGE:
-      return <UserIcon />;
+      return (
+        <UserIcon
+          iconFillColor={
+            isFocused
+              ? themeColor.color_Icon_Selected
+              : themeColor.color_Tab_Unselected
+          }
+        />
+      );
     default:
-      break;
+      return null;
   }
 };
 
@@ -40,12 +84,18 @@ export const CustomTabBar = memo(function CustomTabBar({
   navigation,
 }: BottomTabBarProps) {
   const arrayLable = ['Market', 'Trade', '', 'Discover', 'Me'];
+  const { themeColor } = useTheme();
   return (
-    <View style={styles.containerAbsolute}>
+    <View
+      style={[
+        styles.containerAbsolute,
+        { backgroundColor: themeColor.backgroundColorTab },
+      ]}
+    >
       <View style={styles.contentContainer} pointerEvents="box-none">
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
-          const label =
+          const label: any =
             options.tabBarLabel !== undefined
               ? options.tabBarLabel
               : options.title !== undefined
@@ -84,13 +134,17 @@ export const CustomTabBar = memo(function CustomTabBar({
                     color: '',
                     size: 0,
                   })}
-                {renderSourceImage(label)}
+                <SourceImage label={label} isFocused={isFocused} />
                 {index !== 2 && (
                   <Text
                     numberOfLines={1}
                     style={[
                       styles.txtTabName,
-                      { color: isFocused ? '#8BC724' : '#8C8C8C' },
+                      {
+                        color: isFocused
+                          ? themeColor.color_Tab_Selected
+                          : themeColor.color_Tab_Unselected,
+                      },
                     ]}
                   >
                     {arrayLable[index]}
