@@ -17,6 +17,7 @@ import {
 } from '@assets';
 import { SCREEN_ROUTE } from '@navigation';
 import { useTheme } from '@theme';
+import { AppText } from '@components';
 
 let SourceImage = (props: { label?: string; isFocused: boolean }) => {
   const { label, isFocused } = props;
@@ -136,7 +137,7 @@ export const CustomTabBar = memo(function CustomTabBar({
                   })}
                 <SourceImage label={label} isFocused={isFocused} />
                 {index !== 2 && (
-                  <Text
+                  <AppText
                     numberOfLines={1}
                     style={[
                       styles.txtTabName,
@@ -148,7 +149,7 @@ export const CustomTabBar = memo(function CustomTabBar({
                     ]}
                   >
                     {arrayLable[index]}
-                  </Text>
+                  </AppText>
                 )}
               </View>
             </TouchableWithoutFeedback>

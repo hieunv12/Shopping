@@ -1,4 +1,5 @@
 // import { colors, fontFamily, SIZE } from '@util';
+import { FontWithBold_Barlow } from '@theme';
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
@@ -29,6 +30,7 @@ const AppText = React.memo((props: AppTextProps) => {
 
 const styles = StyleSheet.create({
   txtStyle: {
+    ...FontWithBold_Barlow.Normal_Barlow_300,
     // ...fontFamily.Proxima400,
     // fontSize: SIZE.base_size,
     // color: colors.secondPrimary,

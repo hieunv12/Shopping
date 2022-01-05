@@ -3,8 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { CustomTabBar } from './CustomTab';
 
-import { styles } from './styles';
-
 import { Home } from '@screens';
 import { SCREEN_ROUTE } from '@navigation';
 export { SCREEN_ROUTE } from '../route';
