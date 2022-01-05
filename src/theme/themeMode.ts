@@ -4,6 +4,7 @@ export const darkTheme = {
   colors: {
     background: '#111214',
     color_Tab_Unselected: '#5F5F5F',
+    icon: '#FFF',
   },
 };
 
