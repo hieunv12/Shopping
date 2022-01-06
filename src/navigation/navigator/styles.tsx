@@ -9,27 +9,18 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
-    backgroundColor: 'green',
     paddingBottom: 15 + getBottomSpace(),
   },
   contentContainer: {
     flex: 1,
     paddingTop: 10,
     flexDirection: 'row',
-    alignItems: 'center',
     width: isTablet() ? 500 : 'auto',
   },
   bottomBarIcon: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'transparent',
-  },
-  indicator: {
-    width: 15,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#86C022',
-    marginTop: 2,
   },
   viewTabBarContainer: {
     position: 'absolute',
