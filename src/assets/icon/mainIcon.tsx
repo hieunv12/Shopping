@@ -1,6 +1,6 @@
-import { iconProps } from '@assets';
 import React from 'react';
 import Svg, { G, Rect, Circle, Path } from 'react-native-svg';
+import { iconProps } from '@assets';
 
 export const MainIcon = (props: iconProps) => (
   <Svg width="36" height="40" viewBox="0 0 38 40" fill="none">

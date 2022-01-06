@@ -1,6 +1,6 @@
-import { iconProps } from '@assets';
 import React from 'react';
 import Svg, { G, Rect, Circle, Path } from 'react-native-svg';
+import { iconProps } from '@assets';
 
 export const MarketIcon = (props: iconProps) => (
   <Svg width={22} height={24} viewBox="0 0 22 24" fill="none" {...props}>

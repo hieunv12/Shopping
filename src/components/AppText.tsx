@@ -30,7 +30,7 @@ const AppText = React.memo((props: AppTextProps) => {
 
 const styles = StyleSheet.create({
   txtStyle: {
-    ...FontWithBold_Barlow.Normal_Barlow_300,
+    ...FontWithBold_Barlow.Bold_Barlow_500,
     // ...fontFamily.Proxima400,
     // fontSize: SIZE.base_size,
     // color: colors.secondPrimary,

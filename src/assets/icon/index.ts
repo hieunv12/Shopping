@@ -6,3 +6,5 @@ export * from './mainIcon';
 export * from './discover';
 export * from './settingsIcon';
 export * from './searchIcon';
+export * from './downIcon3D';
+export * from './flash3D';
