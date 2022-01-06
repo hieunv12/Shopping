@@ -5,13 +5,12 @@ import { SearchIcon, SettingsIcon } from '@assets';
 import { useTheme } from '@theme';
 
 const Home = memo(() => {
-  const theme = useTheme();
-  console.log(theme.theme.colors.icon);
+  const { themeColor } = useTheme();
   return (
     <SafeAreaView>
       <AppText>Hello</AppText>
-      <SettingsIcon strokeColor={theme.theme.colors.icon} />
-      <SearchIcon />
+      <SettingsIcon strokeColor={themeColor.icon} />
+      <SearchIcon strokeColor={themeColor.icon} />
     </SafeAreaView>
   );
 });
