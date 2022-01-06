@@ -1,5 +1,6 @@
-import { combineReducers } from "redux";
-import accountSlice from "./accountSlice";
+import { combineReducers } from 'redux';
+// import  from './slices';
+import accountSlice from './slices';
 
 const rootReducer = combineReducers({
   accountSlice: accountSlice,
