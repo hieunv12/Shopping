@@ -75,7 +75,6 @@ export const styles = StyleSheet.create({
   txtTabName: {
     textAlign: 'center',
     lineHeight: 15,
-    color: '#121212',
     marginTop: 5,
   },
 

@@ -8,12 +8,19 @@ export const darkTheme: any = {
     icon: '#FFF',
     backgroundColorTab: '#262626',
     color_Icon_Selected: '#F2CA24',
+    textColor: '#fff',
   },
 };
 
 export const lightTheme: any = {
   dark: false,
   colors: {
-    background: '#FFFFFF',
+    background: '#fff',
+    color_Tab_Unselected: '#d4d4d4',
+    color_Tab_Selected: '#ffffff',
+    icon: '#FFF',
+    backgroundColorTab: '#c4c4c4',
+    color_Icon_Selected: '#F2CA24',
+    textColor: '#000',
   },
 };

@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 
-import { ThemeContext } from './themeSetting';
+import { ThemeAppContext, useThemeApp } from './themeSetting';
 
 export const useTheme = () => {
-  const { theme, updateTheme } = useContext(ThemeContext);
+  const theme = useThemeApp();
+  const { updateTheme } = useContext(ThemeAppContext);
   return {
     theme,
     themeColor: theme.colors,

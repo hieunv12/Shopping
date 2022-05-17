@@ -1,16 +1,26 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
-import { AppText } from '@components';
 import { Flash3DIcon, DownIcon3D, SearchIcon, SettingsIcon } from '@assets';
-import { useTheme } from '@theme';
+import { Box, Text, useTheme } from '@theme';
 
 const Home = memo(() => {
-  const { themeColor } = useTheme();
+  const { updateTheme } = useTheme();
+  const [isDark, setDark] = useState(true);
   return (
     <SafeAreaView>
-      <AppText>Hello</AppText>
-      <SettingsIcon strokeColor={themeColor.icon} />
-      <SearchIcon strokeColor={themeColor.icon} />
+      {/* <SettingsIcon strokeColor={themeColor.icon} />
+      <SearchIcon strokeColor={themeColor.icon} /> */}
+      <Box>
+        <Text
+          variant={'text'}
+          onPress={() => {
+            updateTheme(!isDark);
+            setDark(!isDark);
+          }}
+        >
+          OKOK
+        </Text>
+      </Box>
       <DownIcon3D />
       <Flash3DIcon />
     </SafeAreaView>

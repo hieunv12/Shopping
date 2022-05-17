@@ -3,7 +3,6 @@ import {
   InteractionManager,
   TouchableWithoutFeedback,
   View,
-  Text,
   Image,
 } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
@@ -16,8 +15,7 @@ import {
   UserIcon,
 } from '@assets';
 import { SCREEN_ROUTE } from '@navigation';
-import { useTheme } from '@theme';
-import { AppText } from '@components';
+import { Spacing, Text, useTheme } from '@theme';
 
 let SourceImage = (props: { label?: string; isFocused: boolean }) => {
   const { label, isFocused } = props;
@@ -32,6 +30,8 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
           }
+          width={Spacing.width25}
+          height={Spacing.width25}
         />
       );
     case SCREEN_ROUTE.TRADE_PAGE:
@@ -42,6 +42,8 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
           }
+          width={Spacing.width25}
+          height={Spacing.width25}
         />
       );
     case SCREEN_ROUTE.MAIN_PAGE:
@@ -52,6 +54,8 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
           }
+          width={Spacing.width50}
+          height={Spacing.width50}
         />
       );
     case SCREEN_ROUTE.DISCOVER_PAGE:
@@ -62,6 +66,8 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
           }
+          width={Spacing.width23}
+          height={Spacing.width23}
         />
       );
     case SCREEN_ROUTE.ACCOUNT_PAGE:
@@ -72,6 +78,8 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
           }
+          width={Spacing.width25}
+          height={Spacing.width25}
         />
       );
     default:
@@ -137,19 +145,13 @@ export const CustomTabBar = memo(function CustomTabBar({
                   })}
                 <SourceImage label={label} isFocused={isFocused} />
                 {index !== 2 && (
-                  <AppText
+                  <Text
+                    variant={'text'}
                     numberOfLines={1}
-                    style={[
-                      styles.txtTabName,
-                      {
-                        color: isFocused
-                          ? themeColor.color_Tab_Selected
-                          : themeColor.color_Tab_Unselected,
-                      },
-                    ]}
+                    style={styles.txtTabName}
                   >
                     {arrayLable[index]}
-                  </AppText>
+                  </Text>
                 )}
               </View>
             </TouchableWithoutFeedback>
