@@ -155,37 +155,6 @@ export const FontSize = {
   ),
 };
 
-export const FontWithBold = StyleSheet.create({
-  Bold_300: {
-    fontWeight: '300',
-    fontFamily: 'Poppins-Light',
-  },
-  Bold_400: {
-    fontWeight: '400',
-    fontFamily: 'Poppins-Light',
-  },
-  Bold_500: {
-    fontWeight: '500',
-    fontFamily: 'Poppins-Regular',
-  },
-  Bold_600: {
-    fontWeight: '600',
-    fontFamily: 'Poppins-Bold',
-  },
-  Bold_700: {
-    fontWeight: '700',
-    fontFamily: 'Prompt-Bold',
-  },
-  Bold_800: {
-    fontWeight: '800',
-    fontFamily: 'Prompt-Bold',
-  },
-  Bold_900: {
-    fontWeight: '900',
-    fontFamily: 'Prompt-Bold',
-  },
-});
-
 export const Spacing = {
   BottomBar: 50 + (DEVICE.isIos ? (isIphoneX() || isIPhoneXMax() ? 34 : 0) : 0),
   width1: sizeWidth(1),

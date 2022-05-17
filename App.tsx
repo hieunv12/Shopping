@@ -5,7 +5,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationApp, NavigationUtils } from '@navigation';
 import { initI18n } from './src/translations';
 import { ThemeProvider } from '@theme';
-import 'react-native-gesture-handler';
 import { View } from 'react-native';
 
 initI18n();

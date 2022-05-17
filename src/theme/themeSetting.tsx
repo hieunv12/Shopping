@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StorageConstant } from '@types';
 import React from 'react';
-import storage from 'redux-persist/lib/storage';
 import { lightTheme, darkTheme } from './themeMode';
 
 export const ThemeContext = React.createContext({

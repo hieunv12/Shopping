@@ -1,143 +1,102 @@
-// import React, { useCallback } from 'react';
-// import { TouchableOpacity, StyleSheet, View, Image } from 'react-native';
-// import { AppText } from './AppText';
-// import { colors, fontFamily, scaleSize, SIZE } from '@util';
-// import { debounce } from 'lodash';
-// import { ButtonProps } from '@interfaces';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { Colors, FontWithBold_Barlow, Spacing, FontSize } from '@theme';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  TouchableOpacityProps,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
+import _, { debounce } from 'lodash';
+import { useTheme } from '@theme';
 
-// const AppButton = React.memo((props: ButtonProps) => {
-//   const {
-//     title,
-//     label,
-//     customStyleButton,
-//     customStyleTitle,
-//     customStyleLabel,
-//     onPress,
-//     disabled,
-//     iconRight,
-//     size,
-//     typeButton,
-//     isActive,
-//     image,
-//     imageStyle,
-//     containerStyle,
-//     iconLeft,
-//   } = props;
+export interface ButtonProps extends TouchableOpacityProps {
+  label: string;
+  secureTextEntry?: boolean;
+  disabled?: boolean;
+  Icon?: any;
+  onPress?: any;
+  style?: ViewStyle | ViewStyle[] | any;
+  labelStyle?: TextStyle | TextStyle[];
+  numberOfLines?: number;
+  isWrap?: boolean;
+  isDelay?: boolean;
+}
 
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-//   const onPressButton = useCallback(
-//     debounce(() => {
-//       if (onPress) {
-//         onPress();
-//       }
-//     }, 150),
-//     [onPress],
-//   );
+export function AppButton(props: ButtonProps) {
+  const {
+    label,
+    onPress = () => {},
+    style,
+    Icon,
+    labelStyle,
+    disabled,
+    numberOfLines,
+    isWrap,
+    isDelay,
+    ...rest
+  } = props;
 
-//   const bgLinear = {
-//     backgroundColor: 'transparent',
-//     borderWidth: isActive ? 1.5 : 1,
-//     borderColor: colors.violet,
-//   };
+  const { themeColor } = useTheme();
 
-//   const titleLinear = {
-//     color: colors.primary,
-//     ...fontFamily.Proxima600,
-//   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handler = useCallback(debounce(onPress, 10), []);
 
-//   const buttonStyle = [
-//     styles.container,
-//     typeButton === 'linear' ? bgLinear : {},
-//     { minHeight: size === 'small' ? SIZE.btn_height_small : SIZE.btn_height },
-//     typeButton === 'link' ? styles.bgLink : {},
-//     typeButton === 'underline' ? styles.bgUnderline : {},
-//     customStyleButton,
-//   ];
+  return (
+    <TouchableOpacity
+      disabled={disabled}
+      activeOpacity={1}
+      style={[
+        styles.button,
+        {
+          backgroundColor: disabled ? themeColor.colorDisable : Colors.blue,
+        },
+        style,
+      ]}
+      onPress={() => {
+        if (!isDelay) {
+          onPress();
+        } else {
+          handler();
+        }
+      }}
+    >
+      {Icon && <Icon style={styles.icon} />}
+      <Text
+        style={[
+          styles.label,
+          { color: disabled ? themeColor.gray : themeColor.white },
+          isWrap && { flex: 0, paddingHorizontal: Spacing.width15 },
+          labelStyle,
+        ]}
+        numberOfLines={numberOfLines}
+      >
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
+}
 
-//   const titleStyle = [
-//     styles.txtButton,
-//     typeButton === 'linear' && titleLinear,
-//     typeButton === 'link' ? styles.titleLink : {},
-//     typeButton === 'underline' ? styles.titleUnderline : {},
-//     size === 'small' && { ...fontFamily.Proxima600 },
-//     customStyleTitle,
-//   ];
-
-//   return (
-//     <View style={containerStyle}>
-//       {label && (
-//         <AppText style={[styles.label, customStyleLabel]}>{label}</AppText>
-//       )}
-//       <TouchableOpacity
-//         style={buttonStyle}
-//         disabled={disabled}
-//         onPress={onPressButton}
-//         activeOpacity={0.75}>
-//         {iconLeft && <>{iconLeft}</>}
-//         {image && <Image source={image} style={imageStyle} />}
-//         {title && <AppText style={titleStyle}>{title}</AppText>}
-
-//       </TouchableOpacity>
-//     </View>
-//   );
-// });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     borderRadius: scaleSize(16),
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     marginTop: SIZE.base_space,
-//     backgroundColor: colors.violet,
-//   },
-//   label: {
-//     color: colors.secondPrimary,
-//     fontSize: scaleSize(14.5),
-//     ...fontFamily.Proxima400,
-//     paddingTop: SIZE.padding,
-//   },
-//   txtButton: {
-//     ...fontFamily.Proxima600,
-//     color: colors.white,
-//     fontSize: SIZE.base_size,
-//   },
-//   iconLeft: {
-//     marginRight: SIZE.base_space,
-//   },
-//   iconRight: {
-//     marginLeft: SIZE.base_space / 2,
-//     marginRight: -SIZE.base_space / 2,
-//   },
-//   bgLink: {
-//     backgroundColor: 'transparent',
-//     minHeight: 'auto',
-//     alignItems: 'flex-end',
-//     alignSelf: 'center',
-//     borderRadius: 0,
-//     marginTop: SIZE.medium_space - 4,
-//   },
-//   titleLink: {
-//     color: colors.orange,
-//     ...fontFamily.Proxima600,
-//     lineHeight: SIZE.base_size * 1.6,
-//     textDecorationLine: 'underline',
-
-//   },
-//   bgUnderline: {
-//     backgroundColor: 'transparent',
-//     minHeight: 'auto',
-//     alignItems: 'flex-end',
-//     alignSelf: 'center',
-//     borderRadius: 0,
-//     marginTop: SIZE.medium_space - 4,
-//   },
-//   titleUnderline: {
-//     color: colors.green,
-//     ...fontFamily.Proxima600,
-//     lineHeight: SIZE.base_size * 1.6,
-//     textDecorationLine: 'underline',
-//   },
-// });
-
-// export { AppButton };
+const styles = StyleSheet.create({
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    minHeight: Spacing.height56,
+    flexDirection: 'row',
+    borderRadius: Spacing.width84,
+    backgroundColor: Colors.blue,
+  },
+  label: {
+    textAlign: 'center',
+    ...FontWithBold_Barlow.Bold_Barlow_600,
+    color: Colors.white,
+    fontSize: FontSize.Font17,
+    flex: 1,
+  },
+  icon: {
+    marginLeft: Spacing.width20,
+  },
+});

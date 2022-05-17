@@ -27,7 +27,7 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
     case SCREEN_ROUTE.HOME_PAGE:
       return (
         <MarketIcon
-          iconFillColor={
+          fill={
             isFocused
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
@@ -37,7 +37,7 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
     case SCREEN_ROUTE.TRADE_PAGE:
       return (
         <TradeIcon
-          iconFillColor={
+          fill={
             isFocused
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
@@ -47,7 +47,7 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
     case SCREEN_ROUTE.MAIN_PAGE:
       return (
         <MainIcon
-          iconFillColor={
+          fill={
             isFocused
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
@@ -57,7 +57,7 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
     case SCREEN_ROUTE.DISCOVER_PAGE:
       return (
         <DiscoverIcon
-          iconFillColor={
+          fill={
             isFocused
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected
@@ -67,7 +67,7 @@ let SourceImage = (props: { label?: string; isFocused: boolean }) => {
     case SCREEN_ROUTE.ACCOUNT_PAGE:
       return (
         <UserIcon
-          iconFillColor={
+          fill={
             isFocused
               ? themeColor.color_Icon_Selected
               : themeColor.color_Tab_Unselected

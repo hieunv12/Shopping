@@ -1,4 +1,4 @@
-export const darkTheme = {
+export const darkTheme: any = {
   // default
   dark: true,
   colors: {
@@ -11,7 +11,7 @@ export const darkTheme = {
   },
 };
 
-export const lightTheme = {
+export const lightTheme: any = {
   dark: false,
   colors: {
     background: '#FFFFFF',
