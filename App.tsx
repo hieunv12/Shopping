@@ -1,12 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { persistor, store } from '@redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { NavigationApp, NavigationUtils } from '@navigation';
-import { initI18n } from './src/translations';
-import { ThemeProvider } from '@theme';
+import {Provider} from 'react-redux';
+import {persistor, store} from '@redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {NavigationApp, NavigationUtils} from '@navigation';
+import {initI18n} from './src/translations';
+import {ThemeProvider} from '@theme';
 import 'react-native-gesture-handler';
-import { View } from 'react-native';
 
 initI18n();
 

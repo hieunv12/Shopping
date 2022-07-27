@@ -1,8 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StorageConstant } from '@types';
+import {StorageConstant} from '@types';
 import React from 'react';
-import storage from 'redux-persist/lib/storage';
-import { lightTheme, darkTheme } from './themeMode';
+import {lightTheme, darkTheme} from './themeMode';
 
 export const ThemeContext = React.createContext({
   theme: darkTheme,
@@ -10,7 +9,7 @@ export const ThemeContext = React.createContext({
 });
 
 const ThemeProvider = (props: any) => {
-  const [theme, setTheme] = React.useState(darkTheme);
+  const [theme, setTheme] = React.useState<any>(darkTheme);
 
   const onChangeTheme = React.useCallback(async () => {
     let oldTheme = (await AsyncStorage.getItem(StorageConstant.THEME)) || '';
@@ -35,4 +34,4 @@ const ThemeProvider = (props: any) => {
   );
 };
 
-export { ThemeProvider };
+export {ThemeProvider};

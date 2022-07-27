@@ -1,9 +1,9 @@
-import { RFPercentage } from 'react-native-responsive-fontsize';
-import { Dimensions, StyleSheet } from 'react-native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
-import { isIPhoneXMax } from 'react-native-status-bar-height';
+import {RFPercentage} from 'react-native-responsive-fontsize';
+import {Dimensions, StyleSheet} from 'react-native';
+import {isIphoneX} from 'react-native-iphone-x-helper';
+import {isIPhoneXMax} from 'react-native-status-bar-height';
 
-import { DEVICE } from '@utils';
+import {DEVICE} from '@utils';
 
 const BASE_FONT_SIZE = 2;
 function ReduceTextFor18_9(number: number) {
@@ -16,7 +16,7 @@ function calculateFontsize(current: number, max: number) {
   return current <= max ? current : max;
 }
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const DW = 375;
 const DH = 812;
 const vh = height / DH;

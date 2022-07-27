@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export const FontWithBold_Barlow = StyleSheet.create({
   Normal_Barlow_300: {

@@ -1,7 +1,6 @@
-// import { colors, fontFamily, SIZE } from '@util';
-import { FontWithBold_Barlow } from '@theme';
+import {FontWithBold_Barlow} from '@theme';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 interface AppTextProps {
   children: any;
@@ -12,8 +11,8 @@ interface AppTextProps {
 }
 
 const AppText = React.memo((props: AppTextProps) => {
-  const { style, onPress, numberOfLines } = props;
-  let { children } = props;
+  const {style, onPress, numberOfLines} = props;
+  let {children} = props;
   return (
     <>
       <Text
@@ -31,10 +30,7 @@ const AppText = React.memo((props: AppTextProps) => {
 const styles = StyleSheet.create({
   txtStyle: {
     ...FontWithBold_Barlow.Bold_Barlow_500,
-    // ...fontFamily.Proxima400,
-    // fontSize: SIZE.base_size,
-    // color: colors.secondPrimary,
   },
 });
 
-export { AppText };
+export {AppText};
