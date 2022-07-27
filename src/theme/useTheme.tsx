@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import {useContext} from 'react';
+import {typeOfColors} from './themeMode';
 
-import { ThemeAppContext, useThemeApp } from './themeSetting';
+import {ThemeAppContext, useThemeApp} from './themeSetting';
 
 export const useTheme = () => {
-  const theme = useThemeApp();
-  const { updateTheme } = useContext(ThemeAppContext);
+  const theme: {colors: typeOfColors} = useThemeApp();
+  const {updateTheme} = useContext(ThemeAppContext);
   return {
     theme,
     themeColor: theme.colors,

@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-import React, { useCallback, useMemo } from 'react';
-import { lightTheme, darkTheme } from './themeMode';
+import React, {useCallback, useMemo} from 'react';
+import {lightTheme, darkTheme} from './themeMode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ThemeProvider as ReStyleThemeProvider,
@@ -9,9 +8,9 @@ import {
   useTheme as useReTheme,
   createTheme,
 } from '@shopify/restyle';
-import { FontSize, Spacing } from './size';
-import { FontWithBold_Barlow } from './fontWithBold';
-import { StorageConstant } from '@types';
+import {FontSize, Spacing} from './size';
+import {FontWithBold_Barlow} from './fontWithBold';
+import {StorageConstant} from '@types';
 const theme = createTheme({
   colors: {
     ...darkTheme.colors,
@@ -76,7 +75,7 @@ export const ThemeAppContext = React.createContext({
   updateTheme: (isLight: boolean) => {},
 });
 
-export const ThemeProvider = ({ children }: any) => {
+export const ThemeProvider = ({children}: any) => {
   const Dark = useMemo(() => {
     return {
       ...theme,

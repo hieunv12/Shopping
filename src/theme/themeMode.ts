@@ -1,3 +1,16 @@
+export interface typeOfColors {
+  background: string;
+  color_Tab_Unselected: string;
+  color_Tab_Selected: string;
+  icon: string;
+  backgroundColorTab: string;
+  color_Icon_Selected: string;
+  textColor: string;
+  whiteColor: string;
+  colorDisable: string;
+  primary: string;
+}
+
 export const darkTheme: any = {
   // default
   dark: true,
@@ -9,6 +22,9 @@ export const darkTheme: any = {
     backgroundColorTab: '#262626',
     color_Icon_Selected: '#F2CA24',
     textColor: '#fff',
+    whiteColor: '#fff',
+    colorDisable: '#c0c0c0',
+    primary: '#4d4fdb',
   },
 };
 
@@ -22,5 +38,8 @@ export const lightTheme: any = {
     backgroundColorTab: '#c4c4c4',
     color_Icon_Selected: '#F2CA24',
     textColor: '#000',
+    whiteColor: '#fff',
+    colorDisable: '#c0c0c0',
+    primary: '#4d4fdb',
   },
 };

@@ -1,12 +1,14 @@
 module.exports = {
   tabWidth: 2,
-  bracketSpacing: true,
+  bracketSpacing: false,
   jsxBracketSameLine: false,
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'avoid',
-  "rules": {
-      "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+  rules: {
+    'no-unused-vars': [
+      'error',
+      {vars: 'all', args: 'after-used', ignoreRestSiblings: false},
+    ],
   },
-  
 };

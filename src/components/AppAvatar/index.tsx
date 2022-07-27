@@ -1,7 +1,8 @@
-import {CommonImage} from '@assets';
+import {NoAvatar} from '@assets';
 import React from 'react';
 import {ImageStyle, StyleProp} from 'react-native';
-import FastImage, {ResizeMode} from 'react-native-fast-image';
+import {ResizeMode} from 'react-native-fast-image';
+import {AppImage} from '../AppImage/AppImage';
 
 interface propsImage {
   uri: string;
@@ -12,8 +13,9 @@ interface propsImage {
 const AppAvatar = React.memo((props: propsImage) => {
   const {uri, style, resizeMode} = props;
   return (
-    <FastImage
-      source={uri ? {uri} : CommonImage.NoAvatar}
+    <AppImage
+      uri={uri}
+      defaultSource={NoAvatar}
       style={style}
       resizeMode={resizeMode}
     />

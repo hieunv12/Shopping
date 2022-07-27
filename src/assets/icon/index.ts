@@ -11,4 +11,5 @@ import MarketIcon from './tab/market.svg';
 import TradeIcon from './tab/trade.svg';
 import UserIcon from './tab/me.svg';
 
-export { DiscoverIcon, MainIcon, MarketIcon, TradeIcon, UserIcon };
+export {DiscoverIcon, MainIcon, MarketIcon, TradeIcon, UserIcon};
+export * from '../icon/image';
