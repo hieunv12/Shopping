@@ -8,7 +8,7 @@ interface AppTextProps {
   numberOfLines?: number;
   style?: StyleProp<TextStyle>;
   children: any;
-  variant: ResponsiveValue<
+  variant?: ResponsiveValue<
     'body' | 'button' | 'header' | 'text' | 'title1' | 'title2' | 'title3',
     {
       colors: any;
@@ -44,7 +44,7 @@ interface AppTextProps {
 }
 
 export const AppText = (props: AppTextProps) => {
-  const {style, numberOfLines, children} = props;
+  const {style, numberOfLines, children, variant = 'text'} = props;
   const {themeColor} = useTheme();
   if (numberOfLines === 1) {
     return (
@@ -64,7 +64,7 @@ export const AppText = (props: AppTextProps) => {
     <Text
       style={[styles.label, {color: themeColor.textColor}, style]}
       numberOfLines={numberOfLines}
-      variant="button"
+      variant={variant}
     >
       {children}
     </Text>

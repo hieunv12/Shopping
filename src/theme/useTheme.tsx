@@ -1,6 +1,5 @@
 import {useContext} from 'react';
 import {typeOfColors} from './themeMode';
-
 import {ThemeAppContext, useThemeApp} from './themeSetting';
 
 export const useTheme = () => {

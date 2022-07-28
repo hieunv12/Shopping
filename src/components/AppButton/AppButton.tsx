@@ -1,12 +1,5 @@
-import React, {useCallback} from 'react';
-import {
-  Colors,
-  FontWithBold_Barlow,
-  Spacing,
-  FontSize,
-  Text,
-  Box,
-} from '@theme';
+import React from 'react';
+import {Colors, Box} from '@theme';
 import {
   View,
   TouchableOpacity,
@@ -62,7 +55,7 @@ export function AppButton(props: ButtonProps) {
   const {themeColor} = useTheme();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handler = useCallback(debounce(onPress, 10), []);
+  const handler = debounce(onPress, 10);
 
   return (
     <WrapContent isWrap={isWrap}>

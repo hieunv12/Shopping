@@ -1,20 +1,11 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { MainStackComponent } from '../stack/MainStack';
-
-import { useTheme } from '@theme';
-import { StatusBar } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {MainStackComponent} from '../stack/MainStack';
+import {useTheme} from '@theme';
 
 //main stack app
 const NavigationApp = React.forwardRef((props: any, ref: any) => {
-  // React.useEffect(() => {
-  //   dispatch(resetDataSignup());
-  // }, [token]);
-
-  const { theme, themeColor } = useTheme();
-  console.log(theme);
+  const dataTheme: any = useTheme();
 
   const renderStackApp = () => {
     // if (!token) {
@@ -27,10 +18,10 @@ const NavigationApp = React.forwardRef((props: any, ref: any) => {
     );
   };
   return (
-    <NavigationContainer theme={theme} ref={ref}>
+    <NavigationContainer theme={dataTheme.theme} ref={ref}>
       {renderStackApp()}
     </NavigationContainer>
   );
 });
 
-export { NavigationApp };
+export {NavigationApp};
