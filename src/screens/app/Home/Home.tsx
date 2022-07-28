@@ -9,9 +9,13 @@ const Home = memo(() => {
   const [isDark, setDark] = useState(true);
   return (
     <SafeAreaView>
-      {/* <SettingsIcon strokeColor={themeColor.icon} />
-      <SearchIcon strokeColor={themeColor.icon} /> */}
-      <AppButton label="OKOK" isWrap />
+      <AppButton
+        label="OKOK"
+        isWrap
+        onPress={() => {
+          updateTheme(true);
+        }}
+      />
     </SafeAreaView>
   );
 });

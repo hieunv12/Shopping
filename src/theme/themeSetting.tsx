@@ -11,6 +11,7 @@ import {
 import {FontSize, Spacing} from './size';
 import {FontWithBold_Barlow} from './fontWithBold';
 import {StorageConstant} from '@types';
+import {StatusBar} from 'react-native';
 const theme = createTheme({
   colors: {
     ...darkTheme.colors,
@@ -95,7 +96,9 @@ export const ThemeProvider = ({children}: any) => {
       setTheme(isLightTheme ? Light : Dark);
       if (isLightTheme) {
         AsyncStorage.setItem(StorageConstant.THEME, 'THEME_SET_SUCCESS');
+        StatusBar.setBarStyle('dark-content');
       } else {
+        StatusBar.setBarStyle('light-content');
         AsyncStorage.removeItem(StorageConstant.THEME);
       }
     },

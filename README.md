@@ -1,3 +1,3 @@
-# MMK
+# MyApp
 
-project for mmk
+project for MyApp
