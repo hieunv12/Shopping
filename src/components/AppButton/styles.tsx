@@ -1,4 +1,4 @@
-import {Colors, FontSize, FontWithBold_Barlow, Spacing} from '@theme';
+import {Colors, FontWithBold_Barlow, Spacing} from '@theme';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     ...FontWithBold_Barlow.Bold_Barlow_600,
     color: Colors.white,
-    fontSize: FontSize.Font17,
     flex: 1,
   },
   icon: {

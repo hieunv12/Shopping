@@ -1,19 +1,29 @@
-import React, {memo, useState} from 'react';
-import {View, SafeAreaView} from 'react-native';
-import {Flash3DIcon, DownIcon3D} from '@assets';
-import {Box, Text, useTheme} from '@theme';
-import {AppButton, AppText} from '@components';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import React, {memo, useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Box, useTheme} from '@theme';
+import {AppButton, GlobalService} from '@components';
+import {AppchangeLanguage} from '@instances';
+import {LANGUAGE_ENUM} from '@translations';
+import {useTranslation} from 'react-i18next';
+import i18next from 'i18next';
 let num = 1;
 
 const Home = () => {
   const {updateTheme} = useTheme();
+  const {t} = useTranslation();
   const [isDark, setDark] = useState(true);
+
+  useEffect(() => {
+    GlobalService.hideLoading();
+  }, []);
+  const onSwitchLang = AppchangeLanguage();
+
   // return null;
   return (
-    <SafeAreaView>
+    <Box alignItems="center" justifyContent="center" flex={1}>
       <AppButton
-        label="OKOK"
+        style={styles.btn1}
+        label={t('switchTheme')}
         isWrap
         onPress={() => {
           num += 1;
@@ -21,8 +31,27 @@ const Home = () => {
           updateTheme(!isDark);
         }}
       />
-    </SafeAreaView>
+      <AppButton
+        label={t('switchLang')}
+        isWrap
+        onPress={() => {
+          GlobalService.showLoading();
+          onSwitchLang(
+            i18next.language === LANGUAGE_ENUM.vi
+              ? LANGUAGE_ENUM.en
+              : LANGUAGE_ENUM.vi,
+          );
+          setTimeout(() => {
+            GlobalService.hideLoading();
+          }, 1000);
+        }}
+      />
+    </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  btn1: {marginBottom: 20},
+});
 
 export {Home};

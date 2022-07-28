@@ -1,25 +1,14 @@
-import React, { memo, useCallback } from 'react';
-import {
-  InteractionManager,
-  TouchableWithoutFeedback,
-  View,
-  Image,
-} from 'react-native';
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
-import { styles } from './styles';
-import {
-  DiscoverIcon,
-  MainIcon,
-  MarketIcon,
-  TradeIcon,
-  UserIcon,
-} from '@assets';
-import { SCREEN_ROUTE } from '@navigation';
-import { Spacing, Text, useTheme } from '@theme';
+import React, {memo} from 'react';
+import {InteractionManager, TouchableWithoutFeedback, View} from 'react-native';
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
+import {styles} from './styles';
+import {DiscoverIcon, MainIcon, MarketIcon, TradeIcon, UserIcon} from '@assets';
+import {SCREEN_ROUTE} from '@navigation';
+import {Spacing, Text, useTheme} from '@theme';
 
-let SourceImage = (props: { label?: string; isFocused: boolean }) => {
-  const { label, isFocused } = props;
-  const { themeColor } = useTheme();
+let SourceImage = (props: {label?: string; isFocused: boolean}) => {
+  const {label, isFocused} = props;
+  const {themeColor} = useTheme();
 
   switch (label) {
     case SCREEN_ROUTE.HOME_PAGE:
@@ -93,17 +82,17 @@ export const CustomTabBar = memo(function CustomTabBar({
   navigation,
 }: BottomTabBarProps) {
   const arrayLable = ['Market', 'Trade', '', 'Discover', 'Me'];
-  const { themeColor } = useTheme();
+  const {themeColor} = useTheme();
   return (
     <View
       style={[
         styles.containerAbsolute,
-        { backgroundColor: themeColor.backgroundColorTab },
+        {backgroundColor: themeColor.backgroundColorTab},
       ]}
     >
       <View style={styles.contentContainer} pointerEvents="box-none">
         {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key];
+          const {options} = descriptors[route.key];
           const label: any =
             options.tabBarLabel !== undefined
               ? options.tabBarLabel

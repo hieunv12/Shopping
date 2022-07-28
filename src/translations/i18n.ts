@@ -1,8 +1,7 @@
 import i18next from 'i18next';
 import Backend from 'i18next-http-backend';
-import { initReactI18next } from 'react-i18next';
-
-import { en } from './locales';
+import {initReactI18next} from 'react-i18next';
+import {en, vi} from './locales';
 
 type languageDetectorType = {
   type:
@@ -36,9 +35,10 @@ const initI18n = () => {
       fallbackLng: 'en',
       debug: true,
       resources: {
-        en: { translation: en },
+        en: {translation: en},
+        vi: {translation: vi},
       },
     });
 };
 
-export { initI18n };
+export {initI18n};

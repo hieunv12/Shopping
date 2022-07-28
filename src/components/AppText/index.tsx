@@ -1,11 +1,9 @@
-import {ResponsiveValue} from '@shopify/restyle';
-import {FontSize, FontWithBold_Barlow, Text, useTheme} from '@theme';
+import {ResponsiveValue, SpacingProps, TypographyProps} from '@shopify/restyle';
+import {FontSize, FontWithBold_Barlow, Text, Theme, useTheme} from '@theme';
 import React from 'react';
-import {StyleProp, StyleSheet, TextStyle} from 'react-native';
+import {StyleProp, StyleSheet, TextProps, TextStyle} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
-
 interface AppTextProps {
-  numberOfLines?: number;
   style?: StyleProp<TextStyle>;
   children: any;
   variant?: ResponsiveValue<
@@ -43,9 +41,15 @@ interface AppTextProps {
   >;
 }
 
-export const AppText = (props: AppTextProps) => {
-  const {style, numberOfLines, children, variant = 'text'} = props;
+export const AppText = (
+  props: AppTextProps &
+    SpacingProps<Theme> &
+    TextProps &
+    TypographyProps<Theme>,
+) => {
+  const {style, children, variant = 'text', numberOfLines} = props;
   const {themeColor} = useTheme();
+
   if (numberOfLines === 1) {
     return (
       <TextTicker
@@ -62,6 +66,7 @@ export const AppText = (props: AppTextProps) => {
   }
   return (
     <Text
+      {...props}
       style={[styles.label, {color: themeColor.textColor}, style]}
       numberOfLines={numberOfLines}
       variant={variant}
@@ -74,6 +79,5 @@ export const AppText = (props: AppTextProps) => {
 const styles = StyleSheet.create({
   label: {
     ...FontWithBold_Barlow.Bold_Barlow_500,
-    fontSize: FontSize.Font14,
   },
 });

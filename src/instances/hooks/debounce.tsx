@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 function useDebounceValue(value: number | string, delay = 500) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -29,4 +29,4 @@ function useDebounceFunction(callBack: () => void, delay = 500) {
   return onPlay();
 }
 
-export { useDebounceValue, useDebounceFunction };
+export {useDebounceValue, useDebounceFunction};

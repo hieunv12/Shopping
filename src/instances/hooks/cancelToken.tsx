@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
-import axios, { CancelToken } from 'axios';
+import {useEffect} from 'react';
+import axios, {CancelToken} from 'axios';
 interface functionProps {
   cancelToken: CancelToken;
 }

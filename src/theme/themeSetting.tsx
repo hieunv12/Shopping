@@ -9,7 +9,7 @@ import {
   createTheme,
 } from '@shopify/restyle';
 import {FontSize, Spacing} from './size';
-import {FontWithBold_Barlow} from './fontWithBold';
+import {FontWithBold_Barlow, FontWithBold_PingFang} from './fontWithBold';
 import {StorageConstant} from '@types';
 import {StatusBar} from 'react-native';
 const theme = createTheme({
@@ -50,11 +50,13 @@ const theme = createTheme({
     body: {
       fontSize: FontSize.Font16,
       color: 'textColor',
+      ...FontWithBold_PingFang.Bold_PingFang_500,
     },
     button: {
       fontSize: FontSize.Font15,
       color: 'textColor',
       textAlign: 'center',
+      ...FontWithBold_Barlow.Bold_Barlow_600,
     },
     header: {
       fontSize: FontSize.Font12,
@@ -71,7 +73,6 @@ export type Theme = typeof theme;
 
 export const Box = createBox<Theme>();
 export const Text = createText<Theme>();
-
 export const ThemeAppContext = React.createContext({
   updateTheme: (isLight: boolean) => {},
 });
