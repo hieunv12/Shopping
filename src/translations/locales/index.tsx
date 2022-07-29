@@ -1,7 +1,7 @@
 export * from './en/en';
 export * from './vi/vi';
 
-export enum LANGUAGE_ENUM {
+export enum ENUM_LANGUAGE {
   'en' = 'en',
   'vi' = 'vi',
 }
