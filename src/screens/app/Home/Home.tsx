@@ -1,12 +1,11 @@
-import React, {memo, useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
 import {Box, useTheme} from '@theme';
 import {AppButton, GlobalService} from '@components';
 import {AppchangeLanguage} from '@instances';
-import {LANGUAGE_ENUM} from '@translations';
+import {ENUM_LANGUAGE} from '@translations';
 import {useTranslation} from 'react-i18next';
 import i18next from 'i18next';
-let num = 1;
 
 const Home = () => {
   const {updateTheme} = useTheme();
@@ -26,7 +25,6 @@ const Home = () => {
         label={t('switchTheme')}
         isWrap
         onPress={() => {
-          num += 1;
           setDark(!isDark);
           updateTheme(!isDark);
         }}
@@ -37,9 +35,9 @@ const Home = () => {
         onPress={() => {
           GlobalService.showLoading();
           onSwitchLang(
-            i18next.language === LANGUAGE_ENUM.vi
-              ? LANGUAGE_ENUM.en
-              : LANGUAGE_ENUM.vi,
+            i18next.language === ENUM_LANGUAGE.vi
+              ? ENUM_LANGUAGE.en
+              : ENUM_LANGUAGE.vi,
           );
           setTimeout(() => {
             GlobalService.hideLoading();
