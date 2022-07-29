@@ -1,1 +1,1 @@
-export { default } from './accountSlice';
+export {default} from './accountSlice';

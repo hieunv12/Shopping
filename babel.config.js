@@ -18,6 +18,7 @@ module.exports = {
           '@translations': './src/translations',
           '@constants': './src/constants',
           '@instances': './src/instances',
+          '@api': './src/api',
         },
       },
     ],

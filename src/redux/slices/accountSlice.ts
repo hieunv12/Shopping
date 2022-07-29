@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { APP_SLICE } from '@types';
-import { accountInterface } from '../types';
+import {createSlice} from '@reduxjs/toolkit';
+import {APP_SLICE} from '@types';
+import {accountInterface} from '../types';
 
 const initialState = {
   token: '',
@@ -20,5 +20,5 @@ const accountSlice = createSlice({
   },
 });
 
-export const { setAccountToken, setUserProfile } = accountSlice.actions;
+export const {setAccountToken, setUserProfile} = accountSlice.actions;
 export default accountSlice.reducer;

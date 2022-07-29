@@ -1,7 +1,7 @@
-import { Dimensions, Platform, NativeModules } from 'react-native';
+import {Dimensions, Platform, NativeModules} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
-const { PlatformConstants } = NativeModules;
+const {width, height} = Dimensions.get('window');
+const {PlatformConstants} = NativeModules;
 
 const DEVICE = {
   isIos: Platform.OS === 'ios',
@@ -12,4 +12,4 @@ const DEVICE = {
   isSmallDevice: width < 375,
 };
 
-export { DEVICE };
+export {DEVICE};
