@@ -1,5 +1,4 @@
 import React from 'react';
-import {Provider} from 'react-redux';
 import {persistor, store} from '@redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationApp, NavigationUtils} from '@navigation';
@@ -9,6 +8,7 @@ import {Platform, StyleSheet} from 'react-native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import FlashMessage from 'react-native-flash-message';
 import {GlobalService, GlobalUI} from '@components';
+import {Provider} from 'react-redux';
 
 initI18n();
 
@@ -18,9 +18,9 @@ function App() {
       <ThemeProvider>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationApp
-            ref={(navigatorRef: any) =>
-              NavigationUtils.setTopLevelNavigator(navigatorRef)
-            }
+            ref={(navigatorRef: any) => {
+              NavigationUtils.setTopLevelNavigator(navigatorRef);
+            }}
           />
           <GlobalUI ref={GlobalService.globalUIRef} />
           <FlashMessage

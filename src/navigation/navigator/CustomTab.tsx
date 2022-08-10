@@ -6,7 +6,7 @@ import {DiscoverIcon, MainIcon, MarketIcon, TradeIcon, UserIcon} from '@assets';
 import {SCREEN_ROUTE} from '@navigation';
 import {Spacing, Text, useTheme} from '@theme';
 
-let SourceImage = (props: {label?: string; isFocused: boolean}) => {
+const SourceImage = (props: {label?: string; isFocused: boolean;}) => {
   const {label, isFocused} = props;
   const {themeColor} = useTheme();
 
@@ -97,8 +97,8 @@ export const CustomTabBar = memo(function CustomTabBar({
             options.tabBarLabel !== undefined
               ? options.tabBarLabel
               : options.title !== undefined
-              ? options.title
-              : route.name;
+                ? options.title
+                : route.name;
 
           const isFocused = state.index === index;
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {Box, useTheme} from '@theme';
-import {AppButton, GlobalService} from '@components';
+import {AppButton, AppInput, GlobalService} from '@components';
 import {AppchangeLanguage} from '@instances';
 import {ENUM_LANGUAGE} from '@translations';
 import {useTranslation} from 'react-i18next';
@@ -11,6 +11,7 @@ const Home = () => {
   const {updateTheme} = useTheme();
   const {t} = useTranslation();
   const [isDark, setDark] = useState(true);
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     GlobalService.hideLoading();
@@ -43,6 +44,9 @@ const Home = () => {
             GlobalService.hideLoading();
           }, 1000);
         }}
+      />
+      <AppInput value={value} onChangeText={setValue} placeholder="OKOKOKO"
+        label={"OKOKOK"}
       />
     </Box>
   );

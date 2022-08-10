@@ -1,5 +1,6 @@
-import { Spacing, Text, useTheme } from '@theme';
-import React, { forwardRef, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {Spacing, Text, useTheme} from '@theme';
+import React, {forwardRef, useEffect} from 'react';
 import {
   View,
   RefreshControl,
@@ -12,16 +13,15 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
-import { FlatList as ListForDrag } from 'react-native-gesture-handler';
+import {FlatList as ListForDrag} from 'react-native-gesture-handler';
 interface VirtualListProps {
   renderItem: ListRenderItem<any> | null | undefined;
   onRefresh?: () => void;
   style?: StyleProp<ViewStyle>;
-  data: Array<Object | string>;
+  data: Array<string>;
   onLoadMore?: () => void;
   isLoading?: boolean;
   emptyText?: string;
-  emptyView?: any;
   numColumns?: number | undefined;
   scrollEnabled?: boolean;
   contentContainerStyle?: StyleProp<ViewStyle>;
@@ -30,20 +30,23 @@ interface VirtualListProps {
   isShort?: boolean;
   onPress?: () => void;
   title?: string;
-  ListHeaderComponent?: any;
+  ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
   rootStyle?: StyleProp<ViewStyle>;
   type?: 'GESTURE' | 'RN';
-  onScrollToIndexFailed?: any;
+  onScrollToIndexFailed?: ((info: {
+    index: number;
+    highestMeasuredFrameIndex: number;
+    averageItemLength: number;
+  }) => void) | undefined;
   customViewMore?: StyleProp<ViewStyle>;
-  columnWrapperStyle?: any;
-  disableViewMore?: any;
+  columnWrapperStyle?: StyleProp<ViewStyle> | undefined;
   perPage?: number;
   pagingEnabled?: boolean;
   initialScrollIndex?: number;
   onEndReachedThreshold?: number;
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
-  ListEmptyComponent?: any;
-  ListFooterComponent?: any;
+  ListEmptyComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
+  ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
   listKey?: string;
   isOnlyList?: boolean;
   nestedScrollEnabled?: boolean;
@@ -57,7 +60,7 @@ const RenderContent = ({
   data,
   children,
 }: any) => {
-  const { themeColor } = useTheme();
+  const {themeColor} = useTheme();
 
   if (!isOnlyList) {
     return (
@@ -96,7 +99,7 @@ const VirtualList = React.memo(
       nestedScrollEnabled,
     } = props;
     const [isFirst, setFirst] = React.useState(true);
-    const { themeColor } = useTheme();
+    const {themeColor} = useTheme();
 
     useEffect(() => {
       if (isFirst && !isLoading) setFirst(false);
@@ -150,9 +153,12 @@ const VirtualList = React.memo(
           columnWrapperStyle={columnWrapperStyle}
           onEndReachedThreshold={onEndReachedThreshold}
           onEndReached={onLoadMore}
-          keyExtractor={(item: any, index) =>
-            `${index}_${item?.id || JSON.stringify(item)}`
-          }
+          keyExtractor={(item: any) => {
+            if (typeof (item) === 'string') {
+              return item;
+            }
+            return item.id;
+          }}
           ListFooterComponent={
             props.ListFooterComponent ? (
               props.ListFooterComponent
@@ -184,7 +190,7 @@ const VirtualList = React.memo(
 );
 
 const styles = StyleSheet.create({
-  contain: { flex: 1 },
+  contain: {flex: 1},
   viewHeader: {
     flex: 1,
     paddingTop: Spacing.height15,
@@ -198,4 +204,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { VirtualList };
+export {VirtualList};

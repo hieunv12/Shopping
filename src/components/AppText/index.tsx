@@ -1,5 +1,5 @@
 import {ResponsiveValue, SpacingProps, TypographyProps} from '@shopify/restyle';
-import {FontSize, FontWithBold_Barlow, Text, Theme, useTheme} from '@theme';
+import {FontWithBold_Barlow, Text, Theme, useTheme} from '@theme';
 import React from 'react';
 import {StyleProp, StyleSheet, TextProps, TextStyle} from 'react-native';
 import TextTicker from 'react-native-text-ticker';

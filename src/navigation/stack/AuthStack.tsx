@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { SCREEN_ROUTE } from '../route';
-import { TabNavigator } from '../navigator/TabNavigator';
+import React, {memo} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {SCREEN_ROUTE} from '../route';
+import {LoginScreen} from '@screens';
 
 const AuthStack = createStackNavigator();
 
-const MainStackComponent = memo(() => {
+const AuthStackComponent = memo(() => {
   return (
     <AuthStack.Navigator
       initialRouteName={SCREEN_ROUTE.MAIN_STACK}
@@ -13,9 +13,9 @@ const MainStackComponent = memo(() => {
         headerShown: false,
       }}
     >
-      <AuthStack.Screen name={SCREEN_ROUTE.LOGIN} component={TabNavigator} />
+      <AuthStack.Screen name={SCREEN_ROUTE.LOGIN} component={LoginScreen} />
     </AuthStack.Navigator>
   );
 });
 
-export { MainStackComponent };
+export {AuthStackComponent};

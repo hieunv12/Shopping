@@ -6,3 +6,4 @@ export const APP_SLICE = {
 export const StorageConstant = {
   THEME: 'THEME',
 };
+export * from './refType';

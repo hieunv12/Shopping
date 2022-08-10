@@ -25,6 +25,7 @@ export const darkTheme: any = {
     whiteColor: '#fff',
     colorDisable: '#c0c0c0',
     primary: '#4d4fdb',
+    red: "#ff667d"
   },
 };
 
@@ -41,5 +42,6 @@ export const lightTheme: any = {
     whiteColor: '#fff',
     colorDisable: '#c0c0c0',
     primary: '#4d4fdb',
+    red: "#ff667d"
   },
 };

@@ -1,13 +1,15 @@
-import { CommonActions, StackActions } from '@react-navigation/native';
+import {CommonActions, StackActions, StackActionType} from '@react-navigation/native';
 
-let _navigator: any;
+type typeNavigation = {dispatch: (arg0: CommonActions.Action | StackActionType) => void; canGoBack: () => boolean;} | null;
 
-export function setTopLevelNavigator(navigatorRef: any) {
+let _navigator: typeNavigation;
+
+export function setTopLevelNavigator(navigatorRef: typeNavigation) {
   _navigator = navigatorRef;
 }
 
-export function navigate(routeName: any, params?: any) {
-  _navigator.dispatch(
+export function navigate(routeName: string, params?: object | undefined) {
+  _navigator?.dispatch(
     CommonActions.navigate({
       name: routeName,
       params,
@@ -16,20 +18,20 @@ export function navigate(routeName: any, params?: any) {
 }
 
 export function goBack() {
-  if (_navigator.canGoBack()) {
+  if (_navigator?.canGoBack()) {
     _navigator.dispatch(CommonActions.goBack());
   }
 }
 
-function pop(value: any) {
-  _navigator.dispatch(StackActions.pop(value));
+function pop(value: number) {
+  _navigator?.dispatch(StackActions.pop(value));
 }
 
 export function reset(routeName: string) {
-  _navigator.dispatch(
+  _navigator?.dispatch(
     CommonActions.reset({
       index: 0,
-      routes: [{ name: routeName }],
+      routes: [{name: routeName}],
     }),
   );
 }

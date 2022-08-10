@@ -1,15 +1,17 @@
-/* eslint-disable react-native/no-inline-styles */
-import {Animated, TouchableOpacity, View, FlatList} from 'react-native';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {Animated, TouchableOpacity, View, FlatList, NativeSyntheticEvent, NativeScrollEvent} from 'react-native';
 import React, {useCallback, useMemo, useRef} from 'react';
-import {AppText, Block, BlurImage} from '@components';
+import {AppText} from '@components';
 import {styles} from './styles';
 import {t} from 'i18next';
 import {Pagination} from '../Pagination';
-import {Spacing} from '@theme';
+import {Box, Spacing} from '@theme';
+import {AppImage} from '../AppImage/AppImage';
+import {IconLiked} from '@assets';
 interface HeaderPropsType {
   onDoubleTap: (item: any) => void;
   onPress: () => void;
-  file: any[];
+  file: {name: string;}[];
 }
 
 export const AppGarelly = (props: HeaderPropsType) => {
@@ -35,8 +37,8 @@ export const AppGarelly = (props: HeaderPropsType) => {
     ]).start();
   }, [scaleAnimation]);
 
-  const onScrollEnd = e => {
-    let pageNumber = Math.min(
+  const onScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const pageNumber = Math.min(
       Math.max(
         Math.round(e.nativeEvent.contentOffset.x / Spacing.width335) + 1,
         0,
@@ -75,7 +77,7 @@ export const AppGarelly = (props: HeaderPropsType) => {
   };
 
   return (
-    <Block>
+    <Box>
       <FlatList
         onMomentumScrollEnd={onScrollEnd}
         onScroll={Animated.event(
@@ -108,15 +110,12 @@ export const AppGarelly = (props: HeaderPropsType) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <BlurImage
+                  <AppImage
                     style={styles.blurImage}
                     uri={item?.name}
                     resizeMode={'cover'}
-                    borderRadius={Spacing.height5}
                   />
-                  <Animated.Image
-                    resizeMode="contain"
-                    source={iconLiked}
+                  <Animated.View
                     style={{
                       transform: [
                         {
@@ -127,14 +126,11 @@ export const AppGarelly = (props: HeaderPropsType) => {
                       aspectRatio: 1,
                       position: 'absolute',
                     }}
-                  />
+                  >
+                    <IconLiked />
+                  </Animated.View>
                 </View>
               </TouchableOpacity>
-              {item.type === 2 && (
-                <View style={styles.playIcon}>
-                  <PlayIcon />
-                </View>
-              )}
             </View>
           );
         }}
@@ -147,14 +143,14 @@ export const AppGarelly = (props: HeaderPropsType) => {
         </View>
       )}
       {file?.length > 1 && (
-        <Block position="absolute" bottom={Spacing.width16} alignSelf="center">
+        <Box position="absolute" bottom={Spacing.width16} alignSelf="center">
           <Pagination
             size={file?.length}
             scrollX={scrollX}
             windowWidth={Spacing.width335}
           />
-        </Block>
+        </Box>
       )}
-    </Block>
+    </Box>
   );
 };

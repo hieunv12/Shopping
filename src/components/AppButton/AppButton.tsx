@@ -1,14 +1,13 @@
 import React from 'react';
 import {Colors, Box} from '@theme';
 import {
-  View,
   TouchableOpacity,
-  StyleSheet,
   TouchableOpacityProps,
   TextStyle,
   ViewStyle,
+  StyleProp,
 } from 'react-native';
-import _, {debounce} from 'lodash';
+import {debounce} from 'lodash';
 import {useTheme} from '@theme';
 import {AppText} from '../AppText';
 import {styles} from './styles';
@@ -18,13 +17,15 @@ export interface ButtonProps extends TouchableOpacityProps {
   secureTextEntry?: boolean;
   disabled?: boolean;
   Icon?: any;
-  onPress?: any;
-  style?: ViewStyle | ViewStyle[] | any;
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
   labelStyle?: TextStyle | TextStyle[];
   numberOfLines?: number;
   isWrap?: boolean;
   hideDelay?: boolean;
   backgroundColor?: string;
+  marginTop?: number,
+
 }
 
 const WrapContent = ({isWrap, children}: any) => {
@@ -41,7 +42,7 @@ const WrapContent = ({isWrap, children}: any) => {
 export function AppButton(props: ButtonProps) {
   const {
     label,
-    onPress = () => {},
+    onPress = () => { },
     style,
     Icon,
     labelStyle,
@@ -54,8 +55,10 @@ export function AppButton(props: ButtonProps) {
 
   const {themeColor} = useTheme();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handler = debounce(onPress, 10);
+  const handler = debounce(onPress, 300, {
+    leading: true,
+    trailing: false,
+  });
 
   return (
     <WrapContent isWrap={isWrap}>

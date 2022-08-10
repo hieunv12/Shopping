@@ -1,12 +1,7 @@
+import {Colors, deviceWidth, FontSize, FontWithBold_Barlow, Spacing} from '@theme';
+import {DEVICE} from '@utils';
 import {StyleSheet} from 'react-native';
-import {
-  FontSize,
-  Spacing,
-  Colors,
-  FontWithBold,
-  deviceWidth,
-  Device,
-} from '@assets';
+
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -37,13 +32,13 @@ export const styles = StyleSheet.create({
   },
 
   heading: {
-    ...FontWithBold.Bold_600,
+    ...FontWithBold_Barlow.Light_Barlow_400,
     fontSize: FontSize.Font35,
     color: Colors.white,
   },
 
   desc: {
-    ...FontWithBold.Bold_400,
+    ...FontWithBold_Barlow.Light_Barlow_400,
     fontSize: FontSize.Font17,
     color: Colors.gray,
     marginTop: Spacing.height16,
@@ -99,7 +94,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   blurImage: {
-    width: Device.width - Spacing.width30,
+    width: DEVICE.width - Spacing.width30,
     aspectRatio: 1,
     borderRadius: Spacing.height14,
   },
@@ -164,10 +159,10 @@ export const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
-    width: Device.width - Spacing.width30,
+    width: DEVICE.width - Spacing.width30,
   },
   button: {
-    width: Device.width - Spacing.width30,
+    width: DEVICE.width - Spacing.width30,
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
