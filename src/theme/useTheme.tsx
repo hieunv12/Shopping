@@ -1,8 +1,9 @@
 import {useContext} from 'react';
-import {Theme, ThemeAppContext, useThemeApp} from './themeSetting';
+import {typeOfColors} from './themeMode';
+import {ThemeAppContext, useThemeApp} from './themeSetting';
 
 export const useTheme = () => {
-  const theme: Theme = useThemeApp();
+  const theme: {colors: typeOfColors;} = useThemeApp();
   const {updateTheme} = useContext(ThemeAppContext);
   return {
     theme,

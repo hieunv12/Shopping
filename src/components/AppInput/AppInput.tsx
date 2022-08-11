@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BORDER_RADIUS, Box, Colors, Theme} from '@theme';
+import {BORDER_RADIUS, Box, Colors, Theme, useTheme} from '@theme';
 import {
   KeyboardTypeOptions,
   Pressable,
@@ -40,6 +40,7 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
   } = props;
   const [isFocus, setFocus] = useState(false);
   const [isPrivateText, setSecureTextEntry] = useState(secureTextEntry);
+  const {themeColor} = useTheme();
 
   return (
     <Box style={{width: '100%'}} {...props}>
@@ -50,12 +51,13 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
           onChangeText={onChangeText}
           secureTextEntry={isPrivateText}
           placeholder={placeholder}
-          style={[styles.inputStyle, isFocus && styles.btnActive, secureTextEntry && {paddingRight: 50}]}
+          style={[styles.inputStyle, {color: themeColor.textColor}, isFocus && styles.btnActive, secureTextEntry && {paddingRight: 50}]}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           maxLength={maxLength}
           keyboardType={keyboardType}
           autoCapitalize="none"
+          placeholderTextColor={themeColor.placeHoderColor}
         />
         {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed}} marginTop="sm">{error}</AppText>}
         {secureTextEntry && <Box position={"absolute"} right={10}>

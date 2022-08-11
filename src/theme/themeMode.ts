@@ -9,6 +9,7 @@ export interface typeOfColors {
   whiteColor: string;
   colorDisable: string;
   primary: string;
+  placeHoderColor: string;
 }
 
 export const darkTheme: any = {
@@ -25,7 +26,8 @@ export const darkTheme: any = {
     whiteColor: '#fff',
     colorDisable: '#c0c0c0',
     primary: '#4d4fdb',
-    red: "#ff667d"
+    red: "#ff667d",
+    placeHoderColor: '#B4B4B4'
   },
 };
 
@@ -42,6 +44,7 @@ export const lightTheme: any = {
     whiteColor: '#fff',
     colorDisable: '#c0c0c0',
     primary: '#4d4fdb',
-    red: "#ff667d"
+    red: "#ff667d",
+    placeHoderColor: '#B4B4B4'
   },
 };
