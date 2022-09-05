@@ -1,5 +1,5 @@
 import {NoAvatar} from '@assets';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ImageStyle, StyleProp} from 'react-native';
 import {ResizeMode} from 'react-native-fast-image';
 import {AppImage} from '../AppImage/AppImage';
@@ -18,6 +18,7 @@ const AppAvatar = React.memo((props: propsImage) => {
       defaultSource={NoAvatar}
       style={style}
       resizeMode={resizeMode}
+      checkNetworking
     />
   );
 });
