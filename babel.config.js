@@ -20,6 +20,7 @@ module.exports = {
           '@constants': './src/constants',
           '@instances': './src/instances',
           '@api': './src/api',
+          "@interfaces": './src/interfaces',
         },
       },
     ],

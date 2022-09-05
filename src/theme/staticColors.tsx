@@ -41,4 +41,14 @@ export const Shadow = {
     shadowRadius: 13.16,
     elevation: 20,
   },
+  textShadowWhite: {
+    textShadowColor: 'rgba(255, 255, 255, 0.8)',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 1
+  },
+  textShadowBlack: {
+    textShadowColor: 'rgba(0, 0, 0, 0.8)',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 1
+  }
 };
