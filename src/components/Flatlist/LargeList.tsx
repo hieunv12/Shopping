@@ -4,18 +4,18 @@ import React, {forwardRef, useEffect} from 'react';
 import {
   View,
   RefreshControl,
-  ListRenderItem,
   ActivityIndicator,
   NativeSyntheticEvent,
   NativeScrollEvent,
   StyleProp,
   ViewStyle,
-  FlatList,
   StyleSheet,
 } from 'react-native';
-import {FlatList as ListForDrag} from 'react-native-gesture-handler';
+
+import {FlashList as FlatList, ListRenderItem} from "@shopify/flash-list";
+
 interface VirtualListProps {
-  renderItem: ListRenderItem<any> | null | undefined;
+  renderItem: ListRenderItem<any> | null | undefined
   onRefresh?: () => void;
   style?: StyleProp<ViewStyle>;
   data: Array<any>;
@@ -24,7 +24,6 @@ interface VirtualListProps {
   emptyText?: string;
   numColumns?: number | undefined;
   scrollEnabled?: boolean;
-  contentContainerStyle?: StyleProp<ViewStyle>;
   horizontal?: boolean;
   onMomentumScrollEnd?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   isShort?: boolean;
@@ -32,14 +31,7 @@ interface VirtualListProps {
   title?: string;
   ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
   rootStyle?: StyleProp<ViewStyle>;
-  type?: 'GESTURE' | 'RN';
-  onScrollToIndexFailed?: ((info: {
-    index: number;
-    highestMeasuredFrameIndex: number;
-    averageItemLength: number;
-  }) => void) | undefined;
   customViewMore?: StyleProp<ViewStyle>;
-  columnWrapperStyle?: StyleProp<ViewStyle> | undefined;
   perPage?: number;
   pagingEnabled?: boolean;
   initialScrollIndex?: number;
@@ -47,7 +39,6 @@ interface VirtualListProps {
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   ListEmptyComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
   ListFooterComponent?: React.ComponentType<any> | React.ReactElement | null | undefined;
-  listKey?: string;
   isOnlyList?: boolean;
   nestedScrollEnabled?: boolean;
 }
@@ -64,7 +55,7 @@ const RenderContent = ({
 
   if (!isOnlyList) {
     return (
-      <View style={[styles.contain, rootStyle]}>
+      <View style={[styles.contain, rootStyle, {height: 400}]}>
         {isFirst && isLoading && data.length < 1 && (
           <View style={styles.loading}>
             <ActivityIndicator size="small" color={themeColor.primary} />
@@ -77,7 +68,7 @@ const RenderContent = ({
   return children;
 };
 
-const VirtualList = React.memo(
+const LargeList = React.memo(
   forwardRef((props: VirtualListProps, ref: any) => {
     const {
       rootStyle,
@@ -87,14 +78,11 @@ const VirtualList = React.memo(
       onLoadMore,
       isLoading,
       isShort,
-      columnWrapperStyle,
-      type = 'RN',
       perPage = 14,
       pagingEnabled,
       initialScrollIndex,
       onEndReachedThreshold = 0.5,
       emptyText,
-      listKey,
       isOnlyList,
       nestedScrollEnabled,
     } = props;
@@ -104,8 +92,6 @@ const VirtualList = React.memo(
     useEffect(() => {
       if (isFirst && !isLoading) setFirst(false);
     }, [isFirst, isLoading]);
-
-    const NEW_LIST = type === 'RN' ? FlatList : ListForDrag;
 
     const ListHeaderComponent = React.useCallback(() => {
       if (!isLoading && data?.length < 1) {
@@ -128,16 +114,13 @@ const VirtualList = React.memo(
         isLoading={isLoading}
         data={data}
       >
-        <NEW_LIST
-          listKey={listKey}
+        <FlatList
           ListHeaderComponent={props.ListHeaderComponent || ListHeaderComponent}
-          contentContainerStyle={props.contentContainerStyle}
-          style={props.style}
+          style={[props.style]}
           horizontal={props.horizontal}
           numColumns={props.numColumns}
           scrollEnabled={props.scrollEnabled}
           onMomentumScrollEnd={props.onMomentumScrollEnd}
-          onScrollToIndexFailed={props.onScrollToIndexFailed}
           data={isShort ? data.slice(0, 5) : data}
           renderItem={renderItem}
           refreshing={isLoading && data.length > 1}
@@ -150,7 +133,6 @@ const VirtualList = React.memo(
               />
             )
           }
-          columnWrapperStyle={columnWrapperStyle}
           onEndReachedThreshold={onEndReachedThreshold}
           onEndReached={onLoadMore}
           keyExtractor={(item: any) => {
@@ -173,8 +155,6 @@ const VirtualList = React.memo(
           extraData={props}
           ref={ref}
           // removeClippedSubviews={!isShort}
-          maxToRenderPerBatch={20}
-          updateCellsBatchingPeriod={0}
           decelerationRate={isShort ? 'normal' : 0.6}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
@@ -183,6 +163,8 @@ const VirtualList = React.memo(
           onScroll={props.onScroll}
           ListEmptyComponent={props.ListEmptyComponent}
           nestedScrollEnabled={nestedScrollEnabled}
+          estimatedItemSize={180}
+
         />
       </RenderContent>
     );
@@ -190,7 +172,7 @@ const VirtualList = React.memo(
 );
 
 const styles = StyleSheet.create({
-  contain: {flex: 1},
+  contain: {flex: 1, paddingBottom: 20},
   viewHeader: {
     flex: 1,
     paddingTop: Spacing.height15,
@@ -204,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {VirtualList};
+export {LargeList};

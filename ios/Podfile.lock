@@ -560,6 +560,8 @@ PODS:
     - Firebase/Auth (= 9.6.0)
     - React-Core
     - RNFBApp
+  - RNFlashList (1.2.2):
+    - React-Core
   - RNGestureHandler (2.6.1):
     - React-Core
   - RNGoogleSignin (8.0.0):
@@ -656,6 +658,7 @@ DEPENDENCIES:
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -793,6 +796,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
     :path: "../node_modules/@react-native-firebase/auth"
+  RNFlashList:
+    :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
@@ -886,6 +891,7 @@ SPEC CHECKSUMS:
   RNFastImage: 3207b9eb17c2425d574ca40db35185db6e324f4e
   RNFBApp: 75adb6116fa1504b370c2dcadfdafe0362c78664
   RNFBAuth: 2b1091679f39e6cb6eb2479d85b08c1bd9360a9f
+  RNFlashList: 13d14d9502661134ad3ba892f81d76bdcbd79755
   RNGestureHandler: 28ad20bf02257791f7f137b31beef34b9549f54b
   RNGoogleSignin: b2179ba653c759b936404a7746fc5302f9de6a5a
   RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9

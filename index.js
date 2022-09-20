@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * @format
  */
@@ -13,6 +14,9 @@ import App from './App';
 import {name as appName} from './app.json';
 import 'react-native-gesture-handler';
 import '@theme';
+if (__DEV__) {
+  import ('./ReactotronConfig')
+}
 
 Text.defaultProps = {
   ...(Text.defaultProps || {}),
