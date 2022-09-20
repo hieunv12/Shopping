@@ -58,6 +58,7 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
           keyboardType={keyboardType}
           autoCapitalize="none"
           placeholderTextColor={themeColor.placeHoderColor}
+          clearButtonMode="while-editing"
         />
         {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed}} marginTop="sm">{error}</AppText>}
         {secureTextEntry && <Box position={"absolute"} right={10}>

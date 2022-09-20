@@ -22,7 +22,7 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
   }, []);
 
   const renderStackApp = () => {
-    if (!token) {
+    if (token) {
       return <AuthStackComponent />;
     } else {
       return (
