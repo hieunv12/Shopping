@@ -5,3 +5,7 @@ export interface accountInterface {
 export interface bottomStatusInterface {
   status: boolean;
 }
+export interface messageInterface {
+  count: number;
+  list: any;
+}

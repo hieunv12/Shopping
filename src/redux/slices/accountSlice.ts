@@ -17,8 +17,12 @@ const accountSlice = createSlice({
     setUserProfile(state, action) {
       state.userProfile = action.payload;
     },
+    logoutUser(state) {
+      state.token =''
+      state.userProfile = {};
+    },
   },
 });
 
-export const {setAccountToken, setUserProfile} = accountSlice.actions;
+export const {setAccountToken, setUserProfile,logoutUser} = accountSlice.actions;
 export default accountSlice.reducer;

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper';
 import { isTablet } from 'react-native-device-info';
+import {FontSize} from "@theme";
 
 export const styles = StyleSheet.create({
   containerAbsolute: {
@@ -77,7 +78,21 @@ export const styles = StyleSheet.create({
     lineHeight: 15,
     marginTop: 5,
   },
-
+  viewTabMessage:{
+    width:20,
+    height:20,
+    alignItems:'center',
+    justifyContent:'center',
+    position:'absolute',
+    top:0,
+    right:0,
+    borderRadius:10,
+    backgroundColor:'red',
+  },
+  txtTabMessage: {
+    zIndex:999,
+    fontSize:FontSize.Font11
+  },
   contentContainerTab: {
     flex: 1,
     justifyContent: 'center',

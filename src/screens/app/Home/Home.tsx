@@ -7,6 +7,7 @@ import {ENUM_LANGUAGE} from '@translations';
 import {useTranslation} from 'react-i18next';
 import i18next from 'i18next';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 const data = [{
   name: 1,
   id: 1,
@@ -41,7 +42,11 @@ const Home = () => {
   const insets = useSafeAreaInsets();
 
   return (
+
     <AppScrollWrapBottomTab isHeightStatus>
+        <KeyboardAwareScrollView
+            contentContainerStyle={{flex: 1}}
+        >
       <VirtualList
         data={data}
         renderItem={() => {
@@ -78,7 +83,7 @@ const Home = () => {
           )
         }}
       />
-
+        </KeyboardAwareScrollView>
     </AppScrollWrapBottomTab>
   );
 };

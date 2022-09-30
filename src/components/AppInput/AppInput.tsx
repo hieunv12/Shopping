@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {forwardRef, LegacyRef, useState} from 'react';
 import {BORDER_RADIUS, Box, Colors, Theme, useTheme} from '@theme';
 import {
   KeyboardTypeOptions,
-  Pressable,
+  Pressable, ReturnKeyTypeOptions,
   TextInput,
   TextInputProps,
   ViewProps
@@ -22,11 +22,12 @@ export interface appInputProps extends TextInputProps {
   keyboardType?: KeyboardTypeOptions;
   error?: string;
   touched?: boolean;
+  returnKeyType?: ReturnKeyTypeOptions | undefined
 }
 
 
-export function AppInput(props: appInputProps & SpacingProps<Theme> &
-  TypographyProps<Theme> & ViewProps) {
+export const AppInput = forwardRef((props: appInputProps & SpacingProps<Theme> &
+  TypographyProps<Theme> & ViewProps, ref: any)  =>{
   const {
     label,
     value,
@@ -36,7 +37,8 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
     maxLength,
     keyboardType,
     error,
-    touched
+    touched,
+    returnKeyType
   } = props;
   const [isFocus, setFocus] = useState(false);
   const [isPrivateText, setSecureTextEntry] = useState(secureTextEntry);
@@ -55,6 +57,8 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           maxLength={maxLength}
+          ref={ref}
+          returnKeyType={returnKeyType?returnKeyType:'default'}
           keyboardType={keyboardType}
           autoCapitalize="none"
           placeholderTextColor={themeColor.placeHoderColor}
@@ -70,5 +74,5 @@ export function AppInput(props: appInputProps & SpacingProps<Theme> &
         </Box>}
       </Box>
     </Box >
-  );
-}
+  )
+})

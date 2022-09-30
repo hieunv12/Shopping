@@ -29,6 +29,7 @@
     "@react-navigation/stack": "^6.3.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@shopify/flash-list": "^1.2.2",
+    "@shopify/react-native-skia": "^0.1.152",
     "@shopify/restyle": "^2.1.0",
     "add": "^2.0.6",
     "axios": "^0.27.2",

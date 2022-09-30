@@ -12,9 +12,9 @@ import {SCREEN_ROUTE} from '../route';
 const Stack = createStackNavigator();
 //main stack app
 const NavigationApp = React.forwardRef((props, ref: any) => {
-  const dataTheme: {theme: Theme;} = useTheme();
+  const dataTheme: {theme: Theme} = useTheme();
   const token = useSelector(getTokenUserFromStore);
-
+  console.log('token:',token)
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -26,7 +26,7 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
   const renderStackApp = () => {
     return (
       <Stack.Navigator>
-        {token ? (
+        {!token ? (
           <Stack.Screen
             name={SCREEN_ROUTE.AUTH_STACK}
             component={AuthStackComponent}
