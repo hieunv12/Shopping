@@ -47,42 +47,42 @@ const Home = () => {
         <KeyboardAwareScrollView
             contentContainerStyle={{flex: 1}}
         >
-      <VirtualList
-        data={data}
-        renderItem={() => {
-          return (
-            <>
-              <AppButton
-                style={styles.btn1}
-                label={t('switchTheme')}
-                isWrap
-                onPress={() => {
-                  setDark(!isDark);
-                  updateTheme(!isDark);
-                }}
-              />
-              <AppButton
-                label={t('switchLang')}
-                isWrap
-                onPress={() => {
-                  GlobalService.showLoading();
-                  onSwitchLang(
-                    i18next.language === ENUM_LANGUAGE.vi
-                      ? ENUM_LANGUAGE.en
-                      : ENUM_LANGUAGE.vi,
-                  );
-                  setTimeout(() => {
-                    GlobalService.hideLoading();
-                  }, 1000);
-                }}
-              />
-              <AppInput value={value} onChangeText={setValue} placeholder="OKOKOKO"
-                label={"OKOKOK"}
-              />
-            </>
-          )
-        }}
-      />
+      {/*<VirtualList*/}
+      {/*  data={data}*/}
+      {/*  renderItem={() => {*/}
+      {/*    return (*/}
+      {/*      <>*/}
+      {/*        <AppButton*/}
+      {/*          style={styles.btn1}*/}
+      {/*          label={t('switchTheme')}*/}
+      {/*          isWrap*/}
+      {/*          onPress={() => {*/}
+      {/*            setDark(!isDark);*/}
+      {/*            updateTheme(!isDark);*/}
+      {/*          }}*/}
+      {/*        />*/}
+      {/*        <AppButton*/}
+      {/*          label={t('switchLang')}*/}
+      {/*          isWrap*/}
+      {/*          onPress={() => {*/}
+      {/*            GlobalService.showLoading();*/}
+      {/*            onSwitchLang(*/}
+      {/*              i18next.language === ENUM_LANGUAGE.vi*/}
+      {/*                ? ENUM_LANGUAGE.en*/}
+      {/*                : ENUM_LANGUAGE.vi,*/}
+      {/*            );*/}
+      {/*            setTimeout(() => {*/}
+      {/*              GlobalService.hideLoading();*/}
+      {/*            }, 1000);*/}
+      {/*          }}*/}
+      {/*        />*/}
+      {/*        <AppInput value={value} onChangeText={setValue} placeholder="OKOKOKO"*/}
+      {/*          label={"OKOKOK"}*/}
+      {/*        />*/}
+      {/*      </>*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*/>*/}
         </KeyboardAwareScrollView>
     </AppScrollWrapBottomTab>
   );

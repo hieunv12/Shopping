@@ -8,7 +8,7 @@ import {Animated, InteractionManager, TouchableWithoutFeedback, View} from 'reac
 import {useSelector} from "react-redux";
 import {styles} from './styles';
 import {getCountMessage} from "../../redux/selector/messageSlector";
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const SourceImage = (props: {label?: string; isFocused: boolean;}) => {
   const {label, isFocused} = props;
   const {themeColor} = useTheme();
@@ -84,19 +84,13 @@ export const CustomTabBar = memo(function CustomTabBar({
   descriptors,
   navigation,
 }: BottomTabBarProps) {
-  const arrayLable = ['Market', 'Canvas', '', 'Discover', 'Me'];
+  const arrayLable = ['Home', 'Canvas', '', 'Discover', 'Setting'];
   const {themeColor} = useTheme();
   const statusOfBottomTab = useSelector(getStatusOfBottomTab)
+
   const refHeight = useRef(50);
   const refAnimated = useRef(new Animated.Value(0));
-const countMessage=useSelector(getCountMessage)
-  useEffect(() => {
-    Animated.timing(refAnimated.current, {
-      toValue: statusOfBottomTab ? 0 : refHeight.current,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  }, [statusOfBottomTab])
+  const countMessage=useSelector(getCountMessage)
 
   const translateY = refAnimated.current.interpolate({
     inputRange: [0, refHeight.current],
