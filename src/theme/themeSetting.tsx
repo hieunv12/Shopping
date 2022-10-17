@@ -96,7 +96,7 @@ export const ThemeProvider = ({children}: any) => {
 
   const onUpDateTheme = useCallback(
     (isLightTheme?: boolean) => {
-      setTheme(isLightTheme ? Light : Dark);
+      setTheme(!isLightTheme ? Light : Dark);
       if (isLightTheme) {
         AsyncStorage.setItem(StorageConstant.THEME, 'THEME_SET_SUCCESS');
         StatusBar.setBarStyle('dark-content');

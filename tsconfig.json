@@ -67,6 +67,7 @@
       "@redux": ["src/redux"],
       "@components": ["src/components"],
       "@assets": ["src/assets"],
+//      "@icons": ["src/assets"],
       "@utils": ["src/utils"],
       "@services": ["src/services"],
       "@navigation": ["src/navigation"],

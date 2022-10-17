@@ -26,19 +26,18 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
   const renderStackApp = () => {
     return (
       <Stack.Navigator>
-        {!token ? (
-          <Stack.Screen
-            name={SCREEN_ROUTE.AUTH_STACK}
-            component={AuthStackComponent}
-            options={{headerShown: false}}
-          />
-        ) : (
+        {!!token &&
+                <Stack.Screen
+                    name={SCREEN_ROUTE.AUTH_STACK}
+                    component={AuthStackComponent}
+                    options={{headerShown: false}}
+                />}
           <Stack.Screen
               name={SCREEN_ROUTE.MAIN_ROOT}
             component={MainStackComponent}
             options={{headerShown: false}}
           />
-        )}
+
       </Stack.Navigator>
     );
   };

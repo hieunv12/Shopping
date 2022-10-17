@@ -1,7 +1,10 @@
 export const Colors = {
   white: '#FFFFFF',
   white2: '#8e8e8f',
-  background: '#111214',
+  // background: '#111214',
+  background: '#FEFEFE',
+  dark: "rgba(30, 32, 41, 1)",
+  transparent:'transparent',
   black: '#111214',
   black2: '#1D1E20',
   black3: 'rgba(255, 255, 255, 0.1)',
@@ -10,13 +13,14 @@ export const Colors = {
   gray3: '#414143',
   blue: '#28AAE0',
   green: '#00B35F',
-  red: '#F85358',
+  red: 'red',
   yellow: '#FFB902',
-
+  tabBarBottom: 'white',
   lightBlue: '#46C8FE',
   lightGreen: '#1ED17D',
   lightRed: '#FF7176',
   lightYellow: '#FFCD16',
+  colorMain:'#33BE94'
 };
 
 export const Shadow = {

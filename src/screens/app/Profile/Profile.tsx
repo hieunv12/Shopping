@@ -1,8 +1,10 @@
 import React from "react";
-import {TouchableOpacity, View} from "react-native";
+import {SafeAreaView, TouchableOpacity, View} from "react-native";
 import {Field, FieldArray, useFormik} from "formik";
 import {setAccountToken} from "@redux";
-import {AppButton} from "@components";
+import {AppButton, NotLoginApp} from "@components";
+import {styles} from "./styles";
+import {useModel} from "./Profile.hook";
 const initialValues = {
     friends: [
         {
@@ -11,17 +13,16 @@ const initialValues = {
         },
     ],
 };
-export const Profile =()=>{
-    const {values, errors, touched, setFieldValue,handleSubmit,setFormikState} = useFormik({
-        initialValues:initialValues,
-        onSubmit: (values) => {
+export const Profile =(props:any)=>{
 
-        },
-        // validationSchema:SignupSchema
-    });
-    console.log(values)
-    return(
-        <View>
-        </View>
-    )
+    const {token}=useModel(props)
+    if(token){
+        return(
+            <SafeAreaView style={styles.container}>
+                <View style={styles.header}></View>
+            </SafeAreaView>
+        )
+    }else {
+        return <NotLoginApp/>
+    }
 }
