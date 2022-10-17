@@ -4,24 +4,26 @@ import {FontWithBold, IconUserName, Spacing} from "@assets";
 import {useSelector} from "react-redux";
 import {navigate, SCREEN_ROUTE} from "@navigation";
 import {Colors, FontSize} from "@theme";
+import {useTranslation} from "react-i18next";
 export interface NotLoginAppType {
 
 }
 export const NotLoginApp =(props:NotLoginAppType)=>{
+    const {t} = useTranslation();
     const {}=props
     return(
         <View style={styles.container}>
            {/*<View style={{alignItems:'center',alignSelf:'center',backgroundColor:'red'}}>*/}
                <IconUserName/>
-               <Text style={styles.warnTxt}>Looks like you haven’t signed in yet</Text>
+               <Text style={styles.warnTxt}>{t('txtNotLogin')}</Text>
                <TouchableOpacity style={styles.btnSignIn} onPress={() => navigate(SCREEN_ROUTE.LOGIN)}>
-                   <Text style={styles.signinBtn}>Sign in</Text>
+                   <Text style={styles.signinBtn}>{t('txtSignIn')}</Text>
                </TouchableOpacity>
                {/*<TouchableOpacity style={styles.btnNotRegistered}>*/}
-                   <Text style={styles.txtNotRegistered}>Not registered yet?</Text>
+                   <Text style={styles.txtNotRegistered}>{t('notRegistered')}</Text>
                {/*</TouchableOpacity>*/}
                 <TouchableOpacity onPress={() => navigate(SCREEN_ROUTE.SIGNUP)}>
-                    <Text style={styles.txtCreateAccount}>Create an Account</Text></TouchableOpacity>
+                    <Text style={styles.txtCreateAccount}>{t('createAccount')}</Text></TouchableOpacity>
            {/*</View>*/}
                    </View>
     )

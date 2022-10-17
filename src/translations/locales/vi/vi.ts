@@ -7,6 +7,10 @@ export const vi = {
   cart:'Giỏ hàng',
   setting:'Cài đặt',
   profile:'Tài khoản',
+  txtNotLogin: 'Có vẻ như bạn chưa đăng nhập',
+  notRegistered: 'Chưa đăng ký?',
+  createAccount: "Tạo tài khoản",
+  txtSignIn: 'Đăng nhập',
   common: {
     seeMore: "See more",
   }

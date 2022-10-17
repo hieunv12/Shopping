@@ -6,6 +6,10 @@ export const en = {
   cart:'Cart',
   setting:'Setting',
   profile:'Profile',
+  txtNotLogin:'Looks like you haven’t signed in yet',
+  notRegistered:'Not registered yet?',
+  createAccount:"Create an Account",
+  txtSignIn:'Sign in',
   common: {
     seeMore: "See more",
   }
