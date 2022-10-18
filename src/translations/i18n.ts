@@ -20,7 +20,7 @@ type languageDetectorType = {
 const languageDetector: languageDetectorType = {
   type: 'languageDetector',
   async: true,
-  detect: (cb: (value: string) => void) => cb('en'),
+  detect: (cb: (value: string) => void) => cb('vi'),
   init: () => {},
   cacheUserLanguage: () => {},
 };
@@ -31,7 +31,7 @@ const initI18n = () => {
     .use(initReactI18next)
     .init({
       compatibilityJSON: 'v3',
-      fallbackLng: 'en',
+      fallbackLng: 'vi',
       debug: true,
       resources: {
         en: {translation: en},

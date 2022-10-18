@@ -173,7 +173,7 @@ export const FontWithBold = StyleSheet.create({
   },
   Bold_600: {
     fontWeight: '600',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: "Barlow-Black",
   },
   Bold_700: {
     fontWeight: '700',

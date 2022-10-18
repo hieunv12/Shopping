@@ -12,6 +12,7 @@ export const SCREEN_ROUTE = {
   MAIN_PAGE: 'MAIN_PAGE',
   DISCOVER_PAGE: 'DISCOVER_PAGE',
   ACCOUNT_PAGE: 'ACCOUNT_PAGE',
+  //auth
   LOGIN: 'LOGIN',
   SIGNUP: 'SIGNUP',
 };
@@ -21,10 +22,7 @@ export const ROUTER_BOTTOM_TAB = [
     key: SCREEN_ROUTE.HOME_PAGE,
     route: Home,
   },
-  {
-    key: SCREEN_ROUTE.CANVAS,
-    route: CanvasScreen,
-  }, {
+   {
     key: SCREEN_ROUTE.MAIN_PAGE,
     route: Home,
   }, {

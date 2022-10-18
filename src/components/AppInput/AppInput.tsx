@@ -2,15 +2,15 @@ import React, {forwardRef, LegacyRef, useState} from 'react';
 import {BORDER_RADIUS, Box, Colors, Theme, useTheme} from '@theme';
 import {
   KeyboardTypeOptions,
-  Pressable, ReturnKeyTypeOptions,
+  Pressable, ReturnKeyTypeOptions, Text,
   TextInput,
-  TextInputProps,
+  TextInputProps, View,
   ViewProps
 } from 'react-native';
 import {styles} from './styles';
 import {AppText} from '../AppText';
 import {SpacingProps, TypographyProps} from '@shopify/restyle';
-import {Eye, EyeActive} from '@assets';
+import {Eye, EyeActive, Spacing} from '@assets';
 
 export interface appInputProps extends TextInputProps {
   label?: string;
@@ -45,34 +45,38 @@ export const AppInput = forwardRef((props: appInputProps & SpacingProps<Theme> &
   const {themeColor} = useTheme();
 
   return (
-    <Box style={{width: '100%'}} {...props}>
-      {!!label && <AppText marginBottom={"s"}>{label}</AppText>}
-      <Box justifyContent={"center"}>
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          secureTextEntry={isPrivateText}
-          placeholder={placeholder}
-          style={[styles.inputStyle, {color: themeColor.textColor}, isFocus && styles.btnActive, secureTextEntry && {paddingRight: 50}]}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          maxLength={maxLength}
-          ref={ref}
-          returnKeyType={returnKeyType?returnKeyType:'default'}
-          keyboardType={keyboardType}
-          autoCapitalize="none"
-          placeholderTextColor={themeColor.placeHoderColor}
-          clearButtonMode="while-editing"
-        />
-        {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed}} marginTop="sm">{error}</AppText>}
-        {secureTextEntry && <Box position={"absolute"} right={10}>
-          <Pressable onPress={() => {
-            setSecureTextEntry(prv => !prv);
-          }} >
-            {isPrivateText ? <Eye /> : <EyeActive />}
-          </Pressable>
-        </Box>}
-      </Box>
-    </Box >
-  )
+   <View style={{marginHorizontal:Spacing.width16}}>
+     <View style={styles.container}>
+       {!!label && <Text style={styles.txt}>{label}:</Text>}
+       <View style={{width:'80%',justifyContent:'center'}}>
+         <TextInput
+             value={value}
+             onChangeText={onChangeText}
+             secureTextEntry={isPrivateText}
+             placeholder={placeholder}
+             style={[styles.inputStyle, {color: themeColor.textColor}, isFocus && styles.btnActive,{width: secureTextEntry?'85%':'100%'}]}
+             onFocus={() => setFocus(true)}
+             onBlur={() => setFocus(false)}
+             maxLength={maxLength}
+             ref={ref}
+             returnKeyType={returnKeyType?returnKeyType:'default'}
+             keyboardType={keyboardType}
+             autoCapitalize="none"
+             placeholderTextColor={themeColor.placeHoderColor}
+             clearButtonMode="while-editing"
+         />
+         {secureTextEntry && <Box position={"absolute"} right={10}>
+           <Pressable onPress={() => {
+             setSecureTextEntry(prv => !prv);
+           }} >
+             {isPrivateText ? <Eye /> : <EyeActive />}
+           </Pressable>
+         </Box>}
+       </View>
+     </View>
+     {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed}} marginTop="sm">{error}</AppText>}
+
+   </View>
+
+)
 })

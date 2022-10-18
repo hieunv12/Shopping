@@ -9,6 +9,7 @@ import {getTokenUserFromStore} from '@redux';
 import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
+import {Login, SignUp} from "@screens";
 const Stack = createStackNavigator();
 //main stack app
 const NavigationApp = React.forwardRef((props, ref: any) => {
@@ -26,18 +27,37 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
   const renderStackApp = () => {
     return (
       <Stack.Navigator>
-        {!!token &&
-                <Stack.Screen
-                    name={SCREEN_ROUTE.AUTH_STACK}
-                    component={AuthStackComponent}
-                    options={{headerShown: false}}
-                />}
           <Stack.Screen
               name={SCREEN_ROUTE.MAIN_ROOT}
             component={MainStackComponent}
             options={{headerShown: false}}
           />
+        {/*{token==='' &&*/}
+        {/*    <Stack.Screen*/}
+        {/*        name={SCREEN_ROUTE.AUTH_STACK}*/}
+        {/*        component={AuthStackComponent}*/}
+        {/*        options={{headerShown: false}}*/}
+        {/*    />}*/}
 
+
+      {/*  auth*/}
+          {token ==='' &&
+              (
+                  <Stack.Screen
+                      name={SCREEN_ROUTE.LOGIN}
+                      component={Login}
+                      options={{headerShown: false}}
+                  />
+
+              )}
+
+          {token ==='' &&(
+              <Stack.Screen
+                  name={SCREEN_ROUTE.SIGNUP}
+                  component={SignUp}
+                  options={{headerShown: false}}
+              />
+          )}
       </Stack.Navigator>
     );
   };

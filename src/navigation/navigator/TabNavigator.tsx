@@ -72,7 +72,7 @@ const TabNavigator = memo(function () {
 
         <Tab.Screen name={SCREEN_ROUTE.PROFILE_PAGE} component={Profile} key={SCREEN_ROUTE.PROFILE_PAGE} options={{
             // tabBarShowLabel: false,
-            title:'Account',
+            title:t('account'),
             headerTitleAlign: "center",
             headerTitleStyle: {
                 color:Colors.black,

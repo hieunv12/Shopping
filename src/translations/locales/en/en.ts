@@ -10,6 +10,9 @@ export const en = {
   notRegistered:'Not registered yet?',
   createAccount:"Create an Account",
   txtSignIn:'Sign in',
+  title_userName:'User name',
+  account:'Account',
+  title_password:'Password',
   common: {
     seeMore: "See more",
   }

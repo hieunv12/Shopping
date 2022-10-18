@@ -15,8 +15,8 @@ import UserIcon from './tab/me.svg';
 import IconLiked from './iconLiked.svg';
 import Eye from './eye.svg';
 import EyeActive from './eyeActive.svg';
-import {IconHome,IconProfile,IconCategory,IconSetting,IconCart,IconUserName} from "./svg";
+import {IconHome,IconProfile,IconGG,IconFacebook,IconApple,IconCategory,IconSetting,IconCart,IconUserName} from "./svg";
 
-export {DiscoverIcon, MainIcon, MarketIcon,IconCategory,IconCart,IconSetting,IconUserName, TradeIcon, UserIcon, IconLiked, Eye, EyeActive, BackIcon,IconProfile,IconHome};
+export {DiscoverIcon, MainIcon, MarketIcon,IconFacebook,IconApple,IconGG,IconCategory,IconCart,IconSetting,IconUserName, TradeIcon, UserIcon, IconLiked, Eye, EyeActive, BackIcon,IconProfile,IconHome};
 export * from '../icon/image';
 // export * from './svg/index'
