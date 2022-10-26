@@ -25,6 +25,7 @@ export const vi = {
   re_password:"Re_Mật khẩu",
   desLogin:'',
   can:'Trở về',
+  txtSearch:'Tìm kiếm một sản phẩm, máy tính',
   common: {
     seeMore: "See more",
   }

@@ -23,7 +23,8 @@ export const Colors = {
   lightGreen: '#1ED17D',
   lightRed: '#FF7176',
   lightYellow: '#FFCD16',
-  colorMain:'#33BE94'
+  colorMain:'#33BE94',
+  placeholder:'#A8B0BA',
 };
 
 export const Shadow = {
