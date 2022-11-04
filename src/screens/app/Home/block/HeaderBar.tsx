@@ -1,39 +1,60 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {Colors, FontSize, Spacing} from "@theme";
-import {SearchIcon} from "@assets";
+import {Colors, FontSize, Shadow, Spacing} from "@theme";
+import {IconHome, IconNotifile, SearchIcon} from "@assets";
 import {useTranslation} from "react-i18next";
+import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 
 export const HeaderBar =()=>{
     const {t} = useTranslation();
     return(
         <View style={styles.container}>
-            <TouchableOpacity style={styles.viewSearch}>
-                <Text numberOfLines={1} style={styles.txtSearch}>{t('txtSearch')}</Text>
-                <SearchIcon/>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnNotification}>
+            <View style={{...styles.viewRow,justifyContent:'space-between',marginBottom:Spacing.height8}}>
+                <View style={styles.viewRow}>
+                    <IconHome iconFillColor={Colors.placeholder} style={{marginRight:8}}/>
+                    <Text style={styles.txtAddress}>123 Cau Giay, Ha Noi</Text>
+                </View>
+                <TouchableOpacity onPress={()=>{
+                    NavigationUtils.navigate(SCREEN_ROUTE.NOTIFICATION)
+                }}>
+                    <IconNotifile/>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.containerSearch}>
 
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.viewSearch}>
+                    <Text numberOfLines={1} style={styles.txtSearch}>{t('txtSearch')}</Text>
+                    <SearchIcon/>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
 export const styles=StyleSheet.create({
     container:{
-        paddingVertical:Spacing.height8,
         paddingHorizontal:Spacing.width16,
+    },
+    containerSearch:{
+        paddingVertical:Spacing.height8,
+        // paddingHorizontal:Spacing.width16,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'
     },
+    txtAddress:{
+        fontSize:FontSize.Font12,
+        fontFamily:'Poppins-Light',
+        color:Colors.placeholder,
+    },
     viewSearch:{
-        width:'80%',
+        width:'100%',
         height:Spacing.height50,
-       backgroundColor:'#F6F9F7',
+       backgroundColor:Colors.white,
+        ...Shadow.normal,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
-        paddingHorizontal:Spacing.width8,
+        paddingHorizontal:Spacing.width16,
         borderRadius:Spacing.height8
     },
     txtSearch:{
@@ -46,5 +67,9 @@ export const styles=StyleSheet.create({
         width:'15%',
         height:Spacing.height50,
         backgroundColor:'green',
+    },
+    viewRow:{
+        flexDirection:'row',
+        alignItems:'center',
     }
 })

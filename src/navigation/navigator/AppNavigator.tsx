@@ -9,7 +9,7 @@ import {getTokenUserFromStore} from '@redux';
 import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
-import {Login, SignUp} from "@screens";
+import {Login, Notification, ProductDetail, Search, SignUp} from "@screens";
 const Stack = createStackNavigator();
 //main stack app
 const NavigationApp = React.forwardRef((props, ref: any) => {
@@ -38,8 +38,21 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
         {/*        component={AuthStackComponent}*/}
         {/*        options={{headerShown: false}}*/}
         {/*    />}*/}
-
-
+        <Stack.Screen
+            name={SCREEN_ROUTE.NOTIFICATION}
+            component={Notification}
+            options={{headerShown: false}}
+        />
+        <Stack.Screen
+            name={SCREEN_ROUTE.SEARCH}
+            component={Search}
+            options={{headerShown: false}}
+        />
+        <Stack.Screen
+            name={SCREEN_ROUTE.PRODUCT_DETAIL}
+            component={ProductDetail}
+            options={{headerShown: false}}
+        />
       {/*  auth*/}
           {token ==='' &&
               (

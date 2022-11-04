@@ -32,12 +32,12 @@ export const Shadow = {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 1,
     },
     shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+    shadowRadius: 0.65,
 
-    elevation: 6,
+    elevation: 1,
   },
   bold: {
     shadowColor: '#000',

@@ -16,6 +16,7 @@ import Svg, {
     Mask,
 } from 'react-native-svg';
 import {Spacing} from "@assets";
+import {Colors} from "@theme";
 export type iconProps = {
     width?: string | number;
     height?: string | number;
@@ -101,6 +102,7 @@ export const IconHome = ({style, width, height,iconFillColor}: iconProps) => (
         height={Spacing.height24}
         viewBox="0 0 24 24"
         fill="none"
+        style={style}
     >
         <Path
             d="M12 18v-3M10.07 2.82L3.14 8.37c-.78.62-1.28 1.93-1.11 2.91l1.33 7.96c.24 1.42 1.6 2.57 3.04 2.57h11.2c1.43 0 2.8-1.16 3.04-2.57l1.33-7.96c.16-.98-.34-2.29-1.11-2.91l-6.93-5.54c-1.07-.86-2.8-.86-3.86-.01z"
@@ -236,5 +238,21 @@ export const IconUserName = ({ width, height, style }: iconProps) => (
                 <Rect width={80} height={80} rx={40} fill="#fff" />
             </ClipPath>
         </Defs>
+    </Svg>
+);
+export const IconNotifile = ({ width, height, style }: iconProps) => (
+    <Svg
+        width={Spacing.width26}
+        height={Spacing.width26}
+        viewBox="0 0 26 26"
+        style={style}
+        fill="none"
+    >
+        <Path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M13 3a1 1 0 10-2 0v.08a6.273 6.273 0 00-5.164 5.036l-1.375 7.331A3 3 0 007.411 19h.715a4.002 4.002 0 007.748 0h.716a3 3 0 002.949-3.553l-1.375-7.331A6.273 6.273 0 0013 3.08V3zm-1 17a2 2 0 001.732-1h-3.464A2 2 0 0012 20zm4.59-3H7.41a1 1 0 01-.983-1.184l1.375-7.332a4.272 4.272 0 018.397 0l1.374 7.332A1 1 0 0116.59 17z"
+            fill={Colors.black}
+        />
     </Svg>
 );
