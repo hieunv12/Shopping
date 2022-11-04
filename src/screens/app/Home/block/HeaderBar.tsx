@@ -9,7 +9,7 @@ export const HeaderBar =()=>{
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.viewSearch}>
-                <Text style={styles.txtSearch}>{t('txtSearch')}</Text>
+                <Text numberOfLines={1} style={styles.txtSearch}>{t('txtSearch')}</Text>
                 <SearchIcon/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnNotification}>
@@ -39,7 +39,8 @@ export const styles=StyleSheet.create({
     txtSearch:{
       fontSize:FontSize.Font14,
       fontFamily:'Poppins-Light',
-        color:Colors.placeholder
+        color:Colors.placeholder,
+        maxWidth:'90%'
     },
     btnNotification:{
         width:'15%',

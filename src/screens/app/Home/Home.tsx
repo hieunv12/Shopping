@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Platform, SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {Box, Colors, useTheme} from '@theme';
 import {AppButton, AppInput, AppScrollWrapBottomTab, GlobalService, LargeList, VirtualList} from '@components';
 import {AppchangeLanguage} from '@instances';
@@ -53,15 +53,15 @@ const Home = (props) => {
   // }
   // const renderHe
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <HeaderBar/>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   btn1: {marginBottom: 20},
-  container:{flex:1,backgroundColor:Colors.background}
+  container:{flex:1,backgroundColor:Colors.background, marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,}
 });
 
 export {Home};
