@@ -9,7 +9,7 @@ import {getTokenUserFromStore} from '@redux';
 import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
-import {Login, Notification, ProductDetail, Search, SignUp} from "@screens";
+import {Checkout, Forgot, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
 const Stack = createStackNavigator();
 //main stack app
 const NavigationApp = React.forwardRef((props, ref: any) => {
@@ -53,6 +53,21 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
             component={ProductDetail}
             options={{headerShown: false}}
         />
+          <Stack.Screen
+              name={SCREEN_ROUTE.CHECKOUT}
+              component={Checkout}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.INFO_USER}
+              component={InfoUser}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.CHANGE_PASSWORD}
+              component={InfoUser}
+              options={{headerShown: false}}
+          />
       {/*  auth*/}
           {token ==='' &&
               (
@@ -68,6 +83,13 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
               <Stack.Screen
                   name={SCREEN_ROUTE.SIGNUP}
                   component={SignUp}
+                  options={{headerShown: false}}
+              />
+          )}
+          {token ==='' &&(
+              <Stack.Screen
+                  name={SCREEN_ROUTE.FORGOT}
+                  component={Forgot     }
                   options={{headerShown: false}}
               />
           )}
