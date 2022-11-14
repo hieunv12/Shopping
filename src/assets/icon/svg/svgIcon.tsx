@@ -256,3 +256,18 @@ export const IconNotifile = ({ width, height, style }: iconProps) => (
         />
     </Svg>
 );
+export const IconSold = ({ width, height, style }: iconProps) => (
+    <Svg
+        width={Spacing.width15}
+        height={Spacing.width15}
+        viewBox="0 0 15 15"
+        style={style}
+        fill="none"
+    >
+        <Path
+            d="M13.563 4.563a.604.604 0 00-.876 0L8.75 8.5 6.062 5.812a.567.567 0 00-.437-.187.567.567 0 00-.438.188l-3.75 3.75A.567.567 0 001.25 10c0 .375.25.625.625.625a.567.567 0 00.438-.188l3.312-3.312 2.688 2.688c.062.062.124.124.187.124.063.063.188.063.25.063.125 0 .313-.063.375-.188h.063l4.374-4.374a.604.604 0 000-.875z"
+            fill="#000"
+        />
+    </Svg>
+);
+

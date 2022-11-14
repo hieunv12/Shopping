@@ -3,8 +3,8 @@ import {persistor, store} from '@redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationApp, NavigationUtils} from '@navigation';
 import {initI18n} from './src/translations';
-import {ThemeProvider} from '@theme';
-import {Platform, StyleSheet} from 'react-native';
+import {Colors, ThemeProvider} from '@theme';
+import {Platform, StyleSheet,StatusBar} from 'react-native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import FlashMessage from 'react-native-flash-message';
 import {GlobalService, GlobalUI} from '@components';
@@ -20,6 +20,7 @@ initI18n();
 function App() {
   return (
     <Provider store={store}>
+      <StatusBar translucent backgroundColor={Colors.background}  barStyle="dark-content"/>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <SafeAreaView style={styleApp.container} edges={['right', 'left']}>
           <ThemeProvider>

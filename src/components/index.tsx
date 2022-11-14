@@ -8,3 +8,5 @@ export * from './AppScrollWrapBottomTab/AppScrollWrapBottomTab';
 export * from './Flatlist/LargeList';
 export * from './Loading/LoadingScreen';
 export * from './NotLogin/NotLoginApp'
+export * from './AppSlide'
+export * from './HeaderScreen'

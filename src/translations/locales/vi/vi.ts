@@ -26,7 +26,22 @@ export const vi = {
   desLogin:'',
   can:'Trở về',
   txtSearch:'Tìm kiếm một sản phẩm, máy tính',
+    category:'Danh mục',
+    viewAll:"Xem thêm",
   common: {
     seeMore: "See more",
-  }
+  },
+  bestSell:'Bán chạy nhất',
+  newProduct:'Mới nhất',
+  laptop:"LAPTOP, TABLET, MOBILE",
+  pc:'PC GAMING, STREAMING',
+  pc1:'PC ĐỒ HỌA, RENDER, MÁY CHỦ',
+  laptop_gaming:'LAPTOP GAMING, ĐỒ HỌA',
+  phukien:'PHỤ KIỆN LAPTOP, PC, MOBILE',
+  linhkien:"LINH KIỆN MÁY TÍNH",
+  man:'MÀN HÌNH MÁY TÍNH',
+  chuot:'PHÍM CHUỘT, BÀN, GHẾ, GEAR',
+  loa:'LOA, TAI NGHE, MIC, WEBCAM',
+  buy:'Mua ngay',
+  addCart:'Thêm vào giỏ',
 };

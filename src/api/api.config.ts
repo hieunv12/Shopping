@@ -1,7 +1,7 @@
 //if you using .env pls change domain in below line.
 
 export const ApiConfigs = {
-  baseURL: 'https://localhost:3000/api/',
+  baseURL: 'https://api-mhcomputer.onrender.com',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
@@ -11,4 +11,8 @@ export const ApiConfigs = {
   timeout: 30000,
 };
 
-export const API_URL = {};
+export const API_URL = {
+  //category
+  category:'/category',
+
+};

@@ -9,3 +9,6 @@ export interface messageInterface {
   count: number;
   list: any;
 }
+export interface categoryInterface {
+  list: any;
+}

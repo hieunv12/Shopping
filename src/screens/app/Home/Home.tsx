@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Platform, SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {Box, Colors, useTheme} from '@theme';
 import {AppButton, AppInput, AppScrollWrapBottomTab, GlobalService, LargeList, VirtualList} from '@components';
 import {AppchangeLanguage} from '@instances';
@@ -10,6 +10,11 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {useModel} from "./Home.hook";
 import {HeaderBar} from "./block/HeaderBar";
+import {BannerRow} from "./block/Banner";
+import {CategoryRow} from "./block/CategoryRow";
+import {FormRow} from "./block/FormRow";
+import {DataTest} from "./block/DataTest";
+import {NavigationApp, NavigationUtils, SCREEN_ROUTE} from "@navigation";
 const data = [{
   name: 1,
   id: 1,
@@ -43,7 +48,7 @@ const Home = (props) => {
   const onSwitchLang = AppchangeLanguage();
   const insets = useSafeAreaInsets();
 
-  const {data}=useModel(props)
+  const {data,categories,bestSells}=useModel(props)
 
   // const renderItem=({item,index})=>{
   //   switch (item.type) {
@@ -53,15 +58,35 @@ const Home = (props) => {
   // }
   // const renderHe
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <HeaderBar/>
-    </SafeAreaView>
+     <ScrollView>
+       {/*<BannerRow data={categories}/>*/}
+       {/*<CategoryRow data={categories}/>*/}
+       <FormRow data={bestSells} name={t('bestSell')} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('bestSell')})}}/>
+       <FormRow data={bestSells} name={t('newProduct')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('laptop')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('pc')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('pc1')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('laptop_gaming')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('phukien')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('linhkien')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('man')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('chuot')} callback={()=>{}}/>
+       <FormRow data={bestSells} name={t('loa')} callback={()=>{}}/>
+
+     </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   btn1: {marginBottom: 20},
-  container:{flex:1,backgroundColor:Colors.background, marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,}
+  container:{
+    flex:1,
+    backgroundColor:Colors.background,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  }
 });
 
 export {Home};

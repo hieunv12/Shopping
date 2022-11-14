@@ -9,13 +9,14 @@ import {getTokenUserFromStore} from '@redux';
 import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
-import {Checkout, Forgot, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
+import {Checkout, Forgot, FormProduct, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
+import {getCategory} from "../../services/CategoryServices";
 const Stack = createStackNavigator();
 //main stack app
 const NavigationApp = React.forwardRef((props, ref: any) => {
   const dataTheme: {theme: Theme} = useTheme();
   const token = useSelector(getTokenUserFromStore);
-  console.log('token:',token)
+  console.log('token:',dataTheme)
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -24,6 +25,11 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
     SplashScreen.hide();
   }, []);
 
+    const callApiCategory=()=>{
+        getCategory(undefined,(res:any)=>{
+            console.log(res)
+        },()=>{}).then()
+    }
   const renderStackApp = () => {
     return (
       <Stack.Navigator>
@@ -66,6 +72,11 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
           <Stack.Screen
               name={SCREEN_ROUTE.CHANGE_PASSWORD}
               component={InfoUser}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.FORM_PRODUCT}
+              component={FormProduct}
               options={{headerShown: false}}
           />
       {/*  auth*/}

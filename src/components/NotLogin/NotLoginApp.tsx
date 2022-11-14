@@ -31,7 +31,7 @@ export const NotLoginApp =(props:NotLoginAppType)=>{
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "rgba(242, 242, 242, 1)",
+        backgroundColor: Colors.background,
         alignItems: "center",
         justifyContent:'center'
     },
