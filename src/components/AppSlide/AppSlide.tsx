@@ -7,8 +7,10 @@ import {
     View,
     ImageBackground,
     Animated,
-    Dimensions, useWindowDimensions
+    Dimensions, useWindowDimensions, Image
 } from "react-native";
+import {Spacing} from "@theme";
+import {Device} from "../../assets/device";
 
 
 const window = Dimensions.get("window");
@@ -17,10 +19,10 @@ type AppSlideType={
 }
 export const AppSlide = (props:AppSlideType) => {
     const {images}=props
-    const scrollX = useRef(new Animated.Value(0)).current;
+    const scrollX = useRef();
 
     const {width: windowWidth} = useWindowDimensions();
-
+    console.log(scrollX)
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.scrollContainer}>
@@ -28,29 +30,20 @@ export const AppSlide = (props:AppSlideType) => {
                     horizontal={true}
                     pagingEnabled
                     showsHorizontalScrollIndicator={false}
-                    onScroll={Animated.event([
-                        {
-                            nativeEvent: {
-                                contentOffset: {
-                                    x: scrollX
-                                }
-                            }
-                        }
-                    ])}
+                //     onScroll={(event)=>{
+                //         console.log('data:',event)
+                //     }
+                // }
                     scrollEventThrottle={1}
                 >
-                    {images.map((image:{url:string}, imageIndex:number) => {
+                    {images.map((image:string, imageIndex:number) => {
                         return (
                             <View
-                                style={{width: windowWidth, height: 200}}
-                                key={imageIndex}
+                                key={`banner_product_${imageIndex}`}
+                                style={{width: windowWidth, height:  Device.height/2}}
+
                             >
-                                <ImageBackground resizeMode={'contain'} source={{uri: image?.url}} style={styles.card} >
-                                    {/*<View style={styles.textContainer}>*/}
-                                    {/*    <Text style={styles.infoText}>*/}
-                                    {/*        {"Image - " + imageIndex}*/}
-                                    {/*    </Text>*/}
-                                    {/*</View>*/}
+                                <ImageBackground resizeMode={'contain'} source={{uri: image}} style={styles.card} >
                                 </ImageBackground>
                             </View>
                         );
@@ -58,20 +51,8 @@ export const AppSlide = (props:AppSlideType) => {
                 </ScrollView>
                 <View style={styles.indicatorContainer}>
                     {images.map((image:string, imageIndex:number) => {
-                        const width = scrollX.interpolate({
-                            inputRange: [
-                                windowWidth * (imageIndex - 1),
-                                windowWidth * imageIndex,
-                                windowWidth * (imageIndex + 1)
-                            ],
-                            outputRange: [8, 16, 8],
-                            extrapolate: "clamp"
-                        });
                         return (
-                            <Animated.View
-                                key={imageIndex}
-                                style={[styles.normalDot, {width}]}
-                            />
+                            <Image  key={imageIndex} source={{uri:image}} style={{width:Spacing.width50,height:Spacing.height50,marginLeft:Spacing.width8}}/>
                         );
                     })}
                 </View>
@@ -83,14 +64,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
-
+        // justifyContent: "center",
+        height:  Device.height/2,
     },
     scrollContainer: {
-        height: 200,
+        height: Device.height/2,
         alignItems: "center",
         justifyContent: "center",
-
+        // backgroundColor:'green'
     },
     card: {
         flex: 1,
@@ -120,7 +101,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 4
     },
     indicatorContainer: {
-        top:200,
+        top: Device.height/2,
         position:'absolute',
         flexDirection: "row",
         alignItems: "center",
