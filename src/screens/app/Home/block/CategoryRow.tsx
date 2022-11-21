@@ -14,9 +14,9 @@ export const CategoryRow =(props:CategoryRowType)=>{
         return(
             <TouchableOpacity onPress={()=>{}} style={styles.viewCategory}>
                 <View style={styles.viewImg}>
-                    <Image style={styles.img} resizeMode={"contain"} source={{uri:item?.imageUrl}}/>
+                    <Image style={styles.img} resizeMode={"contain"} source={{uri:item?.icon_url}}/>
                 </View>
-                <Text style={styles.txt} numberOfLines={1}>{item?.name}</Text>
+                <Text style={styles.txt} numberOfLines={1}>{item?.name?.toUpperCase()}</Text>
             </TouchableOpacity>
         )
     }

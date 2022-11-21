@@ -146,10 +146,10 @@ export const IconCategory = ({style, width, height,iconFillColor}: iconProps) =>
     </Svg>
 );
 
-export const IconCart = ({style, width, height,iconFillColor}: iconProps) => (
+export const IconCart = ({style, width=Spacing.width24, height=Spacing.width24,iconFillColor}: iconProps) => (
     <Svg
-        width={Spacing.width24}
-        height={Spacing.width24}
+        width={width}
+        height={height}
         viewBox="0 0 24 24"
         fill="none"
     >
@@ -267,6 +267,23 @@ export const IconSold = ({ width, height, style }: iconProps) => (
         <Path
             d="M13.563 4.563a.604.604 0 00-.876 0L8.75 8.5 6.062 5.812a.567.567 0 00-.437-.187.567.567 0 00-.438.188l-3.75 3.75A.567.567 0 001.25 10c0 .375.25.625.625.625a.567.567 0 00.438-.188l3.312-3.312 2.688 2.688c.062.062.124.124.187.124.063.063.188.063.25.063.125 0 .313-.063.375-.188h.063l4.374-4.374a.604.604 0 000-.875z"
             fill="#000"
+        />
+    </Svg>
+);
+
+export const IconLeft = ({ width, height, style }: iconProps) => (
+    <Svg
+        width={Spacing.width24}
+        height={Spacing.width24}
+        viewBox="0 0 24 24"
+        style={style}
+        fill="none"
+    >
+        <Path
+            d="M10 7l1.763 1.747c1.406 1.394 2.109 2.09 2.217 2.94a2.48 2.48 0 010 .626c-.108.85-.811 1.546-2.217 2.94L10 17"
+            stroke="#ACACAC"
+            strokeWidth={1.5}
+            strokeLinecap="round"
         />
     </Svg>
 );

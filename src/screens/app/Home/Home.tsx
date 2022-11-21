@@ -61,8 +61,8 @@ const Home = (props) => {
     <View style={styles.container}>
       <HeaderBar/>
      <ScrollView>
-       {/*<BannerRow data={categories}/>*/}
-       {/*<CategoryRow data={categories}/>*/}
+       <BannerRow data={categories}/>
+       <CategoryRow data={categories}/>
        <FormRow data={bestSells} name={t('bestSell')} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('bestSell')})}}/>
        <FormRow data={bestSells} name={t('newProduct')} callback={()=>{}}/>
        <FormRow data={bestSells} name={t('laptop')} callback={()=>{}}/>

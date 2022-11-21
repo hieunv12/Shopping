@@ -5,8 +5,8 @@ import {MainStackComponent} from '../stack/MainStack';
 import {Theme, useTheme} from '@theme';
 import SplashScreen from 'react-native-splash-screen';
 import {AuthStackComponent} from '../stack/AuthStack';
-import {getTokenUserFromStore} from '@redux';
-import {useSelector} from 'react-redux';
+import {getTokenUserFromStore, setCategory} from '@redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
 import {Checkout, Forgot, FormProduct, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
@@ -16,18 +16,18 @@ const Stack = createStackNavigator();
 const NavigationApp = React.forwardRef((props, ref: any) => {
   const dataTheme: {theme: Theme} = useTheme();
   const token = useSelector(getTokenUserFromStore);
-  console.log('token:',dataTheme)
+    const dispatch = useDispatch();
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+      callApiCategory()
+  }, [token]);
 
     const callApiCategory=()=>{
         getCategory(undefined,(res:any)=>{
-            console.log(res)
+            dispatch(setCategory(res))
         },()=>{}).then()
     }
   const renderStackApp = () => {

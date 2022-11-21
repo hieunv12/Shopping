@@ -5,17 +5,17 @@ import {Colors, FontSize, FontWithBold_Barlow, Shadow, Spacing} from "@theme";
 import {NavigationUtils} from "@navigation";
 type HeaderScreenType={
     name?:string,
-
+    isIconClose?:boolean
 }
 export const HeaderScreen=(props:HeaderScreenType)=>{
-const {name}=props
+const {name,isIconClose=true}=props
     return(
         <View style={styles.container}>
-            <TouchableOpacity style={styles.iconBack} onPress={()=>{
+            {isIconClose &&<TouchableOpacity style={styles.iconBack} onPress={() => {
                 NavigationUtils.goBack()
             }}>
                 <BackIcon/>
-            </TouchableOpacity>
+            </TouchableOpacity>}
             <Text style={styles.txt}>{name}</Text>
         </View>
     )
@@ -26,7 +26,7 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
-        height:Spacing.height60,
+        height:Spacing.height50,
         width:'100%',
         backgroundColor:Colors.white,
         borderBottomWidth:1,

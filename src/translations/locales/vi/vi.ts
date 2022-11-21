@@ -44,4 +44,14 @@ export const vi = {
   loa:'LOA, TAI NGHE, MIC, WEBCAM',
   buy:'Mua ngay',
   addCart:'Thêm vào giỏ',
+  code:"SKU :",
+  desPrice:"-Tiết kiệm : price cho sản phẩm ",
+  titleColor:"Màu sắc:",
+  titleSize:"Kích thước :",
+  selectSize:"Hãy chọn kích thước",
+  selectColor:"Hãy chọn màu sắc",
+  quantity:"Số lượng :",
+  sp:"Hướng dẫn chọn size",
+  desProduct:"Mô tả sản phẩm :",
+  view_product:"Xem sản phẩm"
 };

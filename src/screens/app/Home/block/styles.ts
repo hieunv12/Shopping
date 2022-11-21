@@ -44,7 +44,8 @@ export const styles=StyleSheet.create({
         ...FontWithBold_Barlow.Medium_Barlow_400,
         color:Colors.black,
         width:Spacing.width60,
-        marginTop:8
+        marginTop:8,
+        textAlign:'center'
     },
     viewProduct:{
         backgroundColor:Colors.white,

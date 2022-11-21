@@ -2,8 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {APP_SLICE} from '@types';
 import {categoryInterface} from "../types";
 const initialState = {
-    token: '',
-    userProfile: {},
+    list:[]
 } as categoryInterface;
 const categorySlice =createSlice({
     name:APP_SLICE.CATEGORY_SLICE,

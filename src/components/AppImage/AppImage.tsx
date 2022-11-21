@@ -3,6 +3,7 @@ import {Box, useTheme} from '@theme';
 import React, {useEffect, useState} from 'react';
 import {ImageStyle, StyleProp, ActivityIndicator} from 'react-native';
 import FastImage, {ResizeMode, Source} from 'react-native-fast-image';
+import {Device} from "../../assets/device";
 
 interface propsImage {
   uri: string;
@@ -13,7 +14,7 @@ interface propsImage {
   checkNetworking?: boolean;
 }
 
-const AppImage = React.memo((props: propsImage) => {
+export const AppImage = React.memo((props: propsImage) => {
   const {uri, style, resizeMode, defaultSource, checkNetworking, imgSource} = props;
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -33,14 +34,15 @@ const AppImage = React.memo((props: propsImage) => {
     }
   }, [uri, checkNetworking]);
   const source = isError ? NoImage : imgSource ? imgSource : uri ? {uri} : defaultSource || NoImage
-
   return (
-    <Box justifyContent={'center'} alignItems="center">
+    <Box justifyContent={'center'} alignItems="center" >
       <FastImage
         source={source}
         style={style}
         resizeMode={resizeMode}
-        onLoadEnd={() => setLoading(false)}
+        onLoadEnd={() => {
+          setLoading(false)
+        }}
         onError={() => setLoading(false)}
       />
       {isLoading && (
@@ -52,5 +54,3 @@ const AppImage = React.memo((props: propsImage) => {
     </Box>
   );
 });
-
-export {AppImage};

@@ -4,7 +4,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationApp, NavigationUtils} from '@navigation';
 import {initI18n} from './src/translations';
 import {Colors, ThemeProvider} from '@theme';
-import {Platform, StyleSheet,StatusBar} from 'react-native';
+import {Platform, StyleSheet,StatusBar,SafeAreaView} from 'react-native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import FlashMessage from 'react-native-flash-message';
 import {GlobalService, GlobalUI} from '@components';
@@ -12,9 +12,8 @@ import {Provider} from 'react-redux';
 import {
   initialWindowMetrics,
   SafeAreaProvider,
-  SafeAreaView,
+  // SafeAreaView,
 } from 'react-native-safe-area-context';
-
 initI18n();
 
 function App() {

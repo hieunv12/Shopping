@@ -24,7 +24,9 @@ export const Colors = {
   lightRed: '#FF7176',
   lightYellow: '#FFCD16',
   colorMain:'#33BE94',
+  colorMain2:'#000000',
   placeholder:'#A8B0BA',
+  error:"red"
 };
 
 export const Shadow = {
