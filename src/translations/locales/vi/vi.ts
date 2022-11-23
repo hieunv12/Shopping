@@ -53,5 +53,19 @@ export const vi = {
   quantity:"Số lượng :",
   sp:"Hướng dẫn chọn size",
   desProduct:"Mô tả sản phẩm :",
-  view_product:"Xem sản phẩm"
+  view_product:"Xem sản phẩm",
+  txt_filter:"Lọc sản phẩm",
+  txt_price:"Giá :",
+  txt_tang:"Tăng dần",
+  txt_giam:"Giảm dần",
+  a_z:"A -> Z",
+  z_a:"Z -> A",
+  news:"Mới nhất",
+  old:"Cũ nhất",
+  txt_about_price:"Khoảng giá :",
+  txt_sort:"Sắp xếp :",
+  txt_date:"Thời gian :",
+  close:"Đóng",
+  reset:"Làm mới",
+
 };

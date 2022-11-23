@@ -7,6 +7,7 @@ import {renderPrice} from "../../../../utils/PriceUtils";
 import {IconSold} from "@assets";
 import {Spacing} from "@theme";
 import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
+import {AppText} from "@components";
 type FormRowType={
     name:string,
     data:any,
@@ -16,20 +17,19 @@ export const FormRow =(props:FormRowType)=>{
 
     const {data,name,callback}=props
     const {t} = useTranslation();
+    // @ts-ignore
     const renderItem=({item,index})=>{
         return(
             <TouchableOpacity onPress={()=>{
                 NavigationUtils.navigate(SCREEN_ROUTE.PRODUCT_DETAIL,{id:item?.id})
             }} style={styles.viewProduct}>
                     <Image style={styles.img_product} resizeMode={"contain"} source={renderImage(item.imageUrl)}/>
-                <Text style={styles.txt_product} numberOfLines={2}>{item?.name}</Text>
-
+                    <AppText style={styles.txt_product} numberOfLines={2}>{item?.name}</AppText>
                 <View style={styles.viewPrice}>
-                    <Text style={styles.txt_price_product}>{renderPrice(item?.price)}</Text>
+                    <AppText style={styles.txt_price_product}>{renderPrice(item?.price)}</AppText>
                     <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
                         <IconSold/>
-                        <Text style={styles.txt_sold_product}>({item?.totalSold})</Text>
-
+                        <AppText style={styles.txt_sold_product}>({item?.totalSold})</AppText>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -38,9 +38,10 @@ export const FormRow =(props:FormRowType)=>{
     return(
         <View style={{...styles.container,marginTop:Spacing.height16}}>
             <View style={styles.viewRow}>
-                <Text style={styles.title}>{name}</Text>
-               <TouchableOpacity onPress={callback}>
-                   <Text style={styles.des}>{t('viewAll')}</Text>
+                <AppText style={styles.title}>{name}</AppText>
+
+                <TouchableOpacity onPress={callback}>
+                   <AppText style={styles.des}>{t('viewAll')}</AppText>
                </TouchableOpacity>
             </View>
             <FlatList

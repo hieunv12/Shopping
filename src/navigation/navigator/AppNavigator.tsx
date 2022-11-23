@@ -13,6 +13,7 @@ import {Checkout, Forgot, FormProduct, InfoUser, Login, Notification, ProductDet
 import {getCategory} from "../../services/CategoryServices";
 const Stack = createStackNavigator();
 //main stack app
+// const
 const NavigationApp = React.forwardRef((props, ref: any) => {
   const dataTheme: {theme: Theme} = useTheme();
   const token = useSelector(getTokenUserFromStore);
@@ -74,6 +75,7 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
               component={InfoUser}
               options={{headerShown: false}}
           />
+
           <Stack.Screen
               name={SCREEN_ROUTE.FORM_PRODUCT}
               component={FormProduct}

@@ -1,14 +1,17 @@
 import React from "react";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {BackIcon} from "@assets";
+import {BackIcon, IconFilter} from "@assets";
 import {Colors, FontSize, FontWithBold_Barlow, Shadow, Spacing} from "@theme";
 import {NavigationUtils} from "@navigation";
+import TextTicker from "react-native-text-ticker";
 type HeaderScreenType={
     name?:string,
-    isIconClose?:boolean
+    isIconClose?:boolean,
+    isFilter?:boolean,
+    onFilter?:any
 }
 export const HeaderScreen=(props:HeaderScreenType)=>{
-const {name,isIconClose=true}=props
+const {name,isIconClose=true,isFilter=false,onFilter}=props
     return(
         <View style={styles.container}>
             {isIconClose &&<TouchableOpacity style={styles.iconBack} onPress={() => {
@@ -16,7 +19,19 @@ const {name,isIconClose=true}=props
             }}>
                 <BackIcon/>
             </TouchableOpacity>}
-            <Text style={styles.txt}>{name}</Text>
+            <TextTicker
+                style={styles.txt}
+                duration={3000}
+                loop
+                bounce
+                repeatSpacer={50}
+                marqueeDelay={1000}
+            >
+                {name}
+            </TextTicker>
+            {isFilter &&<TouchableOpacity style={styles.iconFilter} onPress={onFilter}>
+                <IconFilter/>
+            </TouchableOpacity>}
         </View>
     )
 }
@@ -44,6 +59,15 @@ const styles=StyleSheet.create({
     txt:{
         fontSize:FontSize.Font16,
         color:Colors.black,
-        ...FontWithBold_Barlow.Bold_Barlow_700,
+        ...FontWithBold_Barlow.Bold_Barlow_500,
+    },
+    iconFilter:{
+        position:"absolute",
+        paddingRight:Spacing.width16,
+        right:0,
+        width:50,
+        height:Spacing.height50,
+        alignItems:'flex-end',
+        justifyContent:'center',
     }
 })

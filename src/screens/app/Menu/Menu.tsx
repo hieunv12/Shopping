@@ -55,7 +55,7 @@ export const Menu =(props:any)=>{
                 }}
                 ListFooterComponent={() => {
                     return(
-                        <TouchableOpacity style={styles.viewCategoryChild} onPress={()=>onViewProduct(listCategory[0])}>
+                        <TouchableOpacity style={styles.viewCategoryChild} onPress={()=>onViewProduct(listCategory[count])}>
                             <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <AppText style={{fontSize:FontSize.Font12}}>{t("view_product")}</AppText></View>
                             <IconLeft/>

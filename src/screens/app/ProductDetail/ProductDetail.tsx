@@ -3,7 +3,6 @@ import {useModel} from "./ProductDetail.hook";
 import {FlatList, ScrollView, View} from "react-native";
 import {styles} from "./styles";
 import {AppSlide, AppText, HeaderScreen} from "@components";
-import {useRoute} from "@react-navigation/native";
 import {BottomProduct} from "./block/BottomProduct";
 import {InfoProduct} from "./block/InfoProduct";
 import {Colors, FontSize, Spacing} from "@theme";

@@ -60,7 +60,7 @@ export function useModel(props: any) {
     const [size,setSize]=useState([])
     const [color,setColor]=useState([])
     const [amount, setAmount] = useState(1);
-    const refProduct=useRef(null)
+    const refProduct=useRef<any>(null)
     useEffect(()=>{
         setData(Data)
     },[])

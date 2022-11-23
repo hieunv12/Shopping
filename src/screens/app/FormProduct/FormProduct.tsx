@@ -3,14 +3,18 @@ import {useModel} from "./FormProduct.hook";
 import {FlatList, Image, Text, TouchableOpacity, View} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import {styles} from "./styles";
-import {AppImage, HeaderScreen} from "@components";
+import {AppImage, AppText, HeaderScreen} from "@components";
 import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 import {renderImage} from "../../../utils/ImageUtils";
 import {renderPrice} from "../../../utils/PriceUtils";
 import {IconSold} from "@assets";
 import {Spacing} from "@theme";
+import RBSheet from "react-native-raw-bottom-sheet";
+import { t } from "i18next";
+import {FilterProduct} from "./Block/FilterProduct";
 export const FormProduct =(props:any)=>{
-    const {params,data}=useModel(props)
+    const {params,data,onFilter,refBottom}=useModel(props)
+    // @ts-ignore
     const renderItem =({item,index})=>{
         return (
             <TouchableOpacity onPress={()=>{
@@ -30,9 +34,14 @@ export const FormProduct =(props:any)=>{
             </TouchableOpacity>
         )
     }
+
     return(
         <View style={styles.container}>
-            <HeaderScreen name={params?.name?params?.name:''}/>
+            <HeaderScreen
+                name={params?.name?params?.name:''}
+                isFilter={true}
+                onFilter={()=>{refBottom?.current?.open()}}
+            />
            <FlatList
                data={data}
                ListHeaderComponent={()=>{
@@ -48,6 +57,22 @@ export const FormProduct =(props:any)=>{
                numColumns={2}
                keyExtractor={(item,index)=>`list_product_${index.toString()}`}
            />
+            <RBSheet
+                ref={refBottom}
+                height={400}
+                animationType={"fade"}
+                openDuration={150}
+                customStyles={{
+                    container: {
+                        // justifyContent: "center",
+                        alignItems: "center",
+                        paddingVertical:Spacing.height16
+                    }
+                }}
+            >
+           <FilterProduct/>
+
+            </RBSheet>
         </View>
     )
 }

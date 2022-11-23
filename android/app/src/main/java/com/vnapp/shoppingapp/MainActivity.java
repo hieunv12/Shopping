@@ -1,4 +1,4 @@
-package com.myapp;
+package com.vnapp.shoppingapp;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -19,7 +19,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "TemplateAd";
+    return "ShoppingApp";
   }
 
   /**
