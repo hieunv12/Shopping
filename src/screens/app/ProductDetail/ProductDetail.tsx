@@ -27,26 +27,27 @@ const listInfoSize=[
 ]
 export const ProductDetail =(props:any)=>{
     const {data, sizes,
-        colors,
-        setColor,
-        setSize,amount, setAmount,
-        refProduct
+        colors,amount, setAmount,setSizeSelect,
+        setColorSelect,
+        refProduct,
+        value
     }=useModel(props)
 
     return(
         <View style={styles.container}>
             <HeaderScreen/>
-           <ScrollView>
+           <ScrollView showsVerticalScrollIndicator={false}>
                <AppSlide images={data?.imageUrl}/>
                <InfoProduct
                    detail={data}
                    colors={colors}
                    sizes={sizes}
-                   setColor={setColor}
-                   setSize={setSize}
+                   setColorSelect={setColorSelect}
+                   setSizeSelect={setSizeSelect}
                    amount={amount}
                    setAmount={setAmount}
                    openSP={()=>{}}
+                   value={value}
                    onInfoSize={()=>{
                        refProduct?.current?.open()
                    }}

@@ -1,11 +1,15 @@
 import React, {useState} from "react";
-import {TextInput, TouchableOpacity, View} from "react-native";
-import {AppText} from "@components";
+import {ScrollView, TextInput, TouchableOpacity, View} from "react-native";
+import {AppButton, AppText} from "@components";
 import {styles} from "./styles";
 import {t} from "i18next";
 import {Colors, Spacing} from "@theme";
+import {Dropdown} from "@assets";
+import MultiSlider from "@ptomasroos/react-native-multi-slider";
+
 type FilterProductType={
-    onClose?:any
+    onClose?:any,
+    onFilter:(value:any)=>void
 }
 type formViewType={
     title:string,value:any,setValue:any,
@@ -14,19 +18,19 @@ type formViewType={
 }
 export const FilterProduct=(props:FilterProductType)=>{
 
-    const {onClose}=props;
+    const {onClose,onFilter}=props;
     const [sortBy,setSortBy]=useState<number>(0)
-    const [sortPrice,setSortPrice]=useState<any>()
-    const [isDate,setIsDate]=useState<number>(0)
-    const [priceStart,setPriceStart]=useState()
-    const [priceEnd,setPriceEnd]=useState()
+    const [sortPrice,setSortPrice]=useState<any>(0)
+    const [sortDate,setSortDate]=useState<number>(0)
+    const [priceStart,setPriceStart]=useState<any>()
+    const [priceEnd,setPriceEnd]=useState<any>()
     // 0 not select
     // 1 select (tang ,a-z, ms nhat)
     // 2 select (giam ,z-a ,cu nhat)
 
     const onReset =()=>{
         setSortBy(0)
-        setIsDate(0)
+        setSortDate(0)
         setPriceEnd('')
         setPriceStart('')
         setSortPrice(0)
@@ -70,57 +74,70 @@ export const FilterProduct=(props:FilterProductType)=>{
                     />
                     <AppText style={{marginHorizontal:Spacing.width10}}>-</AppText>
                     <TextInput
-                        value={priceStart}
+                        value={priceEnd}
                         style={{...styles.input,}}
                         placeholderTextColor={Colors.placeholder}
                         placeholder={'đ'}
                         keyboardType={"numeric"}
                         onChangeText={(text:any)=>{
-                            setPriceStart(text)
+                            setPriceEnd(text)
                         }}
                     />
                 </View>
             </View>
         )
     }
+    const onFilterProduct =()=>{
+        let params={
+            sortName:sortBy,
+            sortPrice:sortPrice,
+            sortDate:sortDate,
+            priceStart:priceStart,
+            priceEnd:priceEnd
+        }
+            onFilter(params)
+    }
     return(
         <View style={styles.container}>
             <View style={styles.viewHeader}>
-                <TouchableOpacity onPress={onClose}>
-                    <AppText style={styles.txtReset}>{t("close")}</AppText>
+                <TouchableOpacity onPress={onClose} style={{...styles.viewDropDown,paddingLeft:Spacing.width16}}>
+                   <Dropdown/>
                 </TouchableOpacity>
                 {/*<AppText style={styles.txtFilter}>{t("txt_filter")}</AppText>*/}
-                <TouchableOpacity onPress={onReset}>
+                <TouchableOpacity onPress={onReset} style={{...styles.viewDropDown,paddingRight:Spacing.width16}}>
                     <AppText style={styles.txtReset}>{t("reset")}</AppText>
                 </TouchableOpacity>
             </View>
 
         {/*    price*/}
-            <FormView
-                title={t("txt_price")}
-                value={sortBy}
-                setValue={(num:number)=>setSortBy(num)}
-                text1={t('txt_tang')}
-                text2={t('txt_giam')}
-                />
+           <ScrollView>
+               <FormView
+                   title={t("txt_price")}
+                   value={sortPrice}
+                   setValue={(num:number)=>setSortPrice(num)}
+                   text1={t('txt_tang')}
+                   text2={t('txt_giam')}
+               />
 
 
-            <FormView
-                title={t("txt_sort")}
-                value={sortBy}
-                setValue={(num:number)=>setSortBy(num)}
-                text1={t('a_z')}
-                text2={t('z_a')}
-            />
+               <FormView
+                   title={t("txt_sort")}
+                   value={sortBy}
+                   setValue={(num:number)=>setSortBy(num)}
+                   text1={t('a_z')}
+                   text2={t('z_a')}
+               />
 
-            <FormView
-                title={t("txt_date")}
-                value={sortBy}
-                setValue={(num:number)=>setSortBy(num)}
-                text1={t('news')}
-                text2={t('old')}
-            />
-            {renderPrice()}
+               <FormView
+                   title={t("txt_date")}
+                   value={sortDate}
+                   setValue={(num:number)=>setSortDate(num)}
+                   text1={t('news')}
+                   text2={t('old')}
+               />
+               {renderPrice()}
+               <AppButton label={t('txt_filter')} style={styles.btnFilter} onPress={onFilterProduct}/>
+           </ScrollView>
         </View>
     )
 }

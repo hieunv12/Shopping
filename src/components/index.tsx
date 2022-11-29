@@ -13,3 +13,5 @@ export * from './HeaderScreen'
 export * from './AppStar'
 export * from './SelectDropdown'
 export * from './AppImage';
+export * from './AppQuantity';
+export * from './AppDialog'

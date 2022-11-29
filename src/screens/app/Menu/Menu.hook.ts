@@ -12,14 +12,13 @@ export function useModel(props: any) {
     const [count,setCount]=useState<number>(0)
     useEffect(()=>{
      if(listCategory){
-         setChildCategory(listCategory[count]?.child)
+         setChildCategory(listCategory[count]?.childrenCategories)
      }
     },[count,listCategory])
     const onSelectCategory=(item:any,index:number)=>{
             setCount(index)
     }
     const onViewProduct=(item:any)=>{
-        console.log('item,:',item)
         navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:item?.name,type:"category",item:item})
     }
     return{

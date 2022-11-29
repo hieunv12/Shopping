@@ -1,7 +1,7 @@
 //if you using .env pls change domain in below line.
 
 export const ApiConfigs = {
-  baseURL: 'https://api-mhcomputer.onrender.com',
+  baseURL: 'https://api-clothing-production.up.railway.app',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
@@ -14,5 +14,6 @@ export const ApiConfigs = {
 export const API_URL = {
   //category
   category:'/category',
-
+  product:"/product/all-paging",
+  productDetail:"/product/",
 };

@@ -27,12 +27,12 @@ export const styles = StyleSheet.create({
         justifyContent:'space-between',
     },
     btnSigUp:{
-        maxWidth:'50%',
+        maxWidth:'60%',
         backgroundColor:Colors.colorMain,
         borderRadius:Spacing.height8
     },
     btnCan:{
-        maxWidth:'40%',
+        maxWidth:'30%',
         marginRight:'10%',
         backgroundColor:Colors.black,
         borderRadius:Spacing.height8

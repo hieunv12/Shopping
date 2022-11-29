@@ -3,17 +3,18 @@ import {useModel} from "./FormProduct.hook";
 import {FlatList, Image, Text, TouchableOpacity, View} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import {styles} from "./styles";
-import {AppImage, AppText, HeaderScreen} from "@components";
+import {AppImage, AppText, HeaderScreen, SelectDrop} from "@components";
 import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 import {renderImage} from "../../../utils/ImageUtils";
 import {renderPrice} from "../../../utils/PriceUtils";
-import {IconSold} from "@assets";
-import {Spacing} from "@theme";
+import {IconNoProduct, IconSold} from "@assets";
+import {Colors, Spacing} from "@theme";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { t } from "i18next";
 import {FilterProduct} from "./Block/FilterProduct";
+import {DataFilter} from "@utils";
 export const FormProduct =(props:any)=>{
-    const {params,data,onFilter,refBottom}=useModel(props)
+    const {params,data,onFilter,textFilter,refBottom,filter,renderTextFilter}=useModel(props)
     // @ts-ignore
     const renderItem =({item,index})=>{
         return (
@@ -39,14 +40,29 @@ export const FormProduct =(props:any)=>{
         <View style={styles.container}>
             <HeaderScreen
                 name={params?.name?params?.name:''}
-                isFilter={true}
+                // isFilter={true}
                 onFilter={()=>{refBottom?.current?.open()}}
             />
+
            <FlatList
                data={data}
                ListHeaderComponent={()=>{
                    return(
+                   <View>
                        <AppImage uri={params?.item?.imageUrl} style={styles.img} />
+
+                       <SelectDrop
+                           data={DataFilter}
+                           width={'40%'}
+                           styleContainer={{alignSelf:'flex-end',marginVertical:Spacing.height16,}}
+                           style={{borderColor:Colors.border,borderWidth:1,backgroundColor:Colors.white}}
+                           keyName={'name'}
+                           onSelect={(item:any) => {
+                               // setSizeSelect(item)
+                           }}
+                           placeholder={t("selectFilter")}
+                       />
+                   </View>
                    )
                }}
                contentContainerStyle={{
@@ -54,6 +70,15 @@ export const FormProduct =(props:any)=>{
 
                }}
                renderItem={renderItem}
+               ListEmptyComponent={()=>{
+                   return(
+                       <View style={{alignItems:'center',justifyContent:'center',height:'100%'}}>
+                           <IconNoProduct/>
+                           <AppText>{t('notProduct')}</AppText>
+                           {/*<Image source={NoProduct} resizeMode={'center'} style={{width:Spacing.width100,height:Spacing.width100,backgroundColor:'red'}}/>*/}
+                       </View>
+                   )
+               }}
                numColumns={2}
                keyExtractor={(item,index)=>`list_product_${index.toString()}`}
            />
@@ -66,11 +91,13 @@ export const FormProduct =(props:any)=>{
                     container: {
                         // justifyContent: "center",
                         alignItems: "center",
-                        paddingVertical:Spacing.height16
+                        paddingBottom:Spacing.height16
                     }
                 }}
             >
-           <FilterProduct/>
+           <FilterProduct
+               onFilter={(value)=>onFilter(value)}
+               onClose={()=>refBottom?.current?.close()}/>
 
             </RBSheet>
         </View>

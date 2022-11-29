@@ -45,8 +45,7 @@ export const styles = StyleSheet.create({
     },
     btnSignIn:{
         marginTop: Spacing.height50,
-        borderColor:Colors.dark,
-        borderWidth:1,
+       backgroundColor:Colors.colorMain2,
         width:Spacing.width200,
         height:52,
         alignItems:'center',
@@ -55,6 +54,7 @@ export const styles = StyleSheet.create({
     },
     signinBtn: {
         fontSize:FontSize.Font18,
+        color:Colors.white,
         ...FontWithBold.Bold_500,
     },
     txtNotRegistered:{

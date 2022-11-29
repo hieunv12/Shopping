@@ -35,20 +35,24 @@ export const FormRow =(props:FormRowType)=>{
             </TouchableOpacity>
         )
     }
-    return(
-        <View style={{...styles.container,marginTop:Spacing.height16}}>
-            <View style={styles.viewRow}>
-                <AppText style={styles.title}>{name}</AppText>
+    if(data?.length!==0){
+        return(
+            <View style={{...styles.container,marginTop:Spacing.height16}}>
+                <View style={styles.viewRow}>
+                    <AppText style={styles.title}>{name}</AppText>
 
-                <TouchableOpacity onPress={callback}>
-                   <AppText style={styles.des}>{t('viewAll')}</AppText>
-               </TouchableOpacity>
+                    <TouchableOpacity onPress={callback}>
+                        <AppText style={styles.des}>{t('viewAll')}</AppText>
+                    </TouchableOpacity>
+                </View>
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}/>
             </View>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}/>
-        </View>
-    )
+        )
+    }else {
+        return null
+    }
 }

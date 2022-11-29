@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     txtFilter:{
         fontSize:FontSize.Font18,
@@ -20,11 +19,16 @@ export const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
-        paddingHorizontal:Spacing.width16,
         borderBottomWidth:1,
         borderBottomColor:'rgba(0, 0, 0, 0.08)',
-        paddingBottom:Spacing.height16,
-        marginBottom:6
+        marginBottom:6,
+    },
+    viewDropDown:{
+        minWidth:Spacing.width30,
+        height:Spacing.height40,
+
+        alignItems:'center',
+        justifyContent:'center'
     },
     formView:{
         width:Device.width,
@@ -32,7 +36,6 @@ export const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         marginBottom:Spacing.height8,
-
         borderBottomWidth:1,
         borderBottomColor:'rgba(0, 0, 0, 0.08)',
         paddingHorizontal:Spacing.width16
@@ -43,7 +46,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal:Spacing.width16
     },
     txt_formView:{
-        fontSize:FontSize.Font14,
+        fontSize:FontSize.Font13,
         width:'25%'
     },
     formViewBtn:{
@@ -99,5 +102,11 @@ export const styles = StyleSheet.create({
         justifyContent:'center',
         borderWidth:2,
         borderColor:Colors.colorMain
+    },
+    btnFilter:{
+        marginHorizontal:Spacing.width16,
+        marginVertical:Spacing.width16,
+        minHeight:Spacing.height50,borderRadius:8,
+
     }
 })

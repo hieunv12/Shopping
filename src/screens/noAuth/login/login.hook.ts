@@ -15,7 +15,7 @@ export function useModel(props: any) {
             .min(2, 'Too Short!')
             .max(70, 'Too Long!')
             .email()
-            .required('Nhận tên'),
+            .required(t("validateEmail")),
         password: Yup.string()
             .email('Invalid email')
             .required('Required'),

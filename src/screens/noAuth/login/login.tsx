@@ -3,11 +3,11 @@ import {useModel} from "./login.hook";
 import {Box, Colors} from "@theme";
 import {AppButton, AppInput, AppText} from "@components";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
-import {Platform, SafeAreaView, Text, TouchableOpacity, View} from "react-native";
+import {Image, Platform, SafeAreaView, Text, TouchableOpacity, View} from "react-native";
 import {HeaderAuth} from "../../../components/HeaderAuth";
 import {styles} from "./styles";
-import {IconApple, IconFacebook, IconGG, Spacing} from "@assets";
-import {SCREEN_ROUTE} from "@navigation";
+import {IconApple, IconFacebook, IconGG, logoApp, logoApp2, Spacing} from "@assets";
+import {navigate, SCREEN_ROUTE} from "@navigation";
 
 export const Login =(props:any)=>{
     const {nav,t,
@@ -20,8 +20,8 @@ export const Login =(props:any)=>{
            <HeaderAuth/>
            <KeyboardAwareScrollView
                contentContainerStyle={{flex: 1,alignItems:'center',justifyContent:'center', marginHorizontal:Spacing.width16}}>
-               <View style={styles.logoApp}/>
-               <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>MyApp</Text></AppText>
+               <Image source={logoApp2} style={styles.logoApp}/>
+               <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>{t('nameApp')}</Text></AppText>
 
                {/*<AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>LOGIN</AppText>*/}
                <AppInput
@@ -51,11 +51,11 @@ export const Login =(props:any)=>{
                    touched={touched.password}
                />
                <View style={{...styles.viewRow,marginTop:Spacing.height20}}>
-                   <View style={{width:"35%",marginRight:'14%'}}>
+                   <TouchableOpacity onPress={()=>navigate(SCREEN_ROUTE.FORGOT)} style={{width:"35%",marginRight:'14%'}}>
                        <Text style={styles.txtForgot}>
                            {t('forgot')}
                        </Text>
-                   </View>
+                   </TouchableOpacity>
                    <AppButton
                        label={t('sigin')}
                        onPress={() => {
@@ -65,22 +65,22 @@ export const Login =(props:any)=>{
                        style={styles.btnLogin}
                    />
                </View>
-               <View style={styles.break}>
-                   <View style={styles.line}></View>
-                   <Text style={styles.breakTxt}>or sign in with</Text>
-                   <View style={styles.line}></View>
-               </View>
+               {/*<View style={styles.break}>*/}
+               {/*    <View style={styles.line}></View>*/}
+               {/*    <Text style={styles.breakTxt}>or sign in with</Text>*/}
+               {/*    <View style={styles.line}></View>*/}
+               {/*</View>*/}
 
                <View style={styles.viewRow}>
 
-                   <TouchableOpacity style={{...styles.btnSocio,marginRight:Spacing.width30}}>
-                       <IconFacebook/>
-                   </TouchableOpacity>
-                   {Platform.OS!=='ios'?<TouchableOpacity style={styles.btnSocio}>
-                       <IconGG/>
-                   </TouchableOpacity>:<TouchableOpacity style={styles.btnSocio}>
-                       <IconApple/>
-                   </TouchableOpacity>}
+                   {/*<TouchableOpacity style={{...styles.btnSocio,marginRight:Spacing.width30}}>*/}
+                   {/*    <IconFacebook/>*/}
+                   {/*</TouchableOpacity>*/}
+                   {/*{Platform.OS!=='ios'?<TouchableOpacity style={styles.btnSocio}>*/}
+                   {/*    <IconGG/>*/}
+                   {/*</TouchableOpacity>:<TouchableOpacity style={styles.btnSocio}>*/}
+                   {/*    <IconApple/>*/}
+                   {/*</TouchableOpacity>}*/}
 
                </View>
 
@@ -96,10 +96,10 @@ export const Login =(props:any)=>{
                            },
                        ]}
                    >
-                       Not registered yet?
+                       {t("notRegistered")}
                    </Text>
-                   <TouchableOpacity onPress={() => nav.navigate(SCREEN_ROUTE.SIGNUP)}>
-                       <Text style={styles.registerBtn}>Create an Account</Text>
+                   <TouchableOpacity onPress={() => navigate(SCREEN_ROUTE.SIGNUP)}>
+                       <Text style={styles.registerBtn}>{t("createAccount")}</Text>
                    </TouchableOpacity>
                </View>
            </KeyboardAwareScrollView>

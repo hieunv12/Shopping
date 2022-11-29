@@ -36,7 +36,7 @@ const data = [{
     id: 5,
   }]
 
-const Home = (props) => {
+const Home = (props:any) => {
   const {updateTheme} = useTheme();
   const {t} = useTranslation();
   const [isDark, setDark] = useState(true);
@@ -48,7 +48,7 @@ const Home = (props) => {
   const onSwitchLang = AppchangeLanguage();
   const insets = useSafeAreaInsets();
 
-  const {data,categories,bestSells}=useModel(props)
+  const {data,categories,bestSells,saleProduct,newProduct}=useModel(props)
 
   // const renderItem=({item,index})=>{
   //   switch (item.type) {
@@ -63,18 +63,9 @@ const Home = (props) => {
      <ScrollView>
        <BannerRow data={categories}/>
        <CategoryRow data={categories}/>
-       <FormRow data={bestSells} name={t('bestSell')} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('bestSell')})}}/>
-       <FormRow data={bestSells} name={t('newProduct')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('laptop')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('pc')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('pc1')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('laptop_gaming')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('phukien')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('linhkien')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('man')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('chuot')} callback={()=>{}}/>
-       <FormRow data={bestSells} name={t('loa')} callback={()=>{}}/>
-
+       <FormRow data={bestSells} name={t('bestSell').toUpperCase()} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('bestSell')})}}/>
+       <FormRow data={newProduct} name={t('newProduct').toUpperCase()} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('newProduct')})}}/>
+       <FormRow data={saleProduct} name={t('saleProduct').toUpperCase()} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('saleProduct')})}}/>
      </ScrollView>
     </View>
   );

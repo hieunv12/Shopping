@@ -2,9 +2,9 @@ import React ,{useEffect,useState} from 'react'
 
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigation} from "@react-navigation/native";
-import {getCategory} from "../../../services/CategoryServices";
 import {getListCategory} from '@redux';
 import {DataTest} from "./block/DataTest";
+import {getProduct} from "@services";
 const DataDefu=[
     {
         type:1
@@ -27,19 +27,54 @@ export function useModel(props: any) {
     const [data,setData]=useState(DataDefu)
     const [categories,setListCategory]=useState([])
     const [bestSells,setBestSells]=useState<any>([])
+    const [newProduct,setNewProdct]=useState<any>([])
+    const [saleProduct,setSaleProduct]=useState<any>([])
     useEffect(()=>{
         callApiForm()
+
     },[])
 
     useEffect(()=>{
-        console.log("listCategory:",listCategory)
         setListCategory(listCategory)
-
     },[listCategory])
+
+
     const callApiForm=()=>{
-        setBestSells(DataTest.data.data)
+      Promise.all([
+          callApiBestSell(),
+          callApiNewProduct(),
+          callApiSaleProduct()
+
+      ])
+    }
+    const callApiBestSell =()=>{
+        let params={
+            page_size:10,
+            page_index:1
+        }
+        getProduct(params,(res)=>{
+            setBestSells(res)
+        },()=>{}).then()
+    }
+    const callApiNewProduct=()=>{
+        let params={
+            page_size:10,
+            page_index:1
+        }
+        getProduct(params,(res)=>{
+            setNewProdct(res)
+        },()=>{}).then()
+    }
+    const callApiSaleProduct=()=>{
+        let params={
+            page_size:10,
+            page_index:1
+        }
+        getProduct(params,(res)=>{
+            setSaleProduct(res)
+        },()=>{}).then()
     }
     return{
-        nav,data,categories,bestSells
+        nav,data,categories,bestSells,saleProduct,newProduct
     }
 }

@@ -1,6 +1,6 @@
 import {Closedown, Dropdown, Spacing} from "@assets";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {StyleProp, StyleSheet, Text, View, ViewStyle} from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import {Colors, FontSize} from "@theme";
 import {AppText} from "./AppText";
@@ -15,7 +15,10 @@ type SelectDropType={
   icon ?:any,
   titleTxt?:any,
   width?:any,
-  onSelect:any
+  onSelect:any,
+  keyName?:string,
+  style?:StyleProp<ViewStyle>,
+  styleContainer?:StyleProp<ViewStyle>,
 }
 export const SelectDrop = (props:SelectDropType) => {
   const {
@@ -28,13 +31,15 @@ export const SelectDrop = (props:SelectDropType) => {
     maxWidth = undefined,
     icon = false,
     titleTxt,
+      keyName,
+      style,
+    styleContainer
   } = props;
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <View style={{ width: props.width }}>
+    <View style={[{ width: props.width },styleContainer]}>
       {titleTxt && (
         <AppText
           style={[
@@ -56,7 +61,7 @@ export const SelectDrop = (props:SelectDropType) => {
         renderCustomizedButtonChild={(selectedItem, index) => {
           setSelectedIndex(index);
           return (
-            <View style={styles.dropdown3BtnChildStyle}>
+            <View style={[styles.dropdown3BtnChildStyle,style]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 {titleSelect && !selectedItem ? (
                   <View style={styles.selectLine}>
@@ -68,7 +73,7 @@ export const SelectDrop = (props:SelectDropType) => {
                       style={[styles.dropdown3BtnTxt, { maxWidth: maxWidth ,color: selectedItem?Colors.black:Colors.gray}]}
                       numberOfLines={num}
                     >
-                      {selectedItem ? selectedItem.value : placeholder}
+                      {selectedItem ? selectedItem[`${keyName}`] : placeholder}
                     </Text>
                   </View>
                 )}
@@ -85,6 +90,7 @@ export const SelectDrop = (props:SelectDropType) => {
         dropdownStyle={styles.dropdown3DropdownStyle}
         rowStyle={styles.dropdown3RowStyle}
         renderCustomizedRowChild={(item, index) => {
+          console.log('item:',item,item[`${keyName}`],keyName)
           return (
             <View style={styles.dropdown3RowChildStyle}>
               <Text
@@ -97,7 +103,7 @@ export const SelectDrop = (props:SelectDropType) => {
                     : styles.dropdown3RowTxtDisable
                 }
               >
-                {item?.value}
+                {item[`${keyName}`]}
               </Text>
             </View>
           );

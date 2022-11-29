@@ -22,7 +22,7 @@ export const HeaderBar =()=>{
             </View>
             <View style={styles.containerSearch}>
 
-                <TouchableOpacity style={styles.viewSearch}>
+                <TouchableOpacity style={styles.viewSearch} onPress={()=>NavigationUtils.navigate(SCREEN_ROUTE.SEARCH)}>
                     <Text numberOfLines={1} style={styles.txtSearch}>{t('txtSearch')}</Text>
                     <SearchIcon/>
                 </TouchableOpacity>

@@ -12,3 +12,8 @@ export interface messageInterface {
 export interface categoryInterface {
   list: any;
 }
+export interface cartInterface {
+  count: number;
+  list: any;
+  total:number
+}

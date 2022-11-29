@@ -43,53 +43,62 @@ export const AppSlide = (props:AppSlideType) => {
         setNumImage(num)
     }, []) // any dependencies that require the function to be "redeclared"
     const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })
+    // @ts-ignore
     const renderItem=({item,index})=>{
         return <RenderImageProduct item={item} index={index}/>
     }
-    return (
-        <SafeAreaView style={styles.container}>
-            <FlatList
-                data={images?images:[]}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                pagingEnabled
-                keyExtractor={(item,index)=>`list_image_big_${index.toString()}`}
-                ref={refFlatList}
-                initialScrollIndex={numImage}
-                onScrollToIndexFailed={info => {
-                    const wait = new Promise(resolve => setTimeout(resolve, 0));
-                    wait.then(() => {
-                        refFlatList?.current?.scrollToIndex({
-                            index: info.index,
-                            animated: true,
+    if(images){
+        return (
+            <SafeAreaView style={styles.container}>
+                <FlatList
+                    data={images?images:[]}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}
+                    pagingEnabled
+                    keyExtractor={(item,index)=>`list_image_big_${index.toString()}`}
+                    ref={refFlatList}
+                    initialScrollIndex={numImage}
+                    onScrollToIndexFailed={info => {
+                        const wait = new Promise(resolve => setTimeout(resolve, 0));
+                        wait.then(() => {
+                            refFlatList?.current?.scrollToIndex({
+                                index: info.index,
+                                animated: true,
+                            });
                         });
-                    });
-                }}
-                renderItem={renderItem}
-                onViewableItemsChanged={onViewCallBack}
-                viewabilityConfig={viewConfigRef.current}
-                scrollEventThrottle={1}
-            />
-            <View style={styles.indicatorContainer}>
-                {images?.map((image:string, imageIndex:number) => {
-                    return (
-                        <TouchableOpacity key={`list_image_smail_${imageIndex.toString()}`} onPress={()=>{
-                            setTimeout(() => {
-                                setNumImage(imageIndex)
-                                refFlatList?.current?.scrollToIndex({
-                                    animated: true,
-                                    index: imageIndex,
-                                });
-                            }, 0);
+                    }}
+                    renderItem={renderItem}
+                    onViewableItemsChanged={onViewCallBack}
+                    viewabilityConfig={viewConfigRef.current}
+                    scrollEventThrottle={1}
+                />
+                <View style={styles.indicatorContainer}>
+                    {images?.map((image:string, imageIndex:number) => {
+                        return (
+                            <TouchableOpacity key={`list_image_smail_${imageIndex.toString()}`} onPress={()=>{
+                                setTimeout(() => {
+                                    setNumImage(imageIndex)
+                                    refFlatList?.current?.scrollToIndex({
+                                        animated: true,
+                                        index: imageIndex,
+                                    });
+                                }, 0);
 
-                        }}>
-                            <AppImage uri={image} style={{...styles.image2,borderWidth:imageIndex===numImage?2:0,borderColor:Colors.colorMain}}/>
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
-        </SafeAreaView>
-    );
+                            }}>
+                                <AppImage uri={image} style={{...styles.image2,borderWidth:imageIndex===numImage?2:0,borderColor:Colors.colorMain}}/>
+                            </TouchableOpacity>
+                        );
+                    })}
+                </View>
+            </SafeAreaView>
+        );
+    }else {
+        return <AppImage
+            uri={''}
+            style={{width:windowWidth, height:  Device.height/2}}
+            resizeMode={"contain"}
+        />
+    }
 }
 const styles = StyleSheet.create({
     container: {

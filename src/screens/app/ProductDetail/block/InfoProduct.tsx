@@ -8,36 +8,38 @@ type infoProductType={
     detail:any,
     sizes?:any,
     colors?:any,
-    setColor?:any,
-    setSize?:any,
+    setColorSelect?:any,
+    setSizeSelect?:any,
     amount?:any,
     setAmount?:any,
     openSP?:any,
-    onInfoSize?:any
+    onInfoSize?:any,
+    value?:any
 }
 import {showMessage} from "react-native-flash-message";
 
 import {IconAdd, Minus} from "@assets";
 import RenderHtml from "react-native-render-html";
 import {Device} from "../../../../assets/device";
+
+
 export const InfoProduct =React.memo((props:infoProductType) => {
     const {
         detail, sizes,
-        colors, setSize,
-        setColor,
+        colors, setSizeSelect,
+        setColorSelect,
         amount, setAmount,
-        onInfoSize
+        onInfoSize,value
     }=props
-
     const adjustAmount = (type: number) => {
         const availability = true;
-
+        console.log(value?.quantity)
         if (availability) {
             if (type === 1 && amount > 1) {
                 setAmount(amount - 1);
             } else if (type === 2 ) {
                 setAmount(amount + 1);
-            } else if (type === 2) {
+            } else if (type === 2 && amount===value?.quantity) {
                 showMessage({
                     message:t("quantity_maximum"),
                     type: "info",
@@ -56,27 +58,28 @@ export const InfoProduct =React.memo((props:infoProductType) => {
     return(
         <View style={styles.container}>
             <View style={styles.viewStar}>
-                <AppStar count={5.5}/>
                 <AppText style={{color:Colors.white}}>{t('code')}{detail?.code}</AppText>
             </View>
            <View style={styles.body}>
                <AppText style={styles.txtName} >{detail?.name}</AppText>
                <View style={styles.viewPrice}>
-                   {/*<View style={styles.viewDiscos}>*/}
-                   {/*    <AppText>{renderPrice(detail?.original_price-detail?.price)}</AppText>*/}
-                   {/*</View>*/}
+                   <View style={styles.viewDiscos}>
+                       <AppText style={{color:Colors.white,fontSize:FontSize.Font12}}>{detail?.discountPercent}%</AppText>
+                   </View>
                     <AppText style={styles.txt_price}>{renderPrice(detail?.price)}</AppText>
-                   <AppText style={styles.txt_original_price}>{renderPrice(detail?.original_price)}</AppText>
+                   <AppText style={styles.txt_original_price}>{renderPrice(detail?.salePrice)}</AppText>
                </View>
-               {detail?.original_price - detail?.price !==0 &&<AppText
-                   style={styles.txtDesPrice}>{t("desPrice").replace("price", renderPrice(detail?.original_price - detail?.price))}</AppText>
+               {detail?.salePrice - detail?.price !==0 &&<AppText
+                   style={styles.txtDesPrice}>{t("desPrice").replace("price", renderPrice(detail?.salePrice - detail?.price))}</AppText>
                }
                <View style={styles.viewRow}>
                    <SelectDrop
                        data={sizes}
+                       // data={detail?.productDetails}
+                       keyName={'size'}
                        width={'46%'}
                        onSelect={(item:any) => {
-                           setSize(item)
+                           setSizeSelect(item)
                        }}
                        titleTxt={t("titleSize")}
                        placeholder={t("selectSize")}
@@ -84,8 +87,9 @@ export const InfoProduct =React.memo((props:infoProductType) => {
                    <SelectDrop
                        data={colors}
                        onSelect={(item:any) => {
-                         setColor(item)
+                         setColorSelect(item)
                        }}
+                       keyName={'color'}
                        width={'46%'}
                        titleTxt={t("titleColor")}
                        placeholder={t("selectColor")}
@@ -173,6 +177,9 @@ const styles=StyleSheet.create({
     },
     viewDiscos:{
       backgroundColor:Colors.gray3,
+        padding:4,
+        marginRight:8,
+        borderRadius:4
     },
 txt_price:{
         fontSize:FontSize.Font17,

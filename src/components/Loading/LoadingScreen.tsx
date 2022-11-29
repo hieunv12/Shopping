@@ -1,15 +1,26 @@
 import { loadingGlobal } from '@assets';
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-
-export const LoadingScreen = () => {
-  return (
-    <View style={styles.absoluteFill}>
-      <View style={styles.square}>
-        <Image source={loadingGlobal} style={styles.imgGif} />
-      </View>
-    </View>
-  );
+import {ActivityIndicator, Image, StyleSheet, View} from 'react-native';
+import {Colors} from "@theme";
+import {AppText} from "../AppText";
+import { t } from 'i18next';
+type LoadingScreenType={
+  status:boolean
+}
+export const LoadingScreen = (props:LoadingScreenType) => {
+  const {status}=props
+  if(status){
+    return (
+        <View style={styles.absoluteFill}>
+          <View style={styles.square}>
+            <AppText style={{color:Colors.white,marginBottom:16}}>{t("loading")}</AppText>
+            <ActivityIndicator size="large" color={Colors.white} />
+          </View>
+        </View>
+    );
+  }else {
+    return null
+  }
 };
 const styles = StyleSheet.create({
   absoluteFill: {
@@ -28,6 +39,8 @@ const styles = StyleSheet.create({
     padding: 20,
     alignContent: 'center',
     justifyContent: 'center',
+    backgroundColor:Colors.colorMain2,
+    borderRadius:8
   },
   imgGif: {
     height: 150,

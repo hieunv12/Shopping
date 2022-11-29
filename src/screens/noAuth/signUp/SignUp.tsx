@@ -1,11 +1,12 @@
 import React from "react";
 import {useModel} from "./SignUp.hook";
-import {SafeAreaView, Text, View} from "react-native";
+import {Image, SafeAreaView, Text, View} from "react-native";
 import {styles} from "./styles";
 import {HeaderAuth} from "../../../components/HeaderAuth";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {AppButton, AppInput, AppText} from "@components";
 import {Colors, Spacing} from "@theme";
+import {logoApp2} from "@assets";
 export const SignUp =(props:any)=>{
     const {nav,t,refPassword,refEmail,refUsername,refRePassword,values, errors, touched, setFieldValue,handleSubmit}=useModel(props)
 
@@ -14,8 +15,8 @@ export const SignUp =(props:any)=>{
             <HeaderAuth/>
             <KeyboardAwareScrollView
                 contentContainerStyle={{flex: 1,alignItems:'center',justifyContent:'center', marginHorizontal:Spacing.width16}}>
-                <View style={styles.logoApp}/>
-                <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>MyApp</Text></AppText>
+                <Image source={logoApp2} style={styles.logoApp}/>
+                <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>{t('nameApp')}</Text></AppText>
 
                 <AppInput
                     value={values.username}

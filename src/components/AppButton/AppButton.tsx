@@ -71,7 +71,7 @@ export function AppButton(props: ButtonProps) {
             backgroundColor:
               backgroundColor || disabled
                 ? themeColor.colorDisable
-                : Colors.blue,
+                : Colors.colorMain,
           },
           style,
         ]}

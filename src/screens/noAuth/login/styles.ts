@@ -29,7 +29,9 @@ export const styles=StyleSheet.create({
         height:Spacing.width80,
         borderRadius:Spacing.height8,
         marginBottom:Spacing.height30,
-        backgroundColor:Colors.colorMain
+        backgroundColor:Colors.colorMain,
+        margin:5,
+        ...Shadow
     },
     txtApp:{
         fontSize:FontSize.Font16,
@@ -74,6 +76,8 @@ export const styles=StyleSheet.create({
     },
     registerContainer: {
         width: Spacing.width335,
+        position:"absolute",
+        bottom:0,
         alignItems: "center",
         justifyContent: "flex-end",
     },

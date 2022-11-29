@@ -10,19 +10,21 @@ import {IconLeft} from "@assets";
 
 export const Menu =(props:any)=>{
     const {listCategory,childCategory,onSelectCategory,count,onViewProduct}=useModel(props)
+    // @ts-ignore
     const renderItem=({item,index})=>{
         return(
             <TouchableOpacity style={index!==count?styles.viewCategory:styles.viewCategorySelect} onPress={()=>onSelectCategory(item,index)}>
-                <AppImage uri={item?.icon_url} style={styles.iconImage}/>
+                <AppImage uri={item?.icon} style={styles.iconImage}/>
                 <AppText>{item?.name?.toUpperCase()}</AppText>
             </TouchableOpacity>
         )
     }
-
+    // @ts-ignore
     const renderItemChild=({item,index})=>{
         return(
             <TouchableOpacity style={styles.viewCategoryChild} onPress={()=>onViewProduct(item)}>
-                <View style={{flexDirection:'row',alignItems:'center'}}><AppImage uri={item?.imageUrl} style={styles.iconImageChild}/>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <AppImage uri={item?.icon} style={styles.iconImageChild}/>
                     <AppText style={{fontSize:FontSize.Font12}}>{item?.name?.toUpperCase()}</AppText></View>
                     <IconLeft/>
             </TouchableOpacity>

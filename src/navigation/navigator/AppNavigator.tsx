@@ -2,35 +2,17 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {MainStackComponent} from '../stack/MainStack';
-import {Theme, useTheme} from '@theme';
-import SplashScreen from 'react-native-splash-screen';
-import {AuthStackComponent} from '../stack/AuthStack';
-import {getTokenUserFromStore, setCategory} from '@redux';
-import {useDispatch, useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
 import {Checkout, Forgot, FormProduct, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
-import {getCategory} from "../../services/CategoryServices";
+import {useModel} from "./AppNavigator.hook";
+import {Theme, useTheme} from "@theme";
 const Stack = createStackNavigator();
 //main stack app
 // const
 const NavigationApp = React.forwardRef((props, ref: any) => {
-  const dataTheme: {theme: Theme} = useTheme();
-  const token = useSelector(getTokenUserFromStore);
-    const dispatch = useDispatch();
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
-  useEffect(() => {
-      callApiCategory()
-  }, [token]);
-
-    const callApiCategory=()=>{
-        getCategory(undefined,(res:any)=>{
-            dispatch(setCategory(res))
-        },()=>{}).then()
-    }
+  const dataTheme: any = useTheme();
+  const {token}=useModel(props)
   const renderStackApp = () => {
     return (
       <Stack.Navigator>
