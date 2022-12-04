@@ -4,9 +4,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {MainStackComponent} from '../stack/MainStack';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN_ROUTE} from '../route';
-import {Checkout, Forgot, FormProduct, InfoUser, Login, Notification, ProductDetail, Search, SignUp} from "@screens";
+import {
+    AboutUs, Address,
+    ChangePassword,
+    Checkout, FAQ,
+    Forgot,
+    FormProduct,
+    InfoUser,
+    Login,
+    Notification, Order, OrderDetail,
+    ProductDetail,
+    Search, Setting,
+    SignUp
+} from "@screens";
 import {useModel} from "./AppNavigator.hook";
 import {Theme, useTheme} from "@theme";
+import {UpdateAddress} from "../../screens/app/Address/block/UpdateAddress";
 const Stack = createStackNavigator();
 //main stack app
 // const
@@ -54,13 +67,47 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
           />
           <Stack.Screen
               name={SCREEN_ROUTE.CHANGE_PASSWORD}
-              component={InfoUser}
+              component={ChangePassword}
               options={{headerShown: false}}
           />
-
+          <Stack.Screen
+              name={SCREEN_ROUTE.SETTING}
+              component={Setting}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.ABOUT_US}
+              component={AboutUs}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.FAQ}
+              component={FAQ}
+              options={{headerShown: false}}
+          />
           <Stack.Screen
               name={SCREEN_ROUTE.FORM_PRODUCT}
               component={FormProduct}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.ORDER}
+              component={Order}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.ORDER_DETAIL}
+              component={OrderDetail}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.ADDRESS}
+              component={Address}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.ADD_ADDRESS}
+              component={UpdateAddress}
               options={{headerShown: false}}
           />
       {/*  auth*/}

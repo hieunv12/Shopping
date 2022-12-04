@@ -35,6 +35,30 @@ export const Forgot =(props:any)=>{
                     />
                 </View>
             )
+        }else {
+            return (
+                <View style={styles.form}>
+                    <AppText style={styles.txt}>{t("desForgot")}</AppText>
+                    <AppInput
+                        value={values.otp}
+                        onChangeText={(value) => setFieldValue('otp', value)}
+                        placeholder={t('plpUserName')}
+                        label={t('email')}
+                        keyboardType="email-address"
+                        placeholderTextColor={Colors.border}
+                        error={errors.otp}
+                        returnKeyType={'done'}
+                        touched={touched.otp}
+                    />
+                    <AppButton
+                        label={t('verify').toUpperCase()}
+                        onPress={() => {
+                            handleSubmit()
+                        }}
+                        style={styles.btnForgot}
+                    />
+                </View>
+            )
         }
     }
     return(

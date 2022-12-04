@@ -1,6 +1,8 @@
 export interface accountInterface {
   token: string;
   userProfile: any;
+  address:any,
+  addressSelect:any
 }
 export interface bottomStatusInterface {
   status: boolean;

@@ -30,7 +30,9 @@ export const ProductDetail =(props:any)=>{
         colors,amount, setAmount,setSizeSelect,
         setColorSelect,
         refProduct,
-        value
+        value,
+        BuyNow,
+        AddCart,renderStatus,setValue
     }=useModel(props)
 
     return(
@@ -42,6 +44,7 @@ export const ProductDetail =(props:any)=>{
                    detail={data}
                    colors={colors}
                    sizes={sizes}
+                   setValue={setValue}
                    setColorSelect={setColorSelect}
                    setSizeSelect={setSizeSelect}
                    amount={amount}
@@ -54,7 +57,11 @@ export const ProductDetail =(props:any)=>{
                />
                <View style={{height:Spacing.height62}}/>
            </ScrollView>
-            <BottomProduct/>
+            <BottomProduct
+                onBuy={BuyNow}
+                onCart={AddCart}
+                status={!renderStatus()}
+            />
             <RBSheet
                 ref={refProduct}
                 height={400}

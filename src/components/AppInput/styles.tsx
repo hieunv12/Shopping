@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.27,
     shadowRadius: 1.65,
-    marginBottom:Spacing.height16,
+
     elevation: 2,
     backgroundColor:Colors.white,
     paddingHorizontal:Spacing.width8
@@ -26,7 +26,6 @@ export const styles = StyleSheet.create({
     height: Spacing.height55,
     minHeight:  Spacing.height55,
     paddingHorizontal: Spacing.width15,
-
   },
   btnActive: {
     borderColor: `${Colors.blue}`

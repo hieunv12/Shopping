@@ -26,7 +26,21 @@ export const Colors = {
   colorMain:'#33BE94',
   colorMain2:'#000000',
   placeholder:'#A8B0BA',
-  error:"red"
+  error:"red",
+  borderColor:"rgba(0, 0, 0, 0.08)",
+
+  delivered: "rgba(207, 252, 228, 1)",
+  deliveredTxt: "rgba(11, 219, 106, 1)",
+  cancelledTxt: "rgba(206, 23, 23, 1)",
+  cancelled: "rgba(250, 209, 209, 1)",
+  success: "rgba(212, 242, 247, 1)",
+  successTxt: "rgba(37, 168, 192, 1)",
+  paid: "rgba(250, 230, 211, 1)",
+  paidTxt: "rgba(214, 123, 15, 1)",
+  unPaid: "rgba(204, 230, 255, 1)",
+  unPaidTxt: "rgba(0, 119, 229, 1)",
+  confimred: "rgba(215, 221, 244, 1)",
+  confimredTxt: "rgba(49, 78, 181, 1)",
 };
 
 export const Shadow = {

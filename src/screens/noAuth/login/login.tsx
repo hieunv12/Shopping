@@ -1,7 +1,7 @@
 import React from "react";
 import {useModel} from "./login.hook";
 import {Box, Colors} from "@theme";
-import {AppButton, AppInput, AppText} from "@components";
+import {AppButton, AppInput, AppText, LoadingScreen} from "@components";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import {Image, Platform, SafeAreaView, Text, TouchableOpacity, View} from "react-native";
 import {HeaderAuth} from "../../../components/HeaderAuth";
@@ -13,7 +13,7 @@ export const Login =(props:any)=>{
     const {nav,t,
         refPassword,
         refEmail,
-        values, errors, touched, setFieldValue,handleSubmit,SignupSchema}=useModel(props)
+        values, errors, touched, setFieldValue,handleSubmit,loading}=useModel(props)
 
     return(
        <SafeAreaView style={styles.container}>
@@ -103,6 +103,7 @@ export const Login =(props:any)=>{
                    </TouchableOpacity>
                </View>
            </KeyboardAwareScrollView>
+           <LoadingScreen status={loading}/>
        </SafeAreaView>
     )
 }

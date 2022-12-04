@@ -4,11 +4,11 @@ import {Image, SafeAreaView, Text, View} from "react-native";
 import {styles} from "./styles";
 import {HeaderAuth} from "../../../components/HeaderAuth";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
-import {AppButton, AppInput, AppText} from "@components";
+import {AppButton, AppInput, AppText, LoadingScreen} from "@components";
 import {Colors, Spacing} from "@theme";
 import {logoApp2} from "@assets";
 export const SignUp =(props:any)=>{
-    const {nav,t,refPassword,refEmail,refUsername,refRePassword,values, errors, touched, setFieldValue,handleSubmit}=useModel(props)
+    const {nav,t,refPassword,refEmail,loading,refRePassword,values, errors, touched, setFieldValue,handleSubmit}=useModel(props)
 
     return(
         <SafeAreaView style={styles.container}>
@@ -19,7 +19,7 @@ export const SignUp =(props:any)=>{
                 <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>{t('nameApp')}</Text></AppText>
 
                 <AppInput
-                    value={values.username}
+                    value={values.email}
                     onChangeText={(value) => setFieldValue('email', value)}
                     placeholder={t('plpUserName')}
                     label={t('email')}
@@ -34,8 +34,8 @@ export const SignUp =(props:any)=>{
 
                 <AppInput
                     value={values.full_name}
-                    onChangeText={(value) => setFieldValue('email', value)}
-                    placeholder={t('plpUserName')}
+                    onChangeText={(value) => setFieldValue('full_name', value)}
+                    placeholder={t('plpName')}
                     label={t('full_name')}
                     ref={refEmail}
                     returnKeyType={'next'}
@@ -60,7 +60,7 @@ export const SignUp =(props:any)=>{
                 />
                 <AppInput
                     value={values.re_password}
-                    onChangeText={(value) => setFieldValue('password', value)}
+                    onChangeText={(value) => setFieldValue('re_password', value)}
                     placeholder={t('plpPassword')}
                     label={t('title_password')}
                     marginTop={"xs"}
@@ -89,6 +89,7 @@ export const SignUp =(props:any)=>{
                     />
                 </View>
             </KeyboardAwareScrollView>
+            <LoadingScreen status={loading}/>
         </SafeAreaView>
     )
 }

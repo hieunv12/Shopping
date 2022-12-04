@@ -13,8 +13,57 @@ export const styles = StyleSheet.create({
         fontSize:FontSize.Font16,
         color:Colors.black,
     },
+    txtEdit:{
+        fontSize:FontSize.Font12,
+        color:Colors.colorMain,
+    },
     txtCountPrice:{
         fontSize:FontSize.Font12,
         color:Colors.placeholder,
-    }
+    },
+    txtName:{
+        fontSize:FontSize.Font14,marginBottom:8
+    },
+
+    txtAddress: {
+        fontSize:FontSize.Font13
+    },
+    containerAddress:{
+        ...Shadow.normal,
+        borderRadius:8,
+        backgroundColor:Colors.white,
+        marginTop:Spacing.width16,
+        marginHorizontal:Spacing.width16,
+        padding:Spacing.width16
+    },
+    viewRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    imgCart:{
+        width:Spacing.width70,
+        height:Spacing.height90
+    },
+    viewCart:{
+        flexDirection:'row',
+        alignItems:'center',
+        width:Spacing.width170,
+        marginHorizontal:16
+    },
+    iconCheckbox:{
+        width:Spacing.width25,
+        height:Spacing.width25,
+        borderWidth:1,
+        borderColor:Colors.gray,
+        borderRadius:Spacing.width25/2
+    },
+    iconCheckBoxSelect:{
+        width:Spacing.width25,
+        height:Spacing.width25,
+        // borderWidth:1,
+        backgroundColor:Colors.colorMain2,
+        borderRadius:Spacing.width25/2
+    },
+
 })

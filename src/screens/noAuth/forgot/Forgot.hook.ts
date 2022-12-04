@@ -21,14 +21,35 @@ export function useModel(props: any) {
     const {values, errors, touched, setFieldValue,handleSubmit} = useFormik({
         initialValues: {
             email: '',
+            otp:"",
+
         },
         onSubmit: (values) => {
-            onForgot(values)
+            if(step===1){
+                onForgot(values?.email)
+            }else if(step===2){
+                checkOtp(values?.otp)
+            }else {
+
+            }
         },
         validationSchema:SignupSchema
     });
     const onForgot=(value:any)=>{
         console.log(value)
+        let param={
+            email:value
+        }
+    }
+    const checkOtp=(otp:string)=>{
+        let param={
+            otp:otp
+        }
+    }
+    const ChangePassword=(passwordOld:string,passwordNew:string,passwordOldReNew:string)=>{
+        let param={
+            password:passwordNew
+        }
     }
     return{
         nav,

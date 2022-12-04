@@ -9,27 +9,44 @@ export function useModel(props: any) {
     const [text,setText]=useState('')
     const [data,setData]=useState<any>([])
     const refInput=useRef<any>()
-    const [loading,setLoading]=useState(false)
+    const [loading,setLoading]=useState<boolean>(false)
+    const [isSearch,setIsSearch]=useState<boolean>(false)
+    const [refreshing, setRefreshing] = useState(false);
     useEffect(()=>{
        if(refInput){
            refInput?.current?.focus()
        }
     },[refInput])
-    const callApiSearch=useCallback((value: string)=>{
+    const callApiSearch=useCallback((value: string,filter?:any)=>{
+        setIsSearch(false)
         setLoading(true)
-        let param={
+        let param:any={
             name:value
+        }
+        if(filter){
+            param["sort"]=filter
         }
         getProduct(param,(res)=>{
             setData(res)
             setLoading(false)
+            setIsSearch(true)
         },()=>{
             setLoading(false)
         }).then()
     },[])
+    const onRefresh = () => {
+        setRefreshing(true);
+        callApiSearch(text)
+    };
     const searchProduct=(value:any)=>{
             setText(value)
 
+    }
+    const onFilter=(item:any)=>{
+        callApiSearch(text,item)
+        // debounce(async ()=>{
+        //     callApi(item)
+        // },1000)
     }
     return{
         nav,
@@ -38,6 +55,9 @@ export function useModel(props: any) {
         refInput,
         data,
         loading,
-        callApiSearch
+        callApiSearch,
+        onFilter,
+        refreshing,onRefresh,
+        isSearch,setIsSearch
     }
 }

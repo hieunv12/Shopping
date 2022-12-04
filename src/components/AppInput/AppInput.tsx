@@ -45,7 +45,7 @@ export const AppInput = forwardRef((props: appInputProps & SpacingProps<Theme> &
   const {themeColor} = useTheme();
 
   return (
-   <View style={{marginHorizontal:Spacing.width16}}>
+   <View style={{marginHorizontal:Spacing.width16,   marginBottom:Spacing.height16,}}>
      <View style={styles.container}>
        {!!label && <Text style={styles.txt}>{label}:</Text>}
        <View style={{width:'80%',justifyContent:'center'}}>
@@ -74,7 +74,7 @@ export const AppInput = forwardRef((props: appInputProps & SpacingProps<Theme> &
          </Box>}
        </View>
      </View>
-     {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed}} marginTop="sm">{error}</AppText>}
+     {!!error && touched && <AppText variant={"title3"} fontSize={11} style={{color: Colors.lightRed,marginVertical:Spacing.height6}} >{error}</AppText>}
 
    </View>
 

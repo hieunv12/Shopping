@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {BackIcon, IconFilter} from "@assets";
+import {BackIcon, IconAdd, IconFilter} from "@assets";
 import {Colors, FontSize, FontWithBold_Barlow, Shadow, Spacing} from "@theme";
 import {NavigationUtils} from "@navigation";
 import TextTicker from "react-native-text-ticker";
@@ -8,10 +8,11 @@ type HeaderScreenType={
     name?:string,
     isIconClose?:boolean,
     isFilter?:boolean,
-    onFilter?:any
+    onFilter?:any,
+    onAdd?:any
 }
 export const HeaderScreen=(props:HeaderScreenType)=>{
-const {name,isIconClose=true,isFilter=false,onFilter}=props
+const {name,isIconClose=true,isFilter=false,onFilter,onAdd}=props
     return(
         <View style={styles.container}>
             {isIconClose &&<TouchableOpacity style={styles.iconBack} onPress={() => {
@@ -31,6 +32,9 @@ const {name,isIconClose=true,isFilter=false,onFilter}=props
             </TextTicker>
             {isFilter &&<TouchableOpacity style={styles.iconFilter} onPress={onFilter}>
                 <IconFilter/>
+            </TouchableOpacity>}
+            {onAdd &&<TouchableOpacity style={styles.iconFilter} onPress={onAdd}>
+                <IconAdd/>
             </TouchableOpacity>}
         </View>
     )

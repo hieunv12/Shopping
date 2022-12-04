@@ -7,16 +7,24 @@ import {useSelector} from "react-redux";
 import {getTokenUserFromStore} from "@redux";
 import {navigate, SCREEN_ROUTE} from "@navigation";
 
-export const BottomProduct =()=>{
+type BottomProductType={
+    onBuy:()=>void,
+    onCart:()=>void,
+    status:boolean
+}
+export const BottomProduct =(props:BottomProductType)=>{
     const {t} = useTranslation();
     const token = useSelector(getTokenUserFromStore);
+    const {
+        onBuy,onCart,status
+    }=props
  if(token){
      return(
          <View style={styles.container}>
-             <TouchableOpacity style={styles.btnBuy}>
+             <TouchableOpacity style={{...styles.btnBuy,backgroundColor:!status?Colors.colorMain:Colors.gray}} disabled={status} onPress={onBuy}>
                  <Text style={styles.txtBuy}>{t('buy')}</Text>
              </TouchableOpacity>
-             <TouchableOpacity style={styles.btnCart}>
+             <TouchableOpacity style={{...styles.btnCart,backgroundColor:!status?Colors.colorMain2:Colors.gray}} disabled={status} onPress={onCart}>
                  <Text style={styles.txtBuy}><IconCart iconFillColor={Colors.white}/></Text>
              </TouchableOpacity>
          </View>
@@ -24,7 +32,7 @@ export const BottomProduct =()=>{
  }else {
      return (
          <View style={{...styles.container,justifyContent:'center'}}>
-             <TouchableOpacity style={styles.btnLogin} onPress={()=>navigate(SCREEN_ROUTE.LOGIN)}>
+             <TouchableOpacity style={styles.btnLogin} disabled={status} onPress={()=>navigate(SCREEN_ROUTE.LOGIN)}>
                  <Text style={styles.txtBuy}>{t('txtSignIn')}</Text>
              </TouchableOpacity>
          </View>

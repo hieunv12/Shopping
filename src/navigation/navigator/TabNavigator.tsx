@@ -4,18 +4,22 @@ import React, {memo} from 'react';
 import {CustomTabBar} from './CustomTab';
 
 import {ROUTER_BOTTOM_TAB, SCREEN_ROUTE} from '@navigation';
-import {Platform} from "react-native";
+import {Platform, View} from "react-native";
 import {IconCart, IconCategory, IconHome, IconProfile, Spacing, UserIcon} from "@assets";
 import {CanvasScreen, Cart, Home, Menu, Profile} from "@screens";
 import {Colors, Shadow} from "@theme";
 import {useTranslation} from "react-i18next";
 import {IconProfiles} from "../../assets/icon/svg";
+import {useSelector} from "react-redux";
+import {getCountCart, getInfoCart} from "../../redux/selector/cartSlector";
+import {AppText} from "@components";
 export {SCREEN_ROUTE} from '../route';
 export {TabNavigator};
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = memo(function () {
     const {t} = useTranslation();
+    const count:any=useSelector(getCountCart)
   return (
     <Tab.Navigator
       screenOptions={{
@@ -66,7 +70,14 @@ const TabNavigator = memo(function () {
                             fontWeight: "400",
                             fontFamily:'Poppins-Medium'
                         },
-                        tabBarIcon:({focused})=><IconCart iconFillColor={focused?Colors.colorMain:Colors.black}/>
+                        tabBarIcon:({focused})=>{
+                            return(
+                                <View>
+                                    <IconCart iconFillColor={focused?Colors.colorMain:Colors.black}/>
+                                    {count>0&& <View style={{position:'absolute',right:-10,top:-5,backgroundColor:Colors.colorMain2,width:20,borderRadius:10,alignItems:'center',justifyContent:'center',height:20}}><AppText style={{fontSize:10,color:Colors.white}}>{count}</AppText></View>}
+                                </View>
+                            )
+                        }
                     }}
                     component={Cart} key={SCREEN_ROUTE.CART_PAGE} />
 

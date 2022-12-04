@@ -11,7 +11,7 @@ const initialState = {
 const totalPrice=(list:any)=>{
     let total=0
     list.map((elm:any)=>{
-        total=total+elm?.price* elm?.quantity
+        total=total+elm?.product?.price* elm?.quantity
     })
     return total
 }

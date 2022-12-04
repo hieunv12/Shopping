@@ -16,4 +16,21 @@ export const API_URL = {
   category:'/category',
   product:"/product/all-paging",
   productDetail:"/product/",
+  //auth
+  login:'/user/login',
+  register:"/user/register",
+  forgot:"/user/forgot-password",
+  resetPassword:"/user/reset-password/",
+  changePassword:"/user/change-password",
+  user:"/user/me",
+  //address
+  address:"/address",
+  cart:"/cart",
+  checkout:'/cart/check-out',
+  city:"/city",
+  district:"/district/",
+  ward:"/ward/",
+  //order
+  order:"/order/client",
+  orderDetail:""
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import {useModel} from "./FormProduct.hook";
-import {FlatList, Image, Text, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, RefreshControl, Text, TouchableOpacity, View} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import {styles} from "./styles";
-import {AppImage, AppText, HeaderScreen, SelectDrop} from "@components";
+import {AppImage, AppText, HeaderScreen, LoadingScreen, SelectDrop} from "@components";
 import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 import {renderImage} from "../../../utils/ImageUtils";
 import {renderPrice} from "../../../utils/PriceUtils";
@@ -14,7 +14,7 @@ import { t } from "i18next";
 import {FilterProduct} from "./Block/FilterProduct";
 import {DataFilter} from "@utils";
 export const FormProduct =(props:any)=>{
-    const {params,data,onFilter,textFilter,refBottom,filter,renderTextFilter}=useModel(props)
+    const {params,data,loading,refBottom,refreshing,onRefresh,onFilter}=useModel(props)
     // @ts-ignore
     const renderItem =({item,index})=>{
         return (
@@ -43,28 +43,25 @@ export const FormProduct =(props:any)=>{
                 // isFilter={true}
                 onFilter={()=>{refBottom?.current?.open()}}
             />
-
+            <View style={{marginHorizontal:Spacing.width16}}>
+                {params?.type==="category"&&<AppImage uri={params?.item?.imageUrl} style={styles.img}/>}
+                <SelectDrop
+                    data={DataFilter}
+                    width={'40%'}
+                    styleContainer={{alignSelf:'flex-end',marginVertical:Spacing.height16,}}
+                    style={{borderColor:Colors.border,borderWidth:1,backgroundColor:Colors.white}}
+                    keyName={'name'}
+                    onSelect={(item:any) => {
+                        console.log({item})
+                        onFilter(item?.value)
+                        // setSizeSelect(item)
+                    }}
+                    placeholder={t("selectFilter")}
+                />
+            </View>
            <FlatList
                data={data}
-               ListHeaderComponent={()=>{
-                   return(
-                   <View>
-                       <AppImage uri={params?.item?.imageUrl} style={styles.img} />
-
-                       <SelectDrop
-                           data={DataFilter}
-                           width={'40%'}
-                           styleContainer={{alignSelf:'flex-end',marginVertical:Spacing.height16,}}
-                           style={{borderColor:Colors.border,borderWidth:1,backgroundColor:Colors.white}}
-                           keyName={'name'}
-                           onSelect={(item:any) => {
-                               // setSizeSelect(item)
-                           }}
-                           placeholder={t("selectFilter")}
-                       />
-                   </View>
-                   )
-               }}
+               refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                contentContainerStyle={{
                    marginHorizontal:Spacing.width16,
 
@@ -82,24 +79,25 @@ export const FormProduct =(props:any)=>{
                numColumns={2}
                keyExtractor={(item,index)=>`list_product_${index.toString()}`}
            />
-            <RBSheet
-                ref={refBottom}
-                height={400}
-                animationType={"fade"}
-                openDuration={150}
-                customStyles={{
-                    container: {
-                        // justifyContent: "center",
-                        alignItems: "center",
-                        paddingBottom:Spacing.height16
-                    }
-                }}
-            >
-           <FilterProduct
-               onFilter={(value)=>onFilter(value)}
-               onClose={()=>refBottom?.current?.close()}/>
+           {/* <RBSheet*/}
+           {/*     ref={refBottom}*/}
+           {/*     height={400}*/}
+           {/*     animationType={"fade"}*/}
+           {/*     openDuration={150}*/}
+           {/*     customStyles={{*/}
+           {/*         container: {*/}
+           {/*             // justifyContent: "center",*/}
+           {/*             alignItems: "center",*/}
+           {/*             paddingBottom:Spacing.height16*/}
+           {/*         }*/}
+           {/*     }}*/}
+           {/* >*/}
+           {/*<FilterProduct*/}
+           {/*    onFilter={(value)=>onFilter(value)}*/}
+           {/*    onClose={()=>refBottom?.current?.close()}/>*/}
 
-            </RBSheet>
+           {/* </RBSheet>*/}
+            <LoadingScreen status={loading}/>
         </View>
     )
 }

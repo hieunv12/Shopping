@@ -3,22 +3,28 @@ import {FlatList, TouchableOpacity, View} from "react-native";
 import {styles} from "./styes";
 import {AppText} from "@components";
 import { t } from "i18next";
-const DataAddress={
-    name:"Nguyen Van Hieu",
-    phone:"0192381231",
-    address:" Cau giay , Ha Noi",
-}
+import {Spacing} from "@theme";
 type InfoAddressType={
-    address:any
+    address:any,
+    onEdit:()=>void
 }
 export const InfoAddress =(props:InfoAddressType)=>{
-    const {address}=props;
+    const {address,onEdit}=props;
 
-
+    console.log({address})
     return(
-        <View style={styles.container}>
-            <AppText style={styles.txtTitle}>{t("infoAddress")}</AppText>
+        <TouchableOpacity style={styles.containerAddress} onPress={onEdit}>
 
-        </View>
+           <View style={styles.viewRow}>
+               <AppText style={styles.txtTitle}>{t("infoAddress")}</AppText>
+               <AppText style={styles.txtEdit}>{t("edit")}</AppText>
+           </View>
+
+            <View style={{marginTop:Spacing.width8}}>
+                <AppText style={styles.txtName}>{t("full_name")} : <AppText style={{...styles.txtName,fontWeight:'400'}}>{address?.name}</AppText></AppText>
+                <AppText style={styles.txtName}>{t("phone")} : <AppText style={{...styles.txtName,fontWeight:'400'}}>{address?.phone}</AppText></AppText>
+                <AppText style={styles.txtAddress}>{t("address1")} : <AppText style={{...styles.txtAddress,fontWeight:'400'}}>{address?.address}</AppText></AppText>
+            </View>
+        </TouchableOpacity>
     )
 }

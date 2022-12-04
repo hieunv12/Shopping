@@ -1,6 +1,6 @@
 import React from "react";
 import {useModel} from "./Cart.hook";
-import {FlatList, View} from "react-native";
+import {FlatList, RefreshControl, View} from "react-native";
 import {AppButton, AppDialog, AppText, HeaderScreen, NotLoginApp} from "@components";
 import {t} from "i18next";
 import {styles} from "./styles";
@@ -12,7 +12,7 @@ import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 import {renderPrice} from "../../../utils/PriceUtils";
 export const Cart =(props:any)=>{
     const {infoCart,isVisible,setIsVisible,onDeleteCart,setItemCartDelete,onSelectCart,
-        indexCartDelete,setIndexCartDelete,checkoutCart,token
+        indexCartDelete,setIndexCartDelete,checkoutCart,token,refreshing,onRefresh
     }=useModel(props)
     console.log(infoCart)
     // @ts-ignore
@@ -34,13 +34,17 @@ export const Cart =(props:any)=>{
     return(
         <View style={styles.container}>
             <HeaderScreen name={t('cart')} isIconClose={false}/>
-            {infoCart.count!==0 &&<AppText style={styles.txtTitle}>- {t('countCart').replace('count',infoCart?.count)}</AppText>}
+            {infoCart.count!==0 && token &&<AppText style={styles.txtTitle}>- {t('countCart').replace('count',infoCart?.count)}</AppText>}
 
             {token?(
                 <View>
                     <FlatList
                         data={infoCart.list}
                         renderItem={renderItem}
+                        style={{
+                            height: Device.height - Spacing.height160 - Spacing.height160
+                        }}
+                        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                         ListEmptyComponent={()=>{
                             return(
                                 <View style={{alignItems:'center',justifyContent:'center',flex:1, height: Device.height - Spacing.height50 - Spacing.height90,}}>

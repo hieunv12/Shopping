@@ -170,7 +170,7 @@ export const IconCart = ({style, width=Spacing.width24, height=Spacing.width24,i
         />
     </Svg>
 );
-export const IconSetting = ({style, width, height,iconFillColor}: iconProps) => (
+export const IconSetting = ({style, width, height,iconFillColor=Colors.black}: iconProps) => (
     <Svg
         width={Spacing.width24}
         height={Spacing.width24}
@@ -347,6 +347,107 @@ export const IconClose = ({ style, width=Spacing.width24, height=Spacing.width24
             <Path
                 d="M19.707 5.707a1 1 0 00-1.414-1.414L12 10.586 5.707 4.293a1 1 0 00-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 101.414 1.414L12 13.414l6.293 6.293a1 1 0 001.414-1.414L13.414 12l6.293-6.293z"
                 fill="#464A54"
+            />
+        </Svg>
+    );
+};
+export const IconUser= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M12 2C9.38 2 7.25 4.13 7.25 6.75c0 2.57 2.01 4.65 4.63 4.74.08-.01.16-.01.22 0h.07a4.738 4.738 0 004.58-4.74C16.75 4.13 14.62 2 12 2zM17.08 14.15c-2.79-1.86-7.34-1.86-10.15 0-1.27.85-1.97 2-1.97 3.23s.7 2.37 1.96 3.21C8.32 21.53 10.16 22 12 22c1.84 0 3.68-.47 5.08-1.41 1.26-.85 1.96-1.99 1.96-3.23-.01-1.23-.7-2.37-1.96-3.21z"
+                fill="#0C0507"
+            />
+        </Svg>
+    );
+};
+export const IconQA= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M11.5 2C5.708 2 1 6.713 1 12.511 1 18.198 5.443 22.801 11.235 23c.177-.022.353-.022.486 0h.155c5.659-.2 10.102-4.802 10.124-10.489C22 6.713 17.292 2 11.5 2z"
+                fill="#0C0507"
+            />
+            <Path
+                d="M8.613 13.062c0-.299.108-.56.322-.784.224-.233.49-.35.798-.35.607 0 .91.308.91.924 0 .355-.112.649-.336.882-.214.233-.471.35-.77.35-.289 0-.518-.093-.686-.28-.158-.196-.238-.443-.238-.742zm2.372 0c0-.299.107-.56.322-.784.223-.233.49-.35.797-.35.607 0 .91.308.91.924 0 .355-.111.649-.335.882-.215.233-.472.35-.77.35-.29 0-.519-.093-.687-.28-.158-.196-.237-.443-.237-.742zm2.37 0c0-.299.108-.56.322-.784.225-.233.49-.35.799-.35.606 0 .91.308.91.924 0 .355-.112.649-.336.882a1.01 1.01 0 01-.77.35c-.29 0-.518-.093-.686-.28-.16-.196-.239-.443-.239-.742z"
+                fill="#fff"
+            />
+        </Svg>
+    );
+};
+export const IconPassword= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M17 9V7c0-2.8-2.2-5-5-5S7 4.2 7 7v2c-1.7 0-3 1.3-3 3v7c0 1.7 1.3 3 3 3h10c1.7 0 3-1.3 3-3v-7c0-1.7-1.3-3-3-3zM9 7c0-1.7 1.3-3 3-3s3 1.3 3 3v2H9V7z"
+                fill="#000"
+            />
+        </Svg>
+    );
+};
+export const IconAbout= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M18 2H8a4 4 0 00-4 4v12a4 4 0 004 4h10a2 2 0 002-2V4a2 2 0 00-2-2zM6 6a2 2 0 012-2h10v10H8a3.91 3.91 0 00-2 .56V6zm2 14a2 2 0 110-4h10v4H8zm2-12h4a1 1 0 100-2h-4a1 1 0 000 2z"
+                fill="#000"
+            />
+        </Svg>
+    );
+};
+export const IconOrder= ({ style, width=Spacing.width23, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 23 24" fill="none">
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M1.455 2.061C.5 3.375.5 5.251.5 9v2c0 3.75 0 5.625.955 6.939a5 5 0 001.106 1.106C3.875 20 5.751 20 9.5 20c3.75 0 5.625 0 6.939-.955a5 5 0 001.106-1.106c.955-1.314.955-3.19.955-6.939V9c0-3.75 0-5.625-.955-6.939A5 5 0 0016.44.955C15.125 0 13.249 0 9.5 0 5.75 0 3.875 0 2.561.955A5 5 0 001.455 2.06zM5.5 5.25a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3zm0 4a.75.75 0 000 1.5h8a.75.75 0 000-1.5h-8zm0 4a.75.75 0 000 1.5h8a.75.75 0 000-1.5h-8z"
+                fill="#1E2029"
+            />
+        </Svg>
+    );
+};
+export const IconOrderBig= ({ style, width=Spacing.width100, height=Spacing.width105 }: iconProps) => {
+    return (
+        <Svg width={width} height={height}    viewBox="0 0 86 86" fill="none" style={style}>
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M85.75 43c0-17.811 0-26.717-4.536-32.96a23.751 23.751 0 00-5.254-5.254C69.717.25 60.81.25 43 .25c-3.985 0-7.524 0-10.688.05v.334c0 4.047.001 6.512-.336 8.639A27.312 27.312 0 019.273 31.976c-2.127.337-4.592.337-8.64.337H.302C.25 35.475.25 39.014.25 43c0 17.811 0 26.717 4.536 32.96a23.75 23.75 0 005.254 5.254C16.283 85.75 25.19 85.75 43 85.75s26.717 0 32.96-4.536a23.75 23.75 0 005.254-5.254C85.75 69.717 85.75 60.81 85.75 43zm-50.596-1.655a3.562 3.562 0 115.038-5.038l7.557 7.557 7.557-7.557a3.563 3.563 0 015.038 5.038l-7.557 7.558 7.557 7.557a3.563 3.563 0 01-5.038 5.038L47.75 53.94l-7.557 7.557a3.563 3.563 0 01-5.038-5.038l7.557-7.557-7.557-7.558z"
+                fill="#EFEFEF"
+            />
+            <Path
+                d="M24.939 8.158c.232-1.465.248-3.274.248-7.598C18.35 1.01 13.73 2.105 10.04 4.786a23.75 23.75 0 00-5.254 5.254C2.106 13.73 1.009 18.35.56 25.188c4.324-.001 6.133-.017 7.598-.249A20.188 20.188 0 0024.939 8.158z"
+                fill="#EFEFEF"
+            />
+        </Svg>
+    );
+};
+export const IconAddress= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M18 4.48a8.485 8.485 0 10-12 12l5.27 5.28a1.001 1.001 0 001.42 0L18 16.43a8.45 8.45 0 000-11.95zM16.57 15L12 19.59 7.43 15a6.46 6.46 0 119.14 0zM9 7.41a4.32 4.32 0 000 6.1 4.31 4.31 0 007.36-3 4.239 4.239 0 00-1.26-3.05A4.3 4.3 0 009 7.41zm4.69 4.68a2.33 2.33 0 11.67-1.63 2.33 2.33 0 01-.72 1.63h.05z"
+                fill="#000"
+            />
+        </Svg>
+    );
+};
+export const IconDots = ({ width, height, style }: iconProps) => (
+    <Svg width={width} height={1} viewBox="0 0 339 1" style={style} fill="none">
+        <Path
+            stroke="#ACACAC"
+            strokeDasharray="4 4"
+            d="M4.37114e-8 0.5L339 0.500029"
+        />
+    </Svg>
+);
+export const IconShop= ({ style, width=Spacing.width24, height=Spacing.width24 }: iconProps) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M22 5H2a1 1 0 00-1 1v4a3 3 0 002 2.82V22a1 1 0 001 1h16a1 1 0 001-1v-9.18A3 3 0 0023 10V6a1 1 0 00-1-1zm-7 2h2v3a1 1 0 01-2 0V7zm-4 0h2v3a1 1 0 01-2 0V7zM7 7h2v3a1 1 0 11-2 0V7zm-3 4a1 1 0 01-1-1V7h2v3a1 1 0 01-1 1zm10 10h-4v-2a2 2 0 014 0v2zm5 0h-3v-2a4 4 0 10-8 0v2H5v-8.18a3.17 3.17 0 001-.6 3 3 0 004 0 3 3 0 004 0 3 3 0 004 0c.293.26.632.464 1 .6V21zm2-11a1 1 0 01-2 0V7h2v3zM4.3 3H20a1 1 0 100-2H4.3a1 1 0 000 2z"
+                fill="white"
             />
         </Svg>
     );

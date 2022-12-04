@@ -10,10 +10,11 @@ type AppQuantityType={
     amount?:any,
     setAmount?:any,
     style?:any,
-    isTitle?:boolean
+    isTitle?:boolean,
+    maxCount:number
 }
 export const AppQuantity =(props:AppQuantityType)=>{
-    const { amount=0, setAmount,style,isTitle=false}=props
+    const { amount=0, setAmount,style,isTitle=false,maxCount}=props
     const checkQuantity=()=>{
         return false
     }
@@ -25,7 +26,7 @@ export const AppQuantity =(props:AppQuantityType)=>{
                 setAmount(amount - 1);
             } else if (type === 2 ) {
                 setAmount(amount + 1);
-            } else if (type === 2) {
+            } else if (type === 2 && maxCount===amount) {
                 showMessage({
                     message:t("quantity_maximum"),
                     type: "info",

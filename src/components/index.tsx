@@ -14,4 +14,7 @@ export * from './AppStar'
 export * from './SelectDropdown'
 export * from './AppImage';
 export * from './AppQuantity';
-export * from './AppDialog'
+export * from './AppDialog';
+export * from './AppCheckbox';
+export * from './AppInputAddress';
+export * from './AppDropDown';

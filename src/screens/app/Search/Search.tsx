@@ -1,6 +1,6 @@
 import React from "react";
 import {useModel} from "./Search.hook";
-import {FlatList, Image, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, RefreshControl, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
 import {AppImage, AppText, HeaderScreen, LoadingScreen, SelectDrop} from "@components";
 import { t } from "i18next";
@@ -13,7 +13,8 @@ import {DataFilter} from "@utils";
 import {Device} from "../../../assets/device";
 
 export const Search =(props:any)=>{
-    const {text,searchProduct,refInput,data,loading,callApiSearch,}=useModel(props)
+    const {text,searchProduct,refInput,data,loading,callApiSearch,onFilter,isSearch,
+        refreshing,onRefresh}=useModel(props)
     // @ts-ignore
     const renderItem =({item,index})=>{
         return (
@@ -57,6 +58,17 @@ export const Search =(props:any)=>{
                    <SearchIcon/>
                </TouchableOpacity>
             </View>
+            {data?.length!==0&&<SelectDrop
+                data={DataFilter}
+                width={'40%'}
+                styleContainer={{alignSelf:'flex-end',marginVertical:Spacing.height16,}}
+                style={{borderColor:Colors.border,borderWidth:1,backgroundColor:Colors.white}}
+                keyName={'name'}
+                onSelect={(item:any) => {
+                    onFilter(item?.value)
+                }}
+                placeholder={t("selectFilter")}
+            />}
             <FlatList
                 data={data}
                 showsVerticalScrollIndicator={false}
@@ -64,28 +76,10 @@ export const Search =(props:any)=>{
                     marginHorizontal:Spacing.width16,
                     height:Device.height-Spacing.height50
                 }}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 renderItem={renderItem}
-                ListHeaderComponent={()=>{
-                    if(data?.length!==0){
-                        return(
-                            <SelectDrop
-                                data={DataFilter}
-                                width={'40%'}
-                                styleContainer={{alignSelf:'flex-end',marginVertical:Spacing.height16,}}
-                                style={{borderColor:Colors.border,borderWidth:1,backgroundColor:Colors.white}}
-                                keyName={'name'}
-                                onSelect={(item:any) => {
-                                    // setSizeSelect(item)
-                                }}
-                                placeholder={t("selectFilter")}
-                            />
-                        )
-                    }else {
-                        return null
-                    }
-                }}
                 ListEmptyComponent={()=>{
-                   if(text.length !==0){
+                   if(isSearch && data?.length===0){
                        return(
                            <View style={{alignItems:'center',justifyContent:'center',height:'100%'}}>
                                <IconNoProduct/>

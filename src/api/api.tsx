@@ -45,8 +45,9 @@ class AxiosClass {
   };
 
   setToken = async (token: string) => {
-    this.token = token;
-    this.api.defaults.headers.common.Authorization = token;
+    console.log("token:",token)
+    this.token = `Bearer ${token}`;
+    this.api.defaults.headers.common.Authorization = `Bearer ${token}`;
   };
 
   setTokenWithoutSaveLocal = async (token: string) => {
@@ -92,7 +93,6 @@ class AxiosClass {
     if (headers?.cancelToken) {
       newHeader.cancelToken = headers.cancelToken;
     }
-
     return this.api.get(url, {
       ...newHeader,
     });
@@ -110,7 +110,7 @@ class AxiosClass {
 
   postNormal<T>(url: string, body: any, header: any = {}): Promise<T> {
     let newBody = body ? {...body} : {};
-    newBody.lang = i18next.language;
+    // newBody.lang = i18next.language;
     LogApp('POSTNORMAL ------->>', url, newBody);
     return this.api.post(url, newBody, {
       headers: {
@@ -124,7 +124,7 @@ class AxiosClass {
     return this.api.put(url, body, {
       headers: {
         _id: this.incrementRequestId,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
   }

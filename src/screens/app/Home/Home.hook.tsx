@@ -50,7 +50,8 @@ export function useModel(props: any) {
     const callApiBestSell =()=>{
         let params={
             page_size:10,
-            page_index:1
+            page_index:1,
+            sort:"totalSold"
         }
         getProduct(params,(res)=>{
             setBestSells(res)
@@ -59,7 +60,8 @@ export function useModel(props: any) {
     const callApiNewProduct=()=>{
         let params={
             page_size:10,
-            page_index:1
+            page_index:1,
+            sort:"createdDate"
         }
         getProduct(params,(res)=>{
             setNewProdct(res)

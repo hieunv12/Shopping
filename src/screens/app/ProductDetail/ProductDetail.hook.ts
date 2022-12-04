@@ -1,8 +1,13 @@
 import {useDispatch} from "react-redux";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {useEffect, useRef, useState} from "react";
-import {getProductDetail} from "@services";
+import {addCart, getCart, getProductDetail} from "@services";
 import unionBy from 'lodash/unionBy';
+import {showMessage} from "react-native-flash-message";
+import {t} from "i18next";
+import {Colors} from "@theme";
+import {navigate, SCREEN_ROUTE} from "@navigation";
+import {setListCart} from "@redux";
 export function useModel(props: any) {
     const dispatch = useDispatch();
     const nav = useNavigation();
@@ -21,6 +26,7 @@ export function useModel(props: any) {
 
     const callApi=()=>{
         getProductDetail(params?.id,undefined,(res)=>{
+            console.log(res)
             setData(res)
         },(error)=>{
 
@@ -28,37 +34,90 @@ export function useModel(props: any) {
     }
     useEffect(()=>{
         if(colorSelect){
-            let newSizes:any=data?.productDetails?data?.productDetails.filter((elm:any)=>elm.color===colorSelect?.color):[]
+            let newData=data?.productDetails.filter((elm:any)=>elm?.size.length !==0)
+            let newSizes:any=newData?newData.filter((elm:any)=>elm.color===colorSelect?.color):[]
             setSizes(newSizes)
-            setValue(newSizes)
+            if(newSizes.length>0){
+                setValue(newSizes[0])
+            }
         }else {
-            let newData=data?.productDetails
+            let newData=data?.productDetails.filter((elm:any)=>elm?.color.length !==0)
             newData = unionBy(newData, 'color');
             setColors(newData)
         }
     },[data,colorSelect])
     useEffect(()=>{
         if(sizeSelect){
-            let newProductDetail=data?.productDetails
-            let newColors:any=newProductDetail.filter((elm:any)=>elm.size===sizeSelect?.size)
+            let newData=data?.productDetails.filter((elm:any)=>elm?.color.length !==0)
+            let newColors:any=newData.filter((elm:any)=>elm.size===sizeSelect?.size)
             setColors(newColors)
-            setValue(newColors)
+            if(newColors.length>0){
+                setValue(newColors[0])
+            }
+
         }else {
-            let newData=data?.productDetails
+            let newData=data?.productDetails.filter((elm:any)=>elm?.size.length !==0)
              newData = unionBy(newData, 'size');
             setSizes(newData)
         }
     },[data,sizeSelect])
-
-    const BuyNow=()=>{
-        let param={
-
+    const renderStatus=()=>{
+        if(colors.length>0 && sizes.length>0){
+            if(colorSelect && sizeSelect){
+                return true
+            }else {
+                return false
+            }
+        }else {
+            if(value){
+                return true
+            }else {
+                return false
+            }
         }
+    }
+    const callApiCart=()=>{
+        getCart(undefined,(res:any)=>{
+            if(res.length >0){
+                dispatch(setListCart(res))
+            }else {
+                dispatch(setListCart([]))
+            }
+
+
+        },()=>{}).then()
     }
     const AddCart =()=>{
         let param={
-
+            productDetailId:value?.id,
+            quantity:amount
         }
+        addCart(param,(res)=>{
+            callApiCart()
+        },()=>{
+
+        }).then()
+    }
+    const BuyNow=()=>{
+        let param={
+            products:[
+                {
+                    product: {
+                        ...value,
+                        ...data,
+
+                    },
+                    quantity:amount,
+                    productDetailId:value?.id
+                }
+            ],
+            total:data?.price* amount
+        }
+        console.log(param)
+        navigate(SCREEN_ROUTE.CHECKOUT,{
+            items:param,
+            type:'product'
+        })
     }
     return{
         nav,
@@ -71,6 +130,10 @@ export function useModel(props: any) {
         setColorSelect,
         amount, setAmount,
         refProduct,
-        value
+        value,
+        BuyNow,
+        AddCart,
+        renderStatus,
+        setValue
     }
 }

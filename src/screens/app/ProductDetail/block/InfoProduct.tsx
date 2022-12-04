@@ -14,7 +14,8 @@ type infoProductType={
     setAmount?:any,
     openSP?:any,
     onInfoSize?:any,
-    value?:any
+    value?:any,
+    setValue:any
 }
 import {showMessage} from "react-native-flash-message";
 
@@ -29,7 +30,7 @@ export const InfoProduct =React.memo((props:infoProductType) => {
         colors, setSizeSelect,
         setColorSelect,
         amount, setAmount,
-        onInfoSize,value
+        onInfoSize,value,setValue
     }=props
     const adjustAmount = (type: number) => {
         const availability = true;
@@ -58,7 +59,7 @@ export const InfoProduct =React.memo((props:infoProductType) => {
     return(
         <View style={styles.container}>
             <View style={styles.viewStar}>
-                <AppText style={{color:Colors.white}}>{t('code')}{detail?.code}</AppText>
+                <AppText style={{color:Colors.white}}>{t('code')}{detail?.productDetails?detail?.productDetails[0].code:''}</AppText>
             </View>
            <View style={styles.body}>
                <AppText style={styles.txtName} >{detail?.name}</AppText>
@@ -73,27 +74,30 @@ export const InfoProduct =React.memo((props:infoProductType) => {
                    style={styles.txtDesPrice}>{t("desPrice").replace("price", renderPrice(detail?.salePrice - detail?.price))}</AppText>
                }
                <View style={styles.viewRow}>
-                   <SelectDrop
+                   {sizes?.length>0&&<SelectDrop
                        data={sizes}
                        // data={detail?.productDetails}
                        keyName={'size'}
                        width={'46%'}
-                       onSelect={(item:any) => {
+                       onSelect={(item: any) => {
                            setSizeSelect(item)
+                           setValue(item)
                        }}
                        titleTxt={t("titleSize")}
                        placeholder={t("selectSize")}
-                   />
-                   <SelectDrop
+                   />}
+                   {colors?.length>0&&<SelectDrop
                        data={colors}
-                       onSelect={(item:any) => {
-                         setColorSelect(item)
+                       onSelect={(item: any) => {
+
+                           setValue(item)
+                           setColorSelect(item)
                        }}
                        keyName={'color'}
                        width={'46%'}
                        titleTxt={t("titleColor")}
                        placeholder={t("selectColor")}
-                   />
+                   />}
 
                </View>
                <View style={{...styles.viewRow,alignItems:'flex-start'}}>
