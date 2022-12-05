@@ -61,7 +61,7 @@ export function useModel(props: any) {
             dispatch(setAddressSelect(item))
             goBack()
         }else {
-            NavigationUtils.navigate(SCREEN_ROUTE.ADD_ADDRESS,{id:item})
+            NavigationUtils.navigate(SCREEN_ROUTE.ADD_ADDRESS,{item:item})
         }
     }
     return{

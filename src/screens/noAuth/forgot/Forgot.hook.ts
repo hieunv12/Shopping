@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import {setAccountToken} from "@redux";
 import {useTranslation} from "react-i18next";
+import {forgotApp} from "@services";
 
 export function useModel(props: any) {
     const dispatch = useDispatch();
@@ -21,25 +22,22 @@ export function useModel(props: any) {
     const {values, errors, touched, setFieldValue,handleSubmit} = useFormik({
         initialValues: {
             email: '',
-            otp:"",
-
         },
         onSubmit: (values) => {
-            if(step===1){
-                onForgot(values?.email)
-            }else if(step===2){
-                checkOtp(values?.otp)
-            }else {
-
-            }
+            onForgot(values)
         },
         validationSchema:SignupSchema
     });
     const onForgot=(value:any)=>{
-        console.log(value)
+        console.log({value})
         let param={
             email:value
         }
+        forgotApp(param,(res)=>{
+
+        },()=>{
+
+        }).then()
     }
     const checkOtp=(otp:string)=>{
         let param={

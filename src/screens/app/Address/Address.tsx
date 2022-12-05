@@ -40,7 +40,7 @@ export const Address =(props:any)=>{
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 contentContainerStyle={{
                     margin:Spacing.width16,
-                    flex:1
+                    // flex:1
                 }}
                 renderItem={renderItem}
                 ListEmptyComponent={()=>{

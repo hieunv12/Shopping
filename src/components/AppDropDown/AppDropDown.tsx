@@ -44,6 +44,7 @@ export const AppDropDown =(props:AppDropDownType)=>{
     } = props;
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
+    console.log({defaultValue})
     return(
         <View style={[{ width: props.width,marginHorizontal:Spacing.width16},]}>
             {label && (
@@ -60,7 +61,7 @@ export const AppDropDown =(props:AppDropDownType)=>{
                <SelectDropdown
                    ref={ref}
                    data={data}
-                   defaultValueByIndex={defaultValue}
+                   defaultValue={defaultValue}
                    onFocus={() => setIsOpen(true)}
                    onBlur={() => setIsOpen(false)}
                    onSelect={(item)=>{
@@ -83,7 +84,7 @@ export const AppDropDown =(props:AppDropDownType)=>{
                                                style={[styles.dropdown3BtnTxt, { maxWidth: maxWidth ,color: selectedItem?Colors.black:Colors.gray}]}
                                                numberOfLines={num}
                                            >
-                                               {selectedItem ? selectedItem[`${keyName}`] : placeholder}
+                                               {defaultValue?defaultValue:(selectedItem ? selectedItem[`${keyName}`] : placeholder)}
                                            </Text>
                                        </View>
                                    )}

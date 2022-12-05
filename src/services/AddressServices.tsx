@@ -43,9 +43,9 @@ export const addAddress = async (payload?:any,onSuccess?:(res:any)=>void,onError
         return onError ? onError(e) : null
     }
 }
-export const updateAddress = async (payload?:any,onSuccess?:(res:any)=>void,onError?:(res:any)=>void)=>{
+export const updateAddress = async (id:string,payload?:any,onSuccess?:(res:any)=>void,onError?:(res:any)=>void)=>{
     try {
-        const res:any=await api.put(API_URL.address,payload)
+        const res:any=await api.put(API_URL.address+'/'+id,payload)
         console.log('res:',res)
 
         if(res){
@@ -106,6 +106,7 @@ export const getAllCity = async (onSuccess?:(res:any)=>void,onError?:(res:any)=>
 export const getAllDistrict = async (id?:string,onSuccess?:(res:any)=>void,onError?:(res:any)=>void)=>{
     try {
         const res:any=await api.get(API_URL.district+id,undefined,undefined)
+        console.log({res})
         if(res){
             return onSuccess ? onSuccess(res) : []
         }else {

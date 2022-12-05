@@ -5,7 +5,7 @@ import {getAddressAccount, setAddressSelect, setAddressUserProfile} from "@redux
 import {useEffect, useRef, useState} from "react";
 import * as Yup from "yup";
 import {useFormik} from "formik";
-import {addAddress, getAllCity, getAllDistrict, getAllWard} from "@services";
+import {addAddress, getAllCity, getAllDistrict, getAllWard, updateAddress} from "@services";
 import {goBack} from "@navigation";
 
 export function useModel(props: any) {
@@ -21,37 +21,40 @@ export function useModel(props: any) {
     const [wards,setWards]=useState<any>([])
 
     useEffect(()=>{
+        console.log("param:", params?.item?.detailAddress?.ward?.name)
+        if(params?.item){
+            setFieldValue('name', params?.item?.name)
+            setFieldValue('phone', params?.item?.phone)
+            setFieldValue('cityName', params?.item?.detailAddress?.city?.name)
+            setFieldValue('districtName', params?.item?.detailAddress?.district?.name)
+            setFieldValue('wardName', params?.item?.detailAddress?.ward?.name)
+            setFieldValue('cityId', params?.item?.detailAddress?.city?.id)
+            setFieldValue('districtId', params?.item?.detailAddress?.district?.id)
+            setFieldValue('wardId', params?.item?.detailAddress?.ward?.id)
+            setFieldValue('address', params?.item?.street)
+            setFieldValue('typeAddress', params?.item?.typeAddress!==0?false:true)
+            callApiDistricts( params?.item?.detailAddress?.city.id)
+            callApiWards(params?.item?.detailAddress?.ward?.id)
+        }
+    },[])
+    useEffect(()=>{
         callApiCity()
-        // let checks=data.filter(elm=>elm.typeAddress===0).length>0
-        // console.log(checks)
     },[])
     const callApiCity=()=>{
-        // setCity([{"id": 63,
-        //     "name": "Hà Nội"}])
-        // setDistrict([{"id": 714,
-        //     "name": "Quận Hà Đông"}])
-        // setWards([{
-        //     "id": 22340,
-        //     "name": "Phường Phú Lương"
-        // }])
         getAllCity((res)=>{
-            console.log({res})
+            // console.log({res})
             setCity(res)
         }).then()
     }
     const callApiDistricts=(id:string)=>{
         getAllDistrict(id,(res)=>{
-            setCity(res)
-        }).finally(()=>{
-            setCity([])
-        })
+            setDistrict(res)
+        }).then()
     }
     const callApiWards=(id:string)=>{
         getAllWard(id,(res)=>{
-            setCity(res)
-        }).finally(()=>{
-            setCity([])
-        })
+            setWards(res)
+        }).then()
     }
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -111,19 +114,37 @@ export function useModel(props: any) {
                         }
                 }
             }
-            addAddress(param,(res)=>{
-                console.log(res,{data})
-                let newData=data
-                console.log('newData:',newData.push(res))
-                let listAddress=newData.push(res)
-                let addressSelect=listAddress?.filter((elm:any)=>elm.typeAddress===0)[0]
-                dispatch(setAddressSelect(addressSelect))
-                dispatch(setAddressUserProfile(newData.push(res)))
-                // goBack()
-                // setLoading(false)
-            }).catch(()=>{
-                setLoading(false)
-            })
+            if(params?.item){
+                updateAddress(params?.item?.id,param,(res)=>{
+                    let newData=data
+                    setLoading(false)
+                        let listAddress=newData.map((elm)=>{
+                            if(elm?.id===res.id){
+                                return res
+                            }else {
+                                return elm
+                            }
+                        })
+                        dispatch(setAddressUserProfile(listAddress))
+                }).catch(()=>{
+                    setLoading(false)
+                })
+            }else {
+                addAddress(param,(res)=>{
+                    let newData=data
+                    setLoading(false)
+
+                        let listAddress=newData.push(res)
+                        let addressSelect=listAddress?.filter((elm:any)=>elm.typeAddress===0)[0]
+                        dispatch(setAddressSelect(addressSelect))
+                        dispatch(setAddressUserProfile(newData.push(res)))
+                    goBack()
+                    // setLoading(false)
+                }).catch(()=>{
+                    setLoading(false)
+                })
+            }
+
             console.log({param})
         },
         validationSchema:SignupSchema
@@ -135,6 +156,6 @@ export function useModel(props: any) {
         data,loading,
         values, errors, touched, setFieldValue,handleSubmit,
         refName,
-        params,city,districts,wards
+        params,city,districts,wards,callApiDistricts,callApiWards
     }
 }

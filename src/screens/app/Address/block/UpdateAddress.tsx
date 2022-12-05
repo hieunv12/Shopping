@@ -14,9 +14,13 @@ import {t} from "i18next";
 import {styles} from "../styles";
 import {Colors, Shadow, Spacing} from "@theme";
 import {useModel} from "./UpdateAddress.hook";
+import {getAllWard} from "@services";
 
 export const UpdateAddress =(props:any)=>{
-    const {loading,values, errors, touched,refName, setFieldValue,handleSubmit,params,city,districts,wards}=useModel(props)
+    const {loading,values, errors, touched,refName,
+        callApiDistricts,callApiWards,
+        setFieldValue,handleSubmit,params,city,districts,wards}=useModel(props)
+    console.log("values:",values?.wardName)
     return(
         <View style={styles.container}>
             <HeaderScreen name={params?t('updateAddress'):t('addAddress')}/>
@@ -58,7 +62,9 @@ export const UpdateAddress =(props:any)=>{
                         onSelect={(item:any)=>{
                             setFieldValue('cityName',  item.name)
                             setFieldValue('cityId',  item.id)
+                            callApiDistricts(item.id)
                         }}
+                        defaultValue={values?.cityName}
                         keyName={'name'}
                         data={city}
                         label={t("city")}
@@ -78,7 +84,9 @@ export const UpdateAddress =(props:any)=>{
                             // setFieldValue('district', item)
                             setFieldValue('districtName', item.name)
                             setFieldValue('districtId', item.id)
+                            callApiWards(item.id)
                         }}
+                        defaultValue={values?.districtName}
                         data={districts}
                         keyName={'name'}
                         label={t("district")}
@@ -98,6 +106,7 @@ export const UpdateAddress =(props:any)=>{
                             setFieldValue('wardName',  item.name)
                             setFieldValue('wardId',  item.id)
                         }}
+                        defaultValue={values?.wardName}
                         data={wards}
                         keyName={'name'}
                         label={t("ward")}

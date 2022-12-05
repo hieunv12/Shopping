@@ -5,7 +5,7 @@ export const vi = {
 
   home:'Trang chủ',
   menu:'Danh mục',
-  cart:'Giỏ hàng của ',
+  cart:'Giỏ hàng ',
   countCart:"Có count sản phẩm trong giỏ của bạn.",
   setting:'Cài đặt',
   profile:'Tài khoản',
@@ -25,6 +25,7 @@ export const vi = {
   sigin:'Đăng nhập',
   sigUp:'Đăng ký',
   titleLogin:'Đăng nhập với ',
+  titleSigUp:'Đăng ký với ',
   email:'Email',
   full_name:'Họ và tên',
   re_password:"Nhập lại Mật khẩu",
@@ -133,6 +134,8 @@ export const vi = {
   validInfo:"Vui lòng kiểm tra lại",
   addAddressSuccess:"Thêm địa chỉ thành công",
   updateAddressSuccess:"Cập nhật địa chỉ thành công",
+  forgotSuccess:"Quên mật khẩu thành công .Vui lòng kiểm tra lại email",
+  forgotError:"Quên mật khẩu thất bại",
   updateAddressError:"Cập nhật địa chỉ thất bại",
   addAddressError:"Thêm địa chỉ thất bại",
   deleteAddressSuccess:"Xoá địa chỉ thành công",
@@ -172,4 +175,28 @@ export const vi = {
   deleteCartError:"Xoá giỏ hàng thất bại",
   checkoutCartError:"Thanh toán thất bại",
   checkoutCartSuccess:"Thanh toán thành công",
+  privacyPolicy:"Chính sách bảo mật",
+  desPri:"Tại Hihu, chúng tôi coi việc bảo vệ thông tin cá nhân của bạn là ưu tiên hàng đầu. \n" +
+      "\n" +
+      "Chúng tôi hiểu hoàn toàn rằng thông tin cá nhân của bạn là thuộc về bạn, vì vậy chúng tôi nỗ lực hết sức lưu trữ bảo mật và xử lý cẩn thận thông tin mà bạn chia sẻ với chúng tôi.\n" +
+      "\n" +
+      "Chúng tôi coi sự tin cậy của bạn có giá trị cao nhất. Vì vậy chúng tôi thu thập lượng thông tin tối thiểu chỉ khi có sự cho phép của bạn và sử dụng thông tin này chỉ cho các mục đích đã dự định. Chúng tôi không cung cấp thông tin cho các bên thứ ba mà không có sự hiểu biết của bạn.\n" +
+      "\n" +
+      "Tại Hihu chúng tôi nỗ lực hết sức nhằm đảm bảo khả năng bảo vệ dữ liệu của bạn, bao gồm bảo mật dữ liệu kỹ thuật và quy trình quản lý nội bộ cũng như các biện pháp bảo vệ dữ liệu vật lý\n" +
+      "\n" +
+      "Chúng tôi phấn đấu cải thiện cuộc sống của bạn bằng cách đưa ra những trải nghiệm số đầy cảm hứng và hấp dẫn. Để thực hiện việc này, sự tin cậy của bạn là điều tối cao và vì vậy chúng tôi sẽ nỗ lực hết sức để bảo vệ thông tin cá nhân của bạn.\n" +
+      "\n" +
+      "Cảm ơn bạn vẫn tiếp tục quan tâm và ủng hộ chúng tôi.\n" +
+      "\n",
+
+  termsOfUse:"Điều khoản sử dụng",
+  destermsOfUse:"Giống như cái tên Shop Hihu, chúng tôi là nền tảng hàng đầu chuyên nghiên cứu và sáng lập ra các danh sách đứng đầu ở mọi lĩnh vực của đời sống.\n" +
+      "\n" +
+      "Trong hơn 3 năm qua, chúng tôi là một trong những trang web đánh giá sản phẩm/dịch vụ lớn nhất và toàn diện nhất trên web, với hàng chục ngàn đánh giá và xếp hạng uy tín. Chúng tôi rất khác biệt so với các trang web review sản phẩm/dịch vụ thông thường ở việc mỗi nhóm sản phẩm/dịch vụ của chúng tôi được hiển thị để bạn dễ dàng tìm kiếm, dễ dàng lựa chọn nhất.\n" +
+      "\n" +
+      "Mặc dù chúng tôi có thể đã nghiên cứu hàng ngàn sản phẩm/dịch vụ trong một danh mục, nhưng chúng tôi sẽ chỉ cho bạn thấy những lựa chọn tốt nhất. Bởi vì không ai có thời gian để trải nghiệm qua và dùng thử hàng trăm sản phẩm/dịch vụ trong một ngành? Đánh giá của chúng tôi là sự kết hợp hoàn hảo của so sánh sản phẩm, phân tích chuyên nghiệp và dữ liệu ngành để bạn có thể tìm thấy sản phẩm/dịch vụ phù hợp nhất với mình.\n" +
+      "\n" +
+      "Chúng tôi biết nhu cầu của mọi người là khác nhau. Chúng tôi biết sản phẩm có nhiều chức năng riêng biệt, dịch vụ có nhiều thông tin bạn chưa thể lắm, để lựa chọn đúng là một điều không dễ dàng. Tin tốt là, chúng tôi sẽ cho bạn thấy nhiều lựa chọn phù hợp đã được nghiên cứu, xem xét và xếp hạng là một trong những lựa chọn tốt nhất.\n" +
+      "\n",
+  AddAddress:'Bạn chưa có địa chỉ ? Vui lòng chọn địa chỉ của mình.'
 };

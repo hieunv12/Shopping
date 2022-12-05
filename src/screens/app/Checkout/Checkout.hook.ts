@@ -4,6 +4,9 @@ import {getProfileUser, setListCart} from "@redux";
 import {useEffect, useState} from "react";
 import {goBack, navigate, SCREEN_ROUTE} from "@navigation";
 import {getCart, onCheckoutCart} from "@services";
+import {showMessage} from "react-native-flash-message";
+import {t} from "i18next";
+import {Colors} from "@theme";
 
 export function useModel(props: any) {
     const dispatch = useDispatch();
@@ -35,7 +38,14 @@ export function useModel(props: any) {
         },()=>{}).then()
     }
     const onCheckout = ()=>{
-
+        if(!addressDef){
+          return   showMessage({
+                message:t("AddAddress"),
+                type: "info",
+                backgroundColor: Colors.error,
+                color: Colors.white,
+            });
+        }
         let newProduct=params?.items.products.map((elm:any)=>{
             return{
                 productDetailId:elm.productDetailId,
@@ -53,13 +63,18 @@ export function useModel(props: any) {
             "price": params?.items?.total,
             // "discount": 50000
         }
-
+        console.log({isPayment})
+        if(!isPayment){
         onCheckoutCart(param,(res)=>{
-            goBack()
-            callApiCart()
-        },()=>{
+                goBack()
+                callApiCart()
+            },()=>{
 
-        }).then()
+            }).then()
+        }else {
+
+        }
+
     }
     return{
         nav,

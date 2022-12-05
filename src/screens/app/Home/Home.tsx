@@ -15,26 +15,6 @@ import {CategoryRow} from "./block/CategoryRow";
 import {FormRow} from "./block/FormRow";
 import {DataTest} from "./block/DataTest";
 import {NavigationApp, NavigationUtils, SCREEN_ROUTE} from "@navigation";
-const data = [{
-  name: 1,
-  id: 1,
-},
-  {
-    name: 1,
-    id: 2,
-  },
-  {
-    name: 1,
-    id: 3,
-  },
-  {
-    name: 1,
-    id: 4,
-  },
-  {
-    name: 1,
-    id: 5,
-  }]
 
 const Home = (props:any) => {
   const {updateTheme} = useTheme();

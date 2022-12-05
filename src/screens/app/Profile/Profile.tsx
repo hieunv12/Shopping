@@ -1,5 +1,5 @@
 import React from "react";
-import {SafeAreaView, ScrollView, TouchableOpacity, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, TouchableOpacity, View} from "react-native";
 import {Field, FieldArray, useFormik} from "formik";
 import {setAccountToken} from "@redux";
 import {AppButton, AppImage, AppImageAvatar, AppText, HeaderScreen, NotLoginApp} from "@components";
@@ -14,7 +14,7 @@ import {
     IconPassword,
     IconQA,
     IconSetting,
-    IconUser,
+    IconUser, logoApp2,
     NoAvatar
 } from "@assets";
 import {Colors, Spacing} from "@theme";
@@ -79,9 +79,12 @@ export const Profile =(props:any)=>{
 
                     <RenderView icon={()=>{
                         return(<IconQA/>)
-                    }} name={t("faq")} callback={()=>navigate(SCREEN_ROUTE.FAQ)}/>
+                    }} name={t("privacyPolicy")} callback={()=>navigate(SCREEN_ROUTE.PrivacyPolicy)}/>
                     <RenderView icon={()=>{
                         return(<IconAbout/>)
+                    }} name={t("termsOfUse")} callback={()=>navigate(SCREEN_ROUTE.TermsOfUse)}/>
+                    <RenderView icon={()=>{
+                        return(<Image style={{width:24,height:24}} source={logoApp2} />)
                     }} name={t("aboutUS")} callback={()=>navigate(SCREEN_ROUTE.ABOUT_US)}/>
                     <TouchableOpacity style={{...styles.viewRow,backgroundColor:Colors.colorMain2,marginHorizontal:Spacing.height16,marginTop:Spacing.height30,borderRadius:8,justifyContent:'center'}} onPress={logoutApp}>
                             <AppText style={{...styles.txtTitle,color:Colors.white}}>{t("logout").toUpperCase()}</AppText>

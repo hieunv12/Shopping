@@ -16,7 +16,7 @@ export const SignUp =(props:any)=>{
             <KeyboardAwareScrollView
                 contentContainerStyle={{flex: 1,alignItems:'center',justifyContent:'center', marginHorizontal:Spacing.width16}}>
                 <Image source={logoApp2} style={styles.logoApp}/>
-                <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleLogin')} <Text style={styles.txtApp}>{t('nameApp')}</Text></AppText>
+                <AppText variant={"title3"} fontWeight="600" marginBottom={"l"}>{t('titleSigUp')} <Text style={styles.txtApp}>{t('nameApp')}</Text></AppText>
 
                 <AppInput
                     value={values.email}

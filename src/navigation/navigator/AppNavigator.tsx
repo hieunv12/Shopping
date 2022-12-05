@@ -7,7 +7,7 @@ import {SCREEN_ROUTE} from '../route';
 import {
     AboutUs, Address,
     ChangePassword,
-    Checkout, FAQ,
+    Checkout, TermsOfUse,
     Forgot,
     FormProduct,
     InfoUser,
@@ -15,7 +15,7 @@ import {
     Notification, Order, OrderDetail,
     ProductDetail,
     Search, Setting,
-    SignUp
+    SignUp, PrivacyPolicy
 } from "@screens";
 import {useModel} from "./AppNavigator.hook";
 import {Theme, useTheme} from "@theme";
@@ -81,8 +81,13 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
               options={{headerShown: false}}
           />
           <Stack.Screen
-              name={SCREEN_ROUTE.FAQ}
-              component={FAQ}
+              name={SCREEN_ROUTE.TermsOfUse}
+              component={TermsOfUse}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.PrivacyPolicy}
+              component={PrivacyPolicy}
               options={{headerShown: false}}
           />
           <Stack.Screen

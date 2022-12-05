@@ -33,12 +33,20 @@ export const forgotApp = async (payload?:any,onSuccess?:(res:any)=>void,onError?
     try {
         const res:any=await api.postNormal(API_URL.forgot,payload)
         console.log('res:',res)
-        if(res){
+            showMessage({
+                message:t("forgotSuccess"),
+                type: "info",
+                backgroundColor: Colors.lightBlue,
+                color: Colors.white,
+            });
             return onSuccess ? onSuccess(res) : null
-        }else {
-            return onError ? onError(res) : null
-        }
     }catch (e) {
+        showMessage({
+            message:t("forgotError"),
+            type: "info",
+            backgroundColor: Colors.error,
+            color: Colors.white,
+        });
         return onError ? onError(e) : null
     }
 }
@@ -46,8 +54,20 @@ export const ResetPasswordApp = async (payload?:any,onSuccess?:(res:any)=>void,o
     try {
         const res:any=await api.postNormal(API_URL.forgot,payload)
         console.log('res:',res)
+        showMessage({
+            message:t("forgotSuccess"),
+            type: "info",
+            backgroundColor: Colors.lightBlue,
+            color: Colors.white,
+        });
         return onSuccess ? onSuccess(res?.data ? res?.data : []) : null
     }catch (e) {
+        showMessage({
+            message:t("forgotError"),
+            type: "info",
+            backgroundColor: Colors.error,
+            color: Colors.white,
+        });
         return onError ? onError(e) : null
     }
 }

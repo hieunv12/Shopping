@@ -1,4 +1,4 @@
-import {Home, Profile} from "@screens";
+import {Home, PrivacyPolicy, Profile, TermsOfUse} from "@screens";
 import {CanvasScreen} from "../screens/app/Canvas/Canvas";
 
 export const SCREEN_ROUTE = {
@@ -18,8 +18,9 @@ export const SCREEN_ROUTE = {
   CHECKOUT:"CHECKOUT",
   SETTING:'SETTING',
   ABOUT_US:"ABOUT_US",
+  PrivacyPolicy:"PrivacyPolicy",
   INFO_USER:"INFO_USER",
-  FAQ:"FAQ",
+  TermsOfUse:"TermsOfUse",
   CHANGE_PASSWORD:"CHANGE_PASSWORD",
   FORM_PRODUCT:"FORM_PRODUCT",
   ORDER:"ORDER",
