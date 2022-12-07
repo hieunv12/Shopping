@@ -15,6 +15,7 @@ export function useModel(props: any) {
     const [itemCartDelete,setItemCartDelete]=useState<any>()
     const [indexCartDelete,setIndexCartDelete]=useState<any>()
     const [refreshing, setRefreshing] = useState(false);
+    const [loading,setLoading]=useState(false)
     const onDeleteCart =()=>{
         deleteCart(itemCartDelete.id,()=>{
             setIsVisible(false)
@@ -34,10 +35,13 @@ export function useModel(props: any) {
             }else {
                 dispatch(setListCart([]))
                 dispatch(setListCart(res))
+                setRefreshing(false)
             }
 
 
-        },()=>{}).then()
+        },()=>{
+            setRefreshing(false)
+        }).then()
     }
     const onSelectCart =(value:any,index:number)=>{
         let newList=infoCart.list

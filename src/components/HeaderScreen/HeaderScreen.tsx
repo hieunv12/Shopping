@@ -9,14 +9,19 @@ type HeaderScreenType={
     isIconClose?:boolean,
     isFilter?:boolean,
     onFilter?:any,
-    onAdd?:any
+    onAdd?:any,
+    goToBack?:()=>void
 }
 export const HeaderScreen=(props:HeaderScreenType)=>{
-const {name,isIconClose=true,isFilter=false,onFilter,onAdd}=props
+const {name,isIconClose=true,goToBack,isFilter=false,onFilter,onAdd}=props
     return(
         <View style={styles.container}>
             {isIconClose &&<TouchableOpacity style={styles.iconBack} onPress={() => {
-                NavigationUtils.goBack()
+                if(goToBack){
+                    goToBack()
+                }else {
+                    NavigationUtils.goBack()
+                }
             }}>
                 <BackIcon/>
             </TouchableOpacity>}

@@ -15,10 +15,10 @@ export const Address =(props:any)=>{
     // @ts-ignore
     const renderItem =({item,index})=>{
         return (
-            <TouchableOpacity style={item?.typeAddress===0?styles.viewItemAddressSelect:styles.viewItemAddress} onPress={()=>goToClick(item)}>
-                    <AppText style={{...styles.txtName,color:item?.typeAddress===0?Colors.white:Colors.black}}>{item?.name}</AppText>
-                    <AppText style={{...styles.txtPhone,color:item?.typeAddress===0?Colors.white:Colors.black}}>{item?.phone}</AppText>
-                    <AppText style={{...styles.txtAddress,color:item?.typeAddress===0?Colors.white:Colors.black}}>{item?.address}</AppText>
+            <TouchableOpacity style={item?.defaultAddress===1?styles.viewItemAddressSelect:styles.viewItemAddress} onPress={()=>goToClick(item)}>
+                    <AppText style={{...styles.txtName,color:item?.defaultAddress===1?Colors.white:Colors.black}}>{item?.name}</AppText>
+                    <AppText style={{...styles.txtPhone,color:item?.defaultAddress===1?Colors.white:Colors.black}}>{item?.phone}</AppText>
+                    <AppText style={{...styles.txtAddress,color:item?.defaultAddress===1?Colors.white:Colors.black}}>{item?.address}</AppText>
                     <TouchableOpacity
                         onPress={()=>{
                             onDeleteAddress(item)
@@ -29,6 +29,7 @@ export const Address =(props:any)=>{
             </TouchableOpacity>
         )
     }
+    console.log({data})
     return(
         <View style={styles.container}>
             <HeaderScreen name={t('address')} onAdd={()=>{

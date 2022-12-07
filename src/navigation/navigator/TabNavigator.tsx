@@ -13,12 +13,14 @@ import {IconProfiles} from "../../assets/icon/svg";
 import {useSelector} from "react-redux";
 import {getCountCart, getInfoCart} from "../../redux/selector/cartSlector";
 import {AppText} from "@components";
+import {getTokenUserFromStore} from "@redux";
 export {SCREEN_ROUTE} from '../route';
 export {TabNavigator};
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = memo(function () {
     const {t} = useTranslation();
+    const token = useSelector(getTokenUserFromStore);
     const count:any=useSelector(getCountCart)
   return (
     <Tab.Navigator
@@ -74,7 +76,7 @@ const TabNavigator = memo(function () {
                             return(
                                 <View>
                                     <IconCart iconFillColor={focused?Colors.colorMain:Colors.black}/>
-                                    {count>0&& <View style={{position:'absolute',right:-10,top:-5,backgroundColor:Colors.colorMain2,width:20,borderRadius:10,alignItems:'center',justifyContent:'center',height:20}}><AppText style={{fontSize:10,color:Colors.white}}>{count}</AppText></View>}
+                                    {count>0 && token  && <View style={{position:'absolute',right:-10,top:-5,backgroundColor:Colors.colorMain2,width:20,borderRadius:10,alignItems:'center',justifyContent:'center',height:20}}><AppText style={{fontSize:10,color:Colors.white}}>{count}</AppText></View>}
                                 </View>
                             )
                         }

@@ -18,3 +18,4 @@ export * from './AppDialog';
 export * from './AppCheckbox';
 export * from './AppInputAddress';
 export * from './AppDropDown';
+export * from './AppWebView'

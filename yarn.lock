@@ -6464,6 +6464,11 @@ react-native-modal@^13.0.1:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
+react-native-onepay@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-onepay/-/react-native-onepay-0.2.2.tgz#40fc196f2a903daf387394da0bcaba47ef227092"
+  integrity sha512-nNjQ9/QOQAEupttdyNP6hcdMxLLyfvLYD7FRcWoMH2KGZtY5jHxgeLClja60dymgDcAV2p8BmvhekgkET5aIHg==
+
 react-native-permissions@^3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.6.1.tgz#73adcc1cef8cd57a9ef167b4507405f4ff5749c4"

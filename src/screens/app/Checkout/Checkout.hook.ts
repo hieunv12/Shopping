@@ -3,11 +3,13 @@ import {useNavigation, useRoute} from "@react-navigation/native";
 import {getProfileUser, setListCart} from "@redux";
 import {useEffect, useState} from "react";
 import {goBack, navigate, SCREEN_ROUTE} from "@navigation";
-import {getCart, onCheckoutCart} from "@services";
+import {getCart, getUrlOnepay, onCheckoutCart, onCheckoutOnePay} from "@services";
 import {showMessage} from "react-native-flash-message";
 import {t} from "i18next";
 import {Colors} from "@theme";
-
+import OnepayHash from 'react-native-onepay';
+import {api, API_URL, ApiConfigs} from "@api";
+import {Linking} from "react-native";
 export function useModel(props: any) {
     const dispatch = useDispatch();
     const nav = useNavigation();
@@ -16,11 +18,15 @@ export function useModel(props: any) {
     const {params}=param
     const [addressDef,setAddressDef]=useState<any>([])
     const [isPayment,setIsPayment]=useState(false)
+    const [showSuccess,setShowSuccess]=useState(false)
+    const [loading,setLoading]=useState(false)
     useEffect(()=>{
         if(infoUserName.address){
             setAddressDef(infoUserName?.addressSelect)
         }
     },[infoUserName])
+
+
     const onEditAddress=()=>{
         navigate(SCREEN_ROUTE.ADDRESS,{
             type:"Checkout",
@@ -30,8 +36,12 @@ export function useModel(props: any) {
         getCart(undefined,(res:any)=>{
             if(res.length >0){
                 dispatch(setListCart(res))
+                setLoading(false)
+                setShowSuccess(true)
             }else {
                 dispatch(setListCart([]))
+                setLoading(false)
+                setShowSuccess(true)
             }
 
 
@@ -50,7 +60,7 @@ export function useModel(props: any) {
             return{
                 productDetailId:elm.productDetailId,
                 quantity:elm?.quantity,
-                orderDetailId:elm?.orderId
+                orderDetailId:elm?.id
             }
         })
 
@@ -63,24 +73,51 @@ export function useModel(props: any) {
             "price": params?.items?.total,
             // "discount": 50000
         }
-        console.log({isPayment})
+        console.log({newProduct})
         if(!isPayment){
+            setShowSuccess(true)
+            setLoading(true)
         onCheckoutCart(param,(res)=>{
-                goBack()
+
                 callApiCart()
             },()=>{
-
+            setShowSuccess(false)
+            setLoading(false)
             }).then()
         }else {
+            let body={
+                "order": {
+                    "amount": params?.items?.total,
+                    "customerId": `'${infoUserName.userProfile.id}'`
+                },
+                "transactionType": "domestic"
+            }
+            onCheckoutOnePay(body,(res)=>{
 
+                navigate(SCREEN_ROUTE.WEBVIEW,{url:res.url,title:t("checkout"),callback:()=>{
+                        setShowSuccess(true)
+                    setTimeout(()=>{
+                        setLoading(true)
+                        onCheckoutCart(param,(res)=>{
+                            callApiCart()
+                        },()=>{
+                            setLoading(false)
+                            setShowSuccess(false)
+                        }).then()
+                    },200)
+                    }})
+            },(err)=>{
+                console.log({err})
+            }).then()
         }
 
     }
+
     return{
         nav,
         params,
         infoUserName,
-        addressDef,
-        onEditAddress,isPayment,setIsPayment,onCheckout
+        addressDef,loading,
+        onEditAddress,isPayment,setIsPayment,onCheckout,showSuccess,setShowSuccess
     }
 }

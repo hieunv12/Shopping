@@ -34,11 +34,12 @@ export function useModel(props: any) {
         getAllAddress(undefined,(res:any)=>{
             if(res.length >0){
                 setRefreshing(false)
-                let addressSelect=res?res?.filter((elm:any)=>elm.typeAddress===0)[0]:[]
+                let addressSelect=res?res?.filter((elm:any)=>elm.defaultAddress===1)[0]:[]
+                console.log({res})
                 dispatch(setAddressSelect(addressSelect))
                 dispatch(setAddressUserProfile(res))
             }else {
-                dispatch(setListCart([]))
+                dispatch(setAddressUserProfile([]))
                 setRefreshing(false)
             }
 

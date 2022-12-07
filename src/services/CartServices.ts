@@ -66,12 +66,12 @@ export const onCheckoutCart =async (payload:any,onSuccess:(res:any)=>void,onErro
     try {
         const res:any=await api.postNormal(API_URL.checkout,payload)
         console.log({res})
-        showMessage({
-            message:t("checkoutCartSuccess"),
-            type: "info",
-            backgroundColor: Colors.lightBlue,
-            color: Colors.white,
-        });
+        // showMessage({
+        //     message:t("checkoutCartSuccess"),
+        //     type: "info",
+        //     backgroundColor: Colors.lightBlue,
+        //     color: Colors.white,
+        // });
         return onSuccess(res)
     }catch (e) {
         showMessage({
@@ -80,6 +80,31 @@ export const onCheckoutCart =async (payload:any,onSuccess:(res:any)=>void,onErro
             backgroundColor: Colors.error,
             color: Colors.white,
         });
+        return onError(e)
+    }
+}
+export const onCheckoutOnePay =async (payload:any,onSuccess:(res:any)=>void,onError:(res:any)=>void)=>{
+    try {
+        const res:any=await api.postNormal(API_URL.onepay,payload)
+        console.log({res})
+
+        return onSuccess(res)
+    }catch (e) {
+        showMessage({
+            message:t("checkoutCartError"),
+            type: "info",
+            backgroundColor: Colors.error,
+            color: Colors.white,
+        });
+        return onError(e)
+    }
+}
+
+export const getUrlOnepay =async (payload:any,onSuccess:(res:any)=>void,onError:(res:any)=>void)=>{
+    try {
+        const res:any=await api.postNormal(API_URL.onepay,payload)
+        return onSuccess(res)
+    }catch (e) {
         return onError(e)
     }
 }

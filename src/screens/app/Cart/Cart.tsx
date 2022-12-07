@@ -41,7 +41,7 @@ export const Cart =(props:any)=>{
                     <FlatList
                         data={infoCart.list}
                         renderItem={renderItem}
-                        contentContainerStyle={{
+                        style={{
                             height: Device.height - Spacing.height160 - Spacing.height160,
                         }}
                         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

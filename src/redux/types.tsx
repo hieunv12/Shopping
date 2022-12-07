@@ -19,3 +19,7 @@ export interface cartInterface {
   list: any;
   total:number
 }
+export interface orderInterface {
+  status: number;
+  list: any;
+}

@@ -1,52 +1,42 @@
-import {useDispatch} from "react-redux";
-import {useNavigation} from "@react-navigation/native";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigation, useRoute} from "@react-navigation/native";
 import {getListOrderByStatus} from "@services";
 import {useEffect, useRef, useState} from "react";
+import {setListOrder} from "../../../redux/slices/orderSlice";
+import {getInfoCart} from "../../../redux/selector/cartSlector";
+import {getListOrder} from "../../../redux/selector/orderSlector";
 
 export function useModel(props: any) {
     const dispatch = useDispatch();
     const nav = useNavigation();
     const refFlatList=useRef<any>()
     const [numTab,setNumTab]=useState(0)
-    const [data,setData]=useState([])
     const [loading,setLoading]=useState(false)
     const [numUnConfimred,setNumUnConfimred]=useState(false)
     const [indexOrder,setIndexOrder]=useState(1)
+    const param:any=useRoute()
+    const data:any=useSelector(getListOrder)
+    const {params}=param
     useEffect(()=>{
-        if(numTab!==0){
-            callApi(indexOrder)
-        }else {
-            callApi(numUnConfimred?2:1)
-        }
-
+        callApi(indexOrder)
     },[indexOrder,numUnConfimred])
-    useEffect(() => {
-        const unsubscribe = nav.addListener("focus", () => {
-            console.log('lllllllllll',numTab,numUnConfimred)
-            callApi(indexOrder)
-           //  // console.log()
-           // // setNumUnConfimred(false)
-           //
-           //  // setListOrder([]);
-        });
-        return unsubscribe;
-    }, [nav]);
 
     useEffect(()=>{
     })
     const callApi=(status?:number)=>{
-        console.log(status,numUnConfimred,indexOrder)
         setLoading(true)
-        let param={
-            status:numUnConfimred?2:status
-        }
+            let param={
+                status:status
+            }
         getListOrderByStatus(param,(res)=>{
-            setData(res)
+            // setData(res)
+            dispatch(setListOrder({list:res,status:status}))
             setLoading(false)
         }).then()
     }
     return{
-        nav,refFlatList,numTab,setNumTab,data,setData,loading,
-        numUnConfimred,setNumUnConfimred,setIndexOrder
+        nav,refFlatList,numTab,setNumTab,data,loading,
+        numUnConfimred,setNumUnConfimred,setIndexOrder,
+        params
     }
 }

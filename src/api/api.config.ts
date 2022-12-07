@@ -27,6 +27,7 @@ export const API_URL = {
   address:"/address",
   cart:"/cart",
   checkout:'/cart/check-out',
+  onepay:"/onepay/checkout",
   city:"/city",
   district:"/district/",
   ward:"/ward/",

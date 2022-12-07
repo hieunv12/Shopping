@@ -16,7 +16,6 @@ type DeliveryProgressOrderType={
 export const DeliveryProgressOrder =(props:DeliveryProgressOrderType)=> {
     const {list} = props;
     const data= unionBy(list, 'status')
-    console.log({list})
     const renderItem =(item:any)=>{
         return(
             <TouchableOpacity style={{...styles.viewRow,marginTop:4}}>

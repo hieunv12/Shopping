@@ -175,6 +175,7 @@ export const vi = {
   deleteCartError:"Xoá giỏ hàng thất bại",
   checkoutCartError:"Thanh toán thất bại",
   checkoutCartSuccess:"Thanh toán thành công",
+  gotoOrder:"Đi tới đơn hàng",
   privacyPolicy:"Chính sách bảo mật",
   desPri:"Tại Hihu, chúng tôi coi việc bảo vệ thông tin cá nhân của bạn là ưu tiên hàng đầu. \n" +
       "\n" +

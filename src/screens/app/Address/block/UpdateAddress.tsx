@@ -135,10 +135,10 @@ export const UpdateAddress =(props:any)=>{
                         touched={touched.address}
                     />
                     <AppCheckbox
-                        status={values.typeAddress}
+                        status={values.defaultAddress}
                         style={{marginHorizontal:Spacing.width16}}
                         onSelect={(value)=>{
-                            setFieldValue('typeAddress', value)
+                            setFieldValue('defaultAddress', value)
                         }}
                         label={t("defAddress")}
                     />

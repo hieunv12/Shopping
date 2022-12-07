@@ -20,6 +20,7 @@ import {
 import {useModel} from "./AppNavigator.hook";
 import {Theme, useTheme} from "@theme";
 import {UpdateAddress} from "../../screens/app/Address/block/UpdateAddress";
+import {AppWebView} from "@components";
 const Stack = createStackNavigator();
 //main stack app
 // const
@@ -113,6 +114,11 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
           <Stack.Screen
               name={SCREEN_ROUTE.ADD_ADDRESS}
               component={UpdateAddress}
+              options={{headerShown: false}}
+          />
+          <Stack.Screen
+              name={SCREEN_ROUTE.WEBVIEW}
+              component={AppWebView}
               options={{headerShown: false}}
           />
       {/*  auth*/}

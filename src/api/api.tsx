@@ -41,6 +41,7 @@ class AxiosClass {
   interceptorResponses = (response: AxiosResponse): Promise<any> => {
     const {data} = response;
     LogApp(response);
+    ///delete ve 1 cap
     return Promise.resolve(data.data);
   };
 
@@ -85,10 +86,10 @@ class AxiosClass {
     if (params) {
       newHeader.params = {
         ...params,
-        lang: i18next.language,
+        // lang: i18next.language,
       };
     } else {
-      newHeader.params = {lang: i18next.language};
+      // newHeader.params = {lang: i18next.language};
     }
     if (headers?.cancelToken) {
       newHeader.cancelToken = headers.cancelToken;

@@ -9,9 +9,9 @@ import {BackgroundOrder, ColorTxtOrder, DataTitleOrder, formatDate, TxtOrderStat
 import {Device} from "../../../assets/device";
 import {IconDots, IconOrderBig} from "@assets";
 import {renderPrice} from "../../../utils/PriceUtils";
-import {navigate, SCREEN_ROUTE} from "@navigation";
+import {navigate, reset, SCREEN_ROUTE} from "@navigation";
 export const Order =(props:any)=>{
-    const {refFlatList,numTab,setNumTab,data,loading,numUnConfimred,setNumUnConfimred,setIndexOrder}=useModel(props)
+    const {refFlatList,numTab,setNumTab,data,params,loading,numUnConfimred,setNumUnConfimred,setIndexOrder}=useModel(props)
     // @ts-ignore
     const renderItem=({item,index})=>{
         return(
@@ -88,10 +88,16 @@ export const Order =(props:any)=>{
             return (
                 <View style={{height: Device.height - Spacing.height200}}>
                     <View style={{width: '100%', height: Spacing.height50,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                        <TouchableOpacity style={{...styles.btnHeader,backgroundColor:numUnConfimred?Colors.white:Colors.colorMain2}} onPress={()=>setNumUnConfimred(false)}>
+                        <TouchableOpacity style={{...styles.btnHeader,backgroundColor:numUnConfimred?Colors.white:Colors.colorMain2}} onPress={()=> {
+                            setIndexOrder(1)
+                            setNumUnConfimred(false)
+                        }}>
                             <AppText style={{color:!numUnConfimred?Colors.white:Colors.black}}>{t("UNPAID")}</AppText>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.btnHeader,backgroundColor:!numUnConfimred?Colors.white:Colors.colorMain2}} onPress={()=>setNumUnConfimred(true)}>
+                        <TouchableOpacity style={{...styles.btnHeader,backgroundColor:!numUnConfimred?Colors.white:Colors.colorMain2}} onPress={()=> {
+                            setIndexOrder(2)
+                            setNumUnConfimred(true)
+                        }}>
                             <AppText style={{color:numUnConfimred?Colors.white:Colors.black}}>{t("PAID")}</AppText>
                         </TouchableOpacity>
                     </View>
@@ -183,7 +189,7 @@ export const Order =(props:any)=>{
     }
     return(
         <View style={styles.container}>
-            <HeaderScreen name={t('order')}/>
+            <HeaderScreen name={t('order')} goToBack={()=>navigate(SCREEN_ROUTE.PROFILE_PAGE)}/>
             <FlatList
                 data={DataTitleOrder}
                 renderItem={renderItemHeader}

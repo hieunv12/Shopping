@@ -5,7 +5,7 @@ import {getAddressAccount, setAddressSelect, setAddressUserProfile} from "@redux
 import {useEffect, useRef, useState} from "react";
 import * as Yup from "yup";
 import {useFormik} from "formik";
-import {addAddress, getAllCity, getAllDistrict, getAllWard, updateAddress} from "@services";
+import {addAddress, getAllAddress, getAllCity, getAllDistrict, getAllWard, updateAddress} from "@services";
 import {goBack} from "@navigation";
 
 export function useModel(props: any) {
@@ -32,7 +32,7 @@ export function useModel(props: any) {
             setFieldValue('districtId', params?.item?.detailAddress?.district?.id)
             setFieldValue('wardId', params?.item?.detailAddress?.ward?.id)
             setFieldValue('address', params?.item?.street)
-            setFieldValue('typeAddress', params?.item?.typeAddress!==0?false:true)
+            setFieldValue('defaultAddress', params?.item?.defaultAddress===0?false:true)
             callApiDistricts( params?.item?.detailAddress?.city.id)
             callApiWards(params?.item?.detailAddress?.ward?.id)
         }
@@ -76,6 +76,19 @@ export function useModel(props: any) {
             .min(5, t("validInfo"))
             .required(t("validInfo")),
     });
+    const callApiAddress=()=>{
+        getAllAddress(undefined,(res:any)=>{
+            if(res.length >0){
+                let addressSelect=res?res?.filter((elm:any)=>elm.defaultAddress===1)[0]:[]
+                dispatch(setAddressSelect(addressSelect))
+                dispatch(setAddressUserProfile(res))
+            }else {
+                dispatch(setAddressUserProfile([]))
+            }
+
+
+        },()=>{}).then()
+    }
     const {values, errors, touched, setFieldValue,handleSubmit} = useFormik({
         initialValues: {
             name: '',
@@ -87,14 +100,15 @@ export function useModel(props: any) {
             wardName:"",
             wardId:"",
             address:"",
-            typeAddress:false
+            defaultAddress:false
         },
         onSubmit: (values) => {
             setLoading(true)
             let param= {
                 "name": values.name,
                 "phone": values.phone,
-                "typeAddress": values.typeAddress ? 0 : 1,
+                "defaultAddress": values.defaultAddress ? 1 : 0,
+                "typeAddress": 1,
                 "street": values.address,
                 "detailAddress": {
                     "city":
@@ -114,18 +128,14 @@ export function useModel(props: any) {
                         }
                 }
             }
+            console.log({param})
             if(params?.item){
                 updateAddress(params?.item?.id,param,(res)=>{
                     let newData=data
                     setLoading(false)
-                        let listAddress=newData.map((elm)=>{
-                            if(elm?.id===res.id){
-                                return res
-                            }else {
-                                return elm
-                            }
-                        })
-                        dispatch(setAddressUserProfile(listAddress))
+                    callApiAddress()
+                },()=>{
+                    setLoading(false)
                 }).catch(()=>{
                     setLoading(false)
                 })
@@ -133,12 +143,12 @@ export function useModel(props: any) {
                 addAddress(param,(res)=>{
                     let newData=data
                     setLoading(false)
-
-                        let listAddress=newData.push(res)
-                        let addressSelect=listAddress?.filter((elm:any)=>elm.typeAddress===0)[0]
-                        dispatch(setAddressSelect(addressSelect))
-                        dispatch(setAddressUserProfile(newData.push(res)))
-                    goBack()
+                    callApiAddress()
+                        // let listAddress=newData.push(res)
+                        // let addressSelect=listAddress?.filter((elm:any)=>elm.defaultAddress===1)[0]
+                        // dispatch(setAddressSelect(addressSelect))
+                        // dispatch(setAddressUserProfile(newData?.length===0?[res]:newData.push(res)))
+                        goBack()
                     // setLoading(false)
                 }).catch(()=>{
                     setLoading(false)

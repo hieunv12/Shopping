@@ -17,7 +17,7 @@ import Eye from './eye.svg';
 import EyeActive from './eyeActive.svg';
 import {IconHome,IconProfile,IconSold,IconLeft,IconClose,IconFilter,
     IconGG,IconFacebook,IconNotifile,IconApple,IconCategory,IconSetting,
-    IconCart,IconUserName,IconCart3,IconNoProduct,IconShop,
+    IconCart,IconUserName,IconCart3,IconNoProduct,IconShop,IconOrderSuccess,
     IconUser,IconQA,IconPassword,IconAbout,IconOrder,IconAddress,IconOrderBig,IconDots
 } from "./svg";
 import {IconStar1,IconStar2,IconStar3,IconStar5,IconStar4,IconStar0} from './IconStar'
@@ -31,7 +31,7 @@ export {DiscoverIcon,IconAdd,Minus,Dropdown,Closedown,IconClose,IconLeft,
     IconNotifile,IconFacebook,IconApple,IconGG,IconCategory,IconCart,
     IconSetting,IconUserName, TradeIcon, UserIcon, IconLiked, Eye,
     EyeActive, BackIcon,IconProfile,IconHome,IconAddress,IconShop,
-    IconUser,IconQA,IconPassword,IconAbout,IconOrder,IconOrderBig,IconDots
+    IconUser,IconQA,IconPassword,IconAbout,IconOrder,IconOrderBig,IconDots,IconOrderSuccess
 
 };
 export * from '../icon/image';

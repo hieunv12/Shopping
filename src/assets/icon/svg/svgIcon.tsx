@@ -452,3 +452,15 @@ export const IconShop= ({ style, width=Spacing.width24, height=Spacing.width24 }
         </Svg>
     );
 };
+export const IconOrderSuccess= ({ style, width=Spacing.width71, height=Spacing.width57 }: iconProps) => {
+    return (
+        <Svg width={width} height={height}  viewBox="0 0 71 57" fill="none">
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M24.75 56.568h-.001L0 31.82l11.314-11.314 13.435 13.435L58.691 0l11.313 11.314L24.75 56.569z"
+                fill="#C1FCF6"
+            />
+        </Svg>
+    );
+};

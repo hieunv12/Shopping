@@ -11,8 +11,7 @@ import {styles} from './styles';
 import {AppText} from '../AppText';
 import {SpacingProps, TypographyProps} from '@shopify/restyle';
 import {Eye, EyeActive, Spacing} from '@assets';
-
-export interface appInputProps extends TextInputProps {
+ interface appInputProps extends TextInputProps {
   label?: string;
   value: string;
   onChangeText: (value: string) => void;
