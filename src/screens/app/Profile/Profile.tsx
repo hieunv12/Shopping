@@ -33,7 +33,7 @@ export const Profile =(props:any)=>{
     const RenderInfo=()=>{
         return(
             <View style={styles.viewInfo}>
-                <AppImageAvatar uri={infoUser?.imageUrl} style={styles.imageUser}/>
+                <AppImageAvatar uri={infoUser?.avatar} style={styles.imageUser}/>
                 <View style={{marginLeft:Spacing.width16}}>
                     <AppText style={styles.txtName}>{infoUser?.fullName}</AppText>
                     <AppText style={styles.txtEmail}>{infoUser?.email}</AppText>

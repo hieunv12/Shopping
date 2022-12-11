@@ -5,6 +5,7 @@ import {useNavigation} from "@react-navigation/native";
 import {getListCategory} from '@redux';
 import {DataTest} from "./block/DataTest";
 import {getProduct} from "@services";
+import {getBanner} from "../../../services/BannerServices";
 const DataDefu=[
     {
         type:1
@@ -29,21 +30,30 @@ export function useModel(props: any) {
     const [bestSells,setBestSells]=useState<any>([])
     const [newProduct,setNewProdct]=useState<any>([])
     const [saleProduct,setSaleProduct]=useState<any>([])
+    const [banners,setBanners]=useState([])
     useEffect(()=>{
         callApiForm()
 
     },[])
+    useEffect(()=>{
+        callApiBanner()
 
+    },[])
     useEffect(()=>{
         setListCategory(listCategory)
     },[listCategory])
-
+const callApiBanner=()=>{
+    getBanner(undefined,(res)=>{
+        setBanners(res)
+    },()=>{}).then()
+}
 
     const callApiForm=()=>{
       Promise.all([
           callApiBestSell(),
           callApiNewProduct(),
-          callApiSaleProduct()
+          callApiSaleProduct(),
+          callApiBanner()
 
       ])
     }
@@ -77,6 +87,7 @@ export function useModel(props: any) {
         },()=>{}).then()
     }
     return{
-        nav,data,categories,bestSells,saleProduct,newProduct
+        nav,data,categories,bestSells,
+        saleProduct,newProduct,banners
     }
 }

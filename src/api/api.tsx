@@ -5,7 +5,7 @@ import axios, {AxiosResponse, CancelTokenSource} from 'axios';
 import {LogApp} from '@utils';
 import _ from 'lodash';
 
-import {ApiConfigs} from './api.config';
+import {API_URL, ApiConfigs} from './api.config';
 
 class AxiosClass {
   static instance: AxiosClass;
@@ -155,6 +155,7 @@ class AxiosClass {
       },
     });
   }
+
 }
 
 export const api = AxiosClass.default();

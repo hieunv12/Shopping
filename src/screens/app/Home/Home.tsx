@@ -28,20 +28,13 @@ const Home = (props:any) => {
   const onSwitchLang = AppchangeLanguage();
   const insets = useSafeAreaInsets();
 
-  const {data,categories,bestSells,saleProduct,newProduct}=useModel(props)
+  const {banners,categories,bestSells,saleProduct,newProduct}=useModel(props)
 
-  // const renderItem=({item,index})=>{
-  //   switch (item.type) {
-  //     case 1:
-  //       return <
-  //   }
-  // }
-  // const renderHe
   return (
     <View style={styles.container}>
       <HeaderBar/>
      <ScrollView>
-       <BannerRow data={categories}/>
+       <BannerRow data={banners}/>
        <CategoryRow data={categories}/>
        <FormRow data={bestSells} name={t('bestSell').toUpperCase()} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('bestSell')})}}/>
        <FormRow data={newProduct} name={t('newProduct').toUpperCase()} callback={()=>{NavigationUtils.navigate(SCREEN_ROUTE.FORM_PRODUCT,{name:t('newProduct')})}}/>

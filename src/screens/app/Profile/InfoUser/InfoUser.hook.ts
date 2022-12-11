@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { t } from "i18next";
 import {useFormik} from "formik";
 import {useEffect, useState} from "react";
-import {updateUser} from "@services";
+import {updateUser, UploadImage} from "@services";
 import {getProfileUserFromStore, setUserProfile} from "@redux";
 import ImagePicker from "react-native-image-crop-picker";
 export function useModel(props: any) {
@@ -14,7 +14,7 @@ export function useModel(props: any) {
     const infoUser=useSelector(getProfileUserFromStore)
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
-            .min(5, t("validInfo"))
+            .min(4, t("validInfo"))
             .required(t("validInfo")),
         phone: Yup.string()
             .min(5, t("validInfo"))
@@ -24,6 +24,7 @@ export function useModel(props: any) {
         setFieldValue('name', infoUser?.fullName)
         setFieldValue('phone', infoUser?.phone)
         setFieldValue('isMale', infoUser?.gender===1)
+        setFieldValue('avatar', infoUser?.avatar)
     },[])
     const {values, errors, touched, setFieldValue,handleSubmit} = useFormik({
         initialValues: {
@@ -35,17 +36,41 @@ export function useModel(props: any) {
         enableReinitialize:true,
         onSubmit: (values) => {
             setLoading(true)
-            let param={
-                fullName:values.name,
-                phone:values?.phone,
-                gender:values?.isMale?1:0
+            if(infoUser?.avatar===values?.avatar){
+                let param={
+                    fullName:values.name,
+                    phone:values?.phone,
+                    gender:values?.isMale?1:0,
+                    avatar:values?.avatar
+                }
+                updateUser(param,(res)=>{
+                    setLoading(false)
+                    dispatch(setUserProfile(res))
+                },(error)=>{
+                    setLoading(false)
+                }).then()
+            }else {
+                let bodyImg={
+                    uri:values.avatar
+                }
+                UploadImage(bodyImg,(img)=>{
+                    console.log({img})
+                    let param={
+                        fullName:values.name,
+                        phone:values?.phone,
+                        gender:values?.isMale?1:0,
+                        avatar:img
+                    }
+                    updateUser(param,(res)=>{
+                        setLoading(false)
+                        dispatch(setUserProfile(res))
+                    },(error)=>{
+                        setLoading(false)
+                    }).then()
+                },()=>{
+                    setLoading(false)
+                })
             }
-            updateUser(param,(res)=>{
-                setLoading(false)
-                dispatch(setUserProfile(res))
-            },(error)=>{
-                setLoading(false)
-            }).then()
         },
         validationSchema:SignupSchema
     })

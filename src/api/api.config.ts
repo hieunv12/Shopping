@@ -33,5 +33,11 @@ export const API_URL = {
   ward:"/ward/",
   //order
   order:"/order/client",
-  orderDetail:""
+  orderDetail:"",
+  //banner
+  banner:"/banner",
+
+  //upload
+  uploadImage:'/upload/single',
+  uploadImages:"/upload/array"
 };
