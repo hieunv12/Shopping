@@ -59,7 +59,7 @@ export const InfoProduct =React.memo((props:infoProductType) => {
     return(
         <View style={styles.container}>
             <View style={styles.viewStar}>
-                <AppText style={{color:Colors.white}}>{t('code')}{detail?.productDetails?detail?.productDetails[0].code:''}</AppText>
+                <AppText style={{color:Colors.white}}>{t('code')}{detail?.productDetails?.length >0?detail?.productDetails[0].code:''}</AppText>
             </View>
            <View style={styles.body}>
                <AppText style={styles.txtName} >{detail?.name}</AppText>

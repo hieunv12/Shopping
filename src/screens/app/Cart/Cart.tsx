@@ -12,7 +12,7 @@ import {NavigationUtils, SCREEN_ROUTE} from "@navigation";
 import {renderPrice} from "../../../utils/PriceUtils";
 export const Cart =(props:any)=>{
     const {infoCart,isVisible,setIsVisible,onDeleteCart,setItemCartDelete,onSelectCart,
-        indexCartDelete,setIndexCartDelete,checkoutCart,token,refreshing,onRefresh
+        indexCartDelete,setIndexCartDelete,checkoutCart,token,refreshing,onRefresh,onSaveCart
     }=useModel(props)
     console.log(infoCart)
     // @ts-ignore
@@ -23,6 +23,9 @@ export const Cart =(props:any)=>{
                 index={index}
                 onSelect={(value)=>{
                     onSelectCart(value,index)
+                }}
+                onUpdate={(value)=>{
+                    onSaveCart(value,index)
                 }}
                 onClose={()=> {
                     setItemCartDelete(item)

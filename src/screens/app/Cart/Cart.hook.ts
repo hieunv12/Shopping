@@ -27,6 +27,9 @@ export function useModel(props: any) {
     useEffect(()=>{
         callApiCart()
     },[])
+    useEffect(()=>{
+        console.log({infoCart:infoCart.list})
+    },[infoCart])
     const callApiCart=()=>{
         getCart(undefined,(res:any)=>{
             if(res.length >0){
@@ -63,13 +66,19 @@ export function useModel(props: any) {
         setRefreshing(true);
         callApiCart()
     };
+    const onSaveCart=(value:any,index:number)=>{
+        const newList :any=[]
+        newList.concat(infoCart.list)
+        newList[index]=value
+        dispatch(setListCart(newList))
+    }
     return{
         nav,
         infoCart,
         onDeleteCart,isVisible,setIsVisible,
         setItemCartDelete,onSelectCart,
         indexCartDelete,setIndexCartDelete,
-        checkoutCart,token,onRefresh,refreshing
+        checkoutCart,token,onRefresh,refreshing,onSaveCart
 
     }
 }

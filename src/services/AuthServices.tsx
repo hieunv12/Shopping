@@ -50,6 +50,27 @@ export const forgotApp = async (payload?:any,onSuccess?:(res:any)=>void,onError?
         return onError ? onError(e) : null
     }
 }
+export const verifyCodeApp = async (payload?:any,onSuccess?:(res:any)=>void,onError?:(res:any)=>void)=>{
+    try {
+        const res:any=await api.postNormal(API_URL.verifyCode,payload)
+        console.log('res:',res)
+        showMessage({
+            message:t("verifyCodeSuccess"),
+            type: "info",
+            backgroundColor: Colors.lightBlue,
+            color: Colors.white,
+        });
+        return onSuccess ? onSuccess(res) : null
+    }catch (e) {
+        showMessage({
+            message:t("verifyCodeError"),
+            type: "info",
+            backgroundColor: Colors.error,
+            color: Colors.white,
+        });
+        return onError ? onError(e) : null
+    }
+}
 export const ResetPasswordApp = async (payload?:any,onSuccess?:(res:any)=>void,onError?:(res:any)=>void)=>{
     try {
         const res:any=await api.postNormal(API_URL.forgot,payload)

@@ -42,11 +42,11 @@ export function useModel(props: any) {
     useEffect(()=>{
         setListCategory(listCategory)
     },[listCategory])
-const callApiBanner=()=>{
-    getBanner(undefined,(res)=>{
-        setBanners(res)
-    },()=>{}).then()
-}
+    const callApiBanner=()=>{
+        getBanner(undefined,(res)=>{
+            setBanners(res)
+        },()=>{}).then()
+    }
 
     const callApiForm=()=>{
       Promise.all([

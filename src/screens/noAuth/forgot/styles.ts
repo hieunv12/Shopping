@@ -17,7 +17,14 @@ export const styles = StyleSheet.create({
         marginBottom:Spacing.height16
     },
     btnForgot:{
-        maxWidth:'50%',
+        maxWidth:'60%',
+        backgroundColor:Colors.colorMain,
+        borderRadius:Spacing.height8,
+        marginTop:Spacing.height16,
+        alignSelf:'center'
+    },
+    btnCansel:{
+        maxWidth:'35%',
         backgroundColor:Colors.colorMain2,
         borderRadius:Spacing.height8,
         marginTop:Spacing.height16,

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  // whitelist: ['bottomTabSlice'],
+  // whitelist: ['cartSlice'],
   blacklist: []
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

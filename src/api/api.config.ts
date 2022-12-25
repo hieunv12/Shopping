@@ -20,6 +20,7 @@ export const API_URL = {
   login:'/user/login',
   register:"/user/register",
   forgot:"/user/forgot-password",
+  verifyCode:"",
   resetPassword:"/user/reset-password/",
   changePassword:"/user/change-password",
   user:"/user/me",
@@ -32,7 +33,7 @@ export const API_URL = {
   district:"/district/",
   ward:"/ward/",
   //order
-  order:"/order/client",
+  order:"/order",
   orderDetail:"",
   //banner
   banner:"/banner",

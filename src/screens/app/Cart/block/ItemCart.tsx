@@ -13,26 +13,35 @@ type ItemCartType={
     item:any,
     index:number,
     onSelect:(value:any)=>void,
-    onClose?:()=>void
+    onClose?:()=>void,
+    onUpdate?:(value:any)=>void
 }
 export const ItemCart=(props:ItemCartType)=>{
-    const {item,index,onSelect,onClose}=props
+    const {item,onUpdate,onSelect,onClose}=props
     console.log({item})
     const [amount, setAmount] = useState(1);
     useEffect(()=>{
             setAmount(item?.quantity)
     },[item?.quantity])
     const updateCartProduct=debounce((value:number)=>{
-        console.log('hieu')
         let param={
             quantity:value
         }
         updateCart(item?.id,param,()=>{
-
+                let newItem=item
+            console.log({value})
+                newItem={
+                    ...newItem,
+                    quantity:value
+                }
+            if (onUpdate) {
+                onUpdate(newItem)
+            }
         },()=>{
             setAmount(item?.quantity)
         }).then()
     },1000)
+
     return(
         <TouchableOpacity style={styles.container} onPress={()=>{onSelect(item)}}>
             {/*<View style={item?.select?styles.checkboxSelect:styles.checkbox}/>*/}
