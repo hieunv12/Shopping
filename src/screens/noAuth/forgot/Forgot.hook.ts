@@ -5,12 +5,12 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import {setAccountToken} from "@redux";
 import {useTranslation} from "react-i18next";
-import {forgotApp} from "@services";
+import {forgotApp, ResetPasswordApp, verifyCodeApp} from "@services";
 
 export function useModel(props: any) {
     const dispatch = useDispatch();
     const nav = useNavigation();
-    const [step,setStep]=useState(3)
+    const [step,setStep]=useState(1)
     const {t} = useTranslation();
     const SignupSchema = Yup.object().shape({
         email:Yup.string()
@@ -55,15 +55,27 @@ export function useModel(props: any) {
             // errors.code('')
         }
         let param={
-            otp:otp
+            otp:otp,
+            email:values.email
         }
-        setStep(3)
+        verifyCodeApp(param,(res)=>{
+            setStep(3)
+        },()=>{
+
+        }).then()
+
     }
     const ChangePassword=(password:string)=>{
         let param={
-            password:password
+            password:password,
+            otp:values.code
         }
-        nav.goBack()
+        ResetPasswordApp(param,(res)=>{
+            nav.goBack()
+        },()=>{
+
+        }).then()
+
     }
     return{
         nav,

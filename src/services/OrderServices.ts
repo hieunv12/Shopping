@@ -7,7 +7,7 @@ export const getListOrderByStatus = async (payload?:any,onSuccess?:(res:any)=>vo
     try {
         const res:any=await api.get(API_URL.order,undefined,payload)
         if(res){
-            return onSuccess ? onSuccess(res?res:[]) : null
+            return onSuccess ? onSuccess(res.data?res.data:[]) : null
         }else {
             return onError ? onError(res) : null
         }
@@ -25,7 +25,7 @@ export const cancelOrder =async (id:string,onSuccess:(res:any)=>void,onError:(re
             backgroundColor: Colors.lightBlue,
             color: Colors.white,
         });
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         showMessage({
             message:t("cancelOrderError"),

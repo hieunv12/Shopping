@@ -142,7 +142,7 @@ export const vi = {
   updateAddressError:"Cập nhật địa chỉ thất bại",
   desVerifyCode:"Mã xác thực đã gửi về email : EMAIL của bạn. Vui lòng nhập mã xác thực .",
   addAddressError:"Thêm địa chỉ thất bại",
-  codeOTP:"Mã xác thực",
+  codeOTP:"OTP",
   plpOTP:"123456",
   validateCode:"Vui lòng nhập kiểm tra lại mã xác thực",
   errorCode:"Mã xác thực không chính xác",

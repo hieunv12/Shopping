@@ -3,6 +3,7 @@ import {useNavigation} from "@react-navigation/native";
 import {getProfileUserFromStore, getTokenUserFromStore, logoutUser, setUserProfile} from "@redux";
 import {getUserDetail} from "@services";
 import {useEffect} from "react";
+import {api} from "@api";
 
 export function useModel(props: any) {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export function useModel(props: any) {
         }).then()
     },[])
     const logoutApp=()=>{
+        api.setToken('').then()
         dispatch(logoutUser())
     }
     return{

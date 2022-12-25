@@ -85,6 +85,7 @@ export const Forgot =(props:any)=>{
                     placeholderTextColor={Colors.border}
                     error={errors.password}
                     returnKeyType={'done'}
+                    secureTextEntry
                     touched={touched.password}
                 />
                 <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginHorizontal:16}}>

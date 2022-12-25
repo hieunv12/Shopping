@@ -42,7 +42,7 @@ class AxiosClass {
     const {data} = response;
     LogApp(response);
     ///delete ve 1 cap
-    return Promise.resolve(data.data);
+    return Promise.resolve(data);
   };
 
   setToken = async (token: string) => {

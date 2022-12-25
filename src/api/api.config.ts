@@ -20,8 +20,8 @@ export const API_URL = {
   login:'/user/login',
   register:"/user/register",
   forgot:"/user/forgot-password",
-  verifyCode:"",
-  resetPassword:"/user/reset-password/",
+  verifyCode:"/user/verify-otp",
+  resetPassword:"/user/reset-password",
   changePassword:"/user/change-password",
   user:"/user/me",
   //address

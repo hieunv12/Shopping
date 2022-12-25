@@ -6,7 +6,7 @@ export const getCart =async (payload:any,onSuccess:(res:any)=>void,onError:(res:
     try {
         const res:any=await api.get(API_URL.cart)
         console.log('cart:',res)
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         return onError(e)
     }
@@ -21,7 +21,7 @@ export const addCart =async (payload:any,onSuccess:(res:any)=>void,onError:(res:
             backgroundColor: Colors.lightBlue,
             color: Colors.white,
         });
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         showMessage({
             message:t("addCartError"),
@@ -41,7 +41,7 @@ export const deleteCart =async (id:string,onSuccess:(res:any)=>void,onError?:(re
             backgroundColor: Colors.lightBlue,
             color: Colors.white,
         });
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         showMessage({
             message:t("deleteCartError"),
@@ -56,7 +56,7 @@ export const updateCart =async (id:string,payload:any,onSuccess:(res:any)=>void,
     try {
         const res:any=await api.put(API_URL.cart+'/'+id,payload)
         console.log({res})
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
 
         return onError(e)
@@ -72,7 +72,7 @@ export const onCheckoutCart =async (payload:any,onSuccess:(res:any)=>void,onErro
         //     backgroundColor: Colors.lightBlue,
         //     color: Colors.white,
         // });
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         showMessage({
             message:t("checkoutCartError"),
@@ -88,7 +88,7 @@ export const onCheckoutOnePay =async (payload:any,onSuccess:(res:any)=>void,onEr
         const res:any=await api.postNormal(API_URL.onepay,payload)
         console.log({res})
 
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         showMessage({
             message:t("checkoutCartError"),
@@ -103,7 +103,7 @@ export const onCheckoutOnePay =async (payload:any,onSuccess:(res:any)=>void,onEr
 export const getUrlOnepay =async (payload:any,onSuccess:(res:any)=>void,onError:(res:any)=>void)=>{
     try {
         const res:any=await api.postNormal(API_URL.onepay,payload)
-        return onSuccess(res)
+        return onSuccess(res.data)
     }catch (e) {
         return onError(e)
     }
