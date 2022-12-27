@@ -1,13 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigation, useRoute} from "@react-navigation/native";
-import {getProfileUser, setListCart} from "@redux";
+import {getProfileUser, setAddressSelect, setAddressUserProfile, setListCart} from "@redux";
 import {useEffect, useState} from "react";
 import {goBack, navigate, SCREEN_ROUTE} from "@navigation";
-import {getCart, getUrlOnepay, onCheckoutCart, onCheckoutOnePay} from "@services";
+import {getAllAddress, getCart, getUrlOnepay, onCheckoutCart, onCheckoutOnePay} from "@services";
 import {showMessage} from "react-native-flash-message";
 import {t} from "i18next";
 import {Colors} from "@theme";
-import OnepayHash from 'react-native-onepay';
 import {api, API_URL, ApiConfigs} from "@api";
 import {Linking} from "react-native";
 export function useModel(props: any) {
@@ -20,11 +19,28 @@ export function useModel(props: any) {
     const [isPayment,setIsPayment]=useState(false)
     const [showSuccess,setShowSuccess]=useState(false)
     const [loading,setLoading]=useState(false)
-    useEffect(()=>{
-        if(infoUserName.address){
-            setAddressDef(infoUserName?.addressSelect)
-        }
-    },[infoUserName])
+    useEffect(()=>{callApiAddress()},[])
+    const callApiAddress=()=>{
+        getAllAddress(undefined,(res:any)=>{
+            if(res.length >0){
+                let addressSelect=res?res?.filter((elm:any)=>elm.defaultAddress===1)[0]:[]
+                console.log({addressSelect})
+                dispatch(setAddressSelect(addressSelect))
+                dispatch(setAddressUserProfile(res))
+                setAddressDef(infoUserName?.addressSelect)
+            }else {
+                dispatch(setAddressUserProfile([]))
+                setAddressDef('')
+            }
+
+
+        },()=>{}).then()
+    }
+    // useEffect(()=>{
+    //     if(infoUserName.address){
+    //         setAddressDef(infoUserName?.addressSelect)
+    //     }
+    // },[infoUserName])
 
 
     const onEditAddress=()=>{

@@ -16,7 +16,7 @@ export const PaymentOrder =(props:PaymentOrderType)=> {
     return (
         <View style={styles.containerAddress}>
           <AppText style={styles.txtTitle}>{t("payment")}</AppText>
-            <AppText style={{color:Colors.gray}}>{detail?.paymentMethod===0?t("payment1"):t("payment2")}</AppText>
+            <AppText style={{color:Colors.gray}}>{detail?.paymentMethod!==0?t("payment1"):t("payment2")}</AppText>
         </View>
     )
 }

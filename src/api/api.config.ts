@@ -1,7 +1,7 @@
 //if you using .env pls change domain in below line.
 
 export const ApiConfigs = {
-  baseURL: 'https://api-clothing-production.up.railway.app',
+  baseURL: 'https://api-clothing-1-production.up.railway.app',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
